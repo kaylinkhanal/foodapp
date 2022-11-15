@@ -1,14 +1,110 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap');
+
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-    
+  padding: 0;
+  box-sizing: border-box
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+}
+
+h1,h2,h3,h4{
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
+}
+
+.section_bg {
+  background: #FF8465;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+h2.pg_title {
+  font-size: 30px;
+  color: #fff;
+  /* text-transform: uppercase; */
+}
+
+.register {
+  max-width: 400px;
+}
+
+input {
+  background: rgba(255,255,255,.2);
+  border: 1px solid #fff;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px !important;
+  padding: 10px;
+  line-height: -31px;
+}
+
+::placeholder {
+  color: #f3eded;
+  font-size: 14px;
+  font-style: italic;
+}
+
+button {
+  background: #CF450E;
+  padding: 10px 30px;
+  border: 1px solid transparent;
+  text-transform: uppercase !important;
+  color: #fff;
+  font-size: 16px !important;
+}
+
+.form_section{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_section>div{
+  width: 50%
+}
+
+.text_block{
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  padding-right: 20%;
+}
+
+.text_block img{
+  max-width: 400px;
+}
+
+.text_block h1 {
+  font-size: 50px;
+  font-weight: 700 !important;
+  color: #fff;
+  margin-bottom: 10px !important;
+}
+
+.text_block p {
+  color: #3f3d56;
+  font-size: 20px;
+  margin-left: 20px;
+  line-height: 25px;
+}
+
+@keyframes fadeOut{
+	0%{
+		opacity: 1;
+		left: 5px;
+	}
+
+	100%{
+		opacity:0;
+		left: 95%;
+	}
 }
