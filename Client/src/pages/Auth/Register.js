@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import FormText from '../../component/formText';
+import Image from '../../images/delivery_girl.svg'
+
 
 const Register = ()=> {
 	const saveParticipants = async(values)=>{
@@ -22,20 +24,20 @@ const Register = ()=> {
   }
 
   const SignupSchema = Yup.object().shape({
-		username: Yup.string()
+		name: Yup.string()
 		.required('Required'),
 		password: Yup.string()
 		.required('Required'),
 		email: Yup.string().email('Invalid email').required('Required'),
-		lotteryNo: Yup.number()
+		phoneNumber: Yup.number()
 		.required('Required'),
 	});
 
   return (
       <div className="section_bg">
-        <div className="form_section">
+        <div className="form_section" id="register">
             <div className='info_text'>
-                <FormText/>
+                <FormText image={Image}/>
             </div>
 
             <div className='form_content'>
@@ -45,8 +47,8 @@ const Register = ()=> {
                     <Formik
                         initialValues={{
                             name: '',
-                                        phoneNumber: '',
-                                        adddress: '',
+                            phoneNumber: '',
+                            adddress: '',
                             email: '',
                             password: '',
                             confirmPassword: '',
@@ -60,28 +62,26 @@ const Register = ()=> {
                     >
                     {({ errors, touched, values, handleChange, handleBlur }) => (
                         <Form>
-                            <Field name="name" placeholder="Your Name" value={values.name} onChange={handleChange} onBlur={handleBlur} />
+                            <Field name="name" placeholder="Enter Name" value={values.name} onChange={handleChange} onBlur={handleBlur} />
                             {errors.name && touched.name ? (<div className="error">{errors.name}</div>) : null}
 
-                            <Field name="phoneNumber" placeholder="Your Contact" value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
+                            <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
                             {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
 
-                            <Field name="adddress" placeholder="Your Adddress" value={values.adddress} onChange={handleChange} onBlur={handleBlur} />
+                            <Field name="adddress" placeholder="Enter Adddress" value={values.adddress} onChange={handleChange} onBlur={handleBlur} />
                             {errors.email && touched.email ? (<div className="error">{errors.email}</div>) : null}
 
-                            <Field name="email" placeholder="Your Lottery No." value={values.email} onChange={handleChange} onBlur={handleBlur} />
-                            {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
-
-                            <Field name="password" placeholder="Your Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+                            <Field name="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
                             {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
 
-                                        <Field name="confirmPassword" placeholder="Confirm Password" value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur} />
+                            <Field name="confirmPassword" placeholder="Confirm Password" value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur} />
                             {errors.confirmPassword && touched.confirmPassword ? <div className="error">{errors.confirmPassword}</div> : null}
 
                             <button type="submit">Submit</button>
                         </Form>
                     )}
                     </Formik>
+                    
                 </div>
             </div>
         </div>

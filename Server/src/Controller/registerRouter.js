@@ -7,7 +7,27 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
     try{
         console.log(req.body)
-        const appUser = User.create(req.body)
+        const appUser = await User.create(req.body)
+       
+    }catch(error){
+        console.log(error)
+    }
+});
+
+router.post("/login", async (req, res) => {
+    try{
+        console.log(req.body)
+        if(req.body.phoneNmber && req.body.password){
+            const registeredUser = await User.findOne(req.body)
+            if(registeredUser){
+				res.send(registeredUser)
+			}else{
+				res.json({message: "No user found"})
+			}
+        }else{
+			res.json({message: "All fields are required. Complete the form!!"})
+		}
+        
        
     }catch(error){
         console.log(error)
