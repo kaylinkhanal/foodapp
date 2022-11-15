@@ -17,6 +17,16 @@ h1,h2,h3,h4{
   font-weight: 600 !important;
   margin-bottom: 15px !important;
 }
+header{
+  position: fixed;
+  width: 100%;
+  padding: 10px 0
+}
+
+.logo img{
+  filter: drop-shadow(2px 1px 0px white);
+  max-width: 68px;
+}
 
 .section_bg {
   background: #FF8465;
