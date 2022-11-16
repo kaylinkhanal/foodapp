@@ -63,7 +63,7 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
             body:JSON.stringify(values),
             headers:{'Content-Type':'application/json'},
           }
-          fetch('http://localhost:4000/Users', requestOptions)
+          fetch('http://localhost:4000/register', requestOptions)//this register should be from Model in line no 14
        }}
      >
        {({ errors, touched }) => (
