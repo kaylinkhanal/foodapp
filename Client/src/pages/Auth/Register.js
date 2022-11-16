@@ -1,3 +1,4 @@
+
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -26,61 +27,7 @@ const SignupSchema = Yup.object().shape({
   .oneOf([Yup.ref('password')], 'Passwords does not match')
 });
 const Register = ()=> {
-
-    return (
-    
-      <div>
-        <h1>Signup</h1>
-        <Formik
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            phoneNumber:'',
-            email: '',
-            password:'',
-            }}
-          validationSchema={SignupSchema}
-          onSubmit={values => {
-            // same shape as initial values
-            console.log(values);
-            const requestOptions={
-               method:'POST',
-               body:JSON.stringify(values),
-               headers:{'Content-Type':'application/json'},
-             }
-             fetch('http://localhost:4000/register', requestOptions)
-          }}
-        >
-          {({ errors, touched }) => (
-            <Form className='divForm'>
-              <Field type='text' name="firstName" placeholder='First Name'/>
-              {errors.firstName && touched.firstName ? (
-                <div>{errors.firstName}</div>
-              ) : null}
-              <Field  type='text' name="lastName" placeholder='Last Name'/>
-              {errors.lastName && touched.lastName ? (
-                <div>{errors.lastName}</div>
-              ) : null}
-
-              <Field type="text" name="phoneNumber"  placeholder='Phone no.'/>
-              {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
-
-              <Field type="email" name="email"  placeholder='Email'/>
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
-   
-              <Field type="password" name="password"  placeholder='Password'/>
-              {errors.password && touched.password ? <div>{errors.password}</div> : null}
-              <Field type="password" name="passwordConfirm"  placeholder='Confirm Password'/>
-              {errors.passwordConfirm && touched.passwordConfirm ? <div>{errors.passwordConfirm}</div> : null}
-   
-              <input type="submit" value="submit"/>
-            </Form>
-          )}
-        </Formik>
-      </div>
-    );
-   
-
+  return <h1>hello i am Register</h1>
 }
 
 export default Register
