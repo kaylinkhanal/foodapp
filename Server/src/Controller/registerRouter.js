@@ -3,8 +3,8 @@ const router = express.Router();
 
 
 // post request for register the user
-router.post("/", async (req, res) => {
-
+router.post('/register', (req, res) => {
+    console.log(req.body)
 });
 
 // view users

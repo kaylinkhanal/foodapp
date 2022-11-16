@@ -13,6 +13,7 @@ const registerRouter = require("./Controller/registerRouter");
 
 app.use("/register", registerRouter);
 
+
 app.listen(process.env.PORT, () => {
   console.log(`Chat Server listening on port ${process.env.PORT}`);
 });
