@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.foodapp-form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.foodapp-form-errors {
+  color: #ff0000;
+}
+
+.form-group {
+  margin: 20px 0px;
+}
