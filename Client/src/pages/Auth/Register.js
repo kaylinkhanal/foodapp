@@ -17,21 +17,27 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    address: Yup.string()
+  address: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    phoneNumber: Yup.string()
+  phoneNumber: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
+
+  role: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
 
   password: Yup
   .string()
   .required('Required')
   .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/,
   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"),
+  
   confirmPassword: Yup
   .string()
   .required('Required')
@@ -51,6 +57,7 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
          address:'',
          phoneNumber:'',
          email: '',
+         role: '',
          password:'',
          confirmPassword:''
        }}
@@ -63,13 +70,13 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
             body:JSON.stringify(values),
             headers:{'Content-Type':'application/json'},
           }
-          fetch('http://localhost:4000/register', requestOptions)//this register should be from Model in line no 14
+          fetch('http://localhost:4000/register', requestOptions).then(res=>res.json())
+          .then(data=> alert(data.msg))//this register should be from Model in line no 14
        }}
      >
        {({ errors, touched }) => (
          <Form >
            <Field type='text' name="firstName" placeholder='First Name'/>
-
            {/* If validation is not passed show errors */}
            {errors.firstName && touched.firstName ? (
              <div>{errors.firstName}</div>
@@ -89,6 +96,9 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
            <Field type="email" name="email"  placeholder='Email'/>
            {errors.email && touched.email ? <div>{errors.email}</div> : null}
 
+           <Field name="role" placeholder="Select Role" value={values.role} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
+                              
            <Field type="password" name="password"  placeholder='Password'/>
            {errors.password && touched.password ? <div>{errors.password}</div> : null}
 

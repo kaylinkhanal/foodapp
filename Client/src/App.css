@@ -45,6 +45,7 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    
   }
   
   
@@ -73,7 +74,7 @@ input[type=text], select {
     width: 100%;
     background-color: #4CAF50;
     color: white;
-    padding: 14px 20px;
+    padding: 8px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 10px;
@@ -85,9 +86,32 @@ input[type=text], select {
     background-color: #45a049;
   }
 
+  select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
+  option{
+    background-color: aquamarine;
+  }
+
+  .input-block{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+  }
   .parent {
-    background: rgb(193, 194, 196);
+    background: rgb(125, 126, 128);
     height: 990px;
     width: 100%;
     display:flex;
@@ -100,7 +124,7 @@ input[type=text], select {
     height:700px;
     width:400px;
     border-radius: 13px;
-    background-color: #f2f2f2;
+    background-color: #bab6bc;
     padding: 50px;
    
   }
@@ -110,9 +134,13 @@ input[type=text], select {
     height:386px;
     width:366px;
     border-radius: 13px;
-    background-color: #f2f2f2;
+    background-color: #bab6bc;
     padding: 50px;
 
   }
-  
- 
+
+
+/* to change place holder color*/
+ ::placeholder{
+    color:#6e11e7;
+ }

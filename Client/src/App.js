@@ -7,7 +7,7 @@ const App = () => {
     <div className="parent">
       <Routes>
        <Route path="/register" element={<Register/>} />
-        <Route path="/" element={<Login />} />
+       <Route path="/" element={<Login />} />
       </Routes>
     </div>
   );
