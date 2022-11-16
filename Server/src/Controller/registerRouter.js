@@ -4,8 +4,7 @@ const router = express.Router();
 
 
 // post request for register the user
-router.post("/register", async (req, res) => {
-    console.log("hello")
+router.post("/", async (req, res) => {
     try{
      usersModel.create(req.body)
     console.log(req.body)
