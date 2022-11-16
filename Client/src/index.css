@@ -83,7 +83,8 @@ button {
 }
 
 .form_section>div{
-  width: 50%
+  width: 50%;
+  z-index: 1
 }
 
 .text_block{

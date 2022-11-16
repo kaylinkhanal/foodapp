@@ -8,31 +8,33 @@ router.post("/register", async (req, res) => {
     try{
         console.log(req.body)
         const appUser = await User.create(req.body)
-       
+       resizeBy.send({
+        message: 'User Registered'
+       })
     }catch(error){
         console.log(error)
     }
 });
 
-router.post("/login", async (req, res) => {
-    try{
-        console.log(req.body)
-        if(req.body.phoneNmber && req.body.password){
-            const registeredUser = await User.findOne(req.body)
-            if(registeredUser){
-				res.send(registeredUser)
-			}else{
-				res.json({message: "No user found"})
-			}
-        }else{
-			res.json({message: "All fields are required. Complete the form!!"})
-		}
+// router.post("/", async (req, res) => {
+//     try{
+//         console.log(req.body)
+//         if(req.body.phoneNmber && req.body.password){
+//             const registeredUser = await User.findOne(req.body)
+//             if(registeredUser){
+// 				res.send(registeredUser)
+// 			}else{
+// 				res.json({message: "No user found"})
+// 			}
+//         }else{
+// 			res.json({message: "All fields are required. Complete the form!!"})
+// 		}
         
        
-    }catch(error){
-        console.log(error)
-    }
-});
+//     }catch(error){
+//         console.log(error)
+//     }
+// });
 
 // view users
 router.get("/", async (req, res) => {

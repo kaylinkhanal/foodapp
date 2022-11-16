@@ -2,36 +2,43 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
+import { useNavigate } from "react-router-dom";
 
 
 const Register = ()=> {
-	const saveParticipants = async(values)=>{
-		const date = Date.now()
-		const requestOptions = {
-		 method: 'POST',
-		 headers: { 'Content-Type': 'application/json' },
-		 body: JSON.stringify({
-			 username: values.username,
-				  email: values.email,
-				  lotteryNo: values.lotteryNo,
-				  password: values.password,
-				  created: date,
-		 })
-	 };
-	 const response = await fetch('http://localhost:4000/register', requestOptions);
-	 const data = await response.json();
-	 console.log(data) 
-  }
+	const navigate = useNavigate()
+    const saveParticipants = async(values)=>{
+        const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				name: values.name,
+                phoneNumber: values.phoneNumber,
+                address: values.address,
+                email: values.email,
+                role: values.role,
+                password: values.password,
+                confirmPassword: values.confirmPassword
+			})
+		};
+		const response = await fetch('http://localhost:4000/register/register', requestOptions);
+		const data = await response.json();
+		console.log(data)
 
-  const SignupSchema = Yup.object().shape({
-		name: Yup.string()
-		.required('Required'),
-		password: Yup.string()
-		.required('Required'),
-		email: Yup.string().email('Invalid email').required('Required'),
-		phoneNumber: Yup.number()
-		.required('Required'),
-	});
+        if(data){
+            navigate('/login')
+        }  
+    }
+
+    const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+          .required('Required'),
+        password: Yup.string()
+          .required('Required'),
+        email: Yup.string().email('Invalid email').required('Required'),
+        phoneNmber: Yup.number()
+          .required('Required'),
+    });
 
   return (
       <div className="section_bg">
@@ -48,10 +55,11 @@ const Register = ()=> {
                         initialValues={{
                             name: '',
                             phoneNumber: '',
-                            adddress: '',
+                            address: '',
                             email: '',
+                            role: '',
                             password: '',
-                            confirmPassword: '',
+                            confirmPassword: ''
                         }}
                         validationSchema={SignupSchema}
                         onSubmit={values => {
@@ -60,16 +68,22 @@ const Register = ()=> {
                             // console.log(values);
                         }}
                     >
-                    {({ errors, touched, values, handleChange, handleBlur }) => (
-                        <Form>
+                    {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
+                        <Form onSubmit={handleSubmit}>
                             <Field name="name" placeholder="Enter Name" value={values.name} onChange={handleChange} onBlur={handleBlur} />
                             {errors.name && touched.name ? (<div className="error">{errors.name}</div>) : null}
 
                             <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
                             {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
 
-                            <Field name="adddress" placeholder="Enter Adddress" value={values.adddress} onChange={handleChange} onBlur={handleBlur} />
-                            {errors.email && touched.email ? (<div className="error">{errors.email}</div>) : null}
+                            <Field name="address" placeholder="Enter Address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.address && touched.address ? <div className="error">{errors.address}</div> : null}
+
+                            <Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
+
+                            <Field name="role" placeholder="Select Role" value={values.role} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
 
                             <Field name="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
                             {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
@@ -81,7 +95,6 @@ const Register = ()=> {
                         </Form>
                     )}
                     </Formik>
-                    
                 </div>
             </div>
         </div>

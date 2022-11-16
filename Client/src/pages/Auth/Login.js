@@ -46,8 +46,8 @@ const Login = ()=> {
                 <div className="register">
                     <Formik
                         initialValues={{
-                            phoneNumber: '',
-                            password: '',
+                          phoneNumber: '',
+                          password: '',
                         }}
                         validationSchema={LoginSchema}
                         onSubmit={values => {
@@ -57,16 +57,15 @@ const Login = ()=> {
                         }}
                     >
                     {({ errors, touched, values, handleChange, handleBlur }) => (
-                        <Form>
+                      <Form>
+                        <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
+                        {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
 
-                            <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
-                            {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
+                        <Field name="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+                        {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
 
-                            <Field name="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
-                            {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
-
-                            <button type="submit">Login</button>
-                        </Form>
+                        <button type="submit">Login</button>
+                      </Form>
                     )}
                     </Formik>
                     <p style={{color: '#fff', marginTop: '10px'}}>Dont have an account? <Link to="/register">Signup</Link> here</p>
