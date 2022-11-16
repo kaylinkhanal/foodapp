@@ -7,6 +7,9 @@ const router = express.Router();
 router.post("/", async (req, res) => {
     try{
      usersModel.create(req.body)
+     res.json({
+         msg: 'user registered'
+     })
     }catch (error){
         console.log('error')
     }
