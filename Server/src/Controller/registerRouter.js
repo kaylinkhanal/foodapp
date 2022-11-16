@@ -7,11 +7,9 @@ const router = express.Router();
 router.post("/", async (req, res) => {
     try{
      usersModel.create(req.body)
-    console.log(req.body)
     }catch (error){
         console.log('error')
     }
-    
 });
 
 // view users
