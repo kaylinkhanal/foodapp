@@ -1,10 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const usersModel = require('../Model/usersSchema')
 
 
 // post request for register the user
-router.post('/register', (req, res) => {
-    console.log(req.body)
+router.post('/', (req, res) => {
+      try{
+        console.log(req.body)
+        usersModel.create(req.body)
+        }
+        catch(error){
+            console.log(error)
+        }
 });
 
 // view users
