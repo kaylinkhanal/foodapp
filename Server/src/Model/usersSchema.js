@@ -2,17 +2,13 @@ const mongoose = require('mongoose')
 
 const usersSchema = new mongoose.Schema(
     {
-      firstName: { type: String, unique: true },
-      lastName: { type: String, unique: true },
-      phoneNumber: { type: String, unique: true },
-      address: { type: String, unique: true },
-      email: { type: String, unique: true },
-      password: { type: String, unique: true },
-      confrimPassword: { type: String, unique: true },
-
-
-      
-
+      firstName: { type: String },
+      lastName: { type: String },
+      phoneNumber: { type: String},
+      address: { type: String },
+      email: { type: String},//email should be unique
+      password: { type: String},
+      confrimPassword: { type: String },
     },
     {
       collection: "Users",
