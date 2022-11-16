@@ -1,14 +1,16 @@
 const express = require("express");
+const usersModel = require("../Model/usersSchema");
 const router = express.Router();
 
 
 // post request for register the user
-router.post("/", async (req, res) => {
-
+router.post("/Register", async (req, res) => {
+    usersModel.create(req.body)
+    console.log(req.body)
 });
 
 // view users
-router.get("/", async (req, res) => {
+router.get("/Register", async (req, res) => {
 
 });
 
