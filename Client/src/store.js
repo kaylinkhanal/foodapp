@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import logger from "redux-logger";
 // import addToCartSlice from "./components/addToCart/addToCart.slice";
 const reducer = combineReducers({
+  // register: Register,
   // count: addToCartSlice,
 });
 
