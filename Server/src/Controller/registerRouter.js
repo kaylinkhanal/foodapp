@@ -5,10 +5,12 @@ const router = express.Router();
 // post request for register the user
 router.post("/", async (req, res) => {
     try{
-     usersModel.create(req.body)
-     res.json({
-         msg: 'user registered'
-     })
+    const data = await usersModel.create(req.body)
+    if(data){
+        res.json({
+            msg: 'user registered'
+        })
+    }
     }catch (error){
         console.log('error')
     }
