@@ -31,7 +31,7 @@ const SignupSchema = Yup.object().shape({
     .required('ReEnter Your Password.')
 });
 
-const Register = () => {
+const Register = () => { 
   return (
     <>
         <div>
