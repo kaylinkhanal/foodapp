@@ -90,14 +90,11 @@ const Register = ()=> {
                             <Field name="address" placeholder="Enter Address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
                             {errors.address && touched.address ? <div className="error">{errors.address}</div> : null}
 
-                            <Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                             <Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
                             {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
-
-                            {/* <Field name="role" placeholder="Select Role" value={values.role} onChange={handleChange} onBlur={handleBlur} /> */}
-                            
-
+                        
                             <select name="role" value={values.role} onChange={handleChange} onBlur={handleBlur}>
-                                <option value="" label="Select a color">Select a color</option>
+                                <option value="" label="Select a Role">Select a Rider</option>
                                 <option value="user" label="User">User</option>
                                 <option value="rider" label="Rider">Rider</option>
                             </select>
