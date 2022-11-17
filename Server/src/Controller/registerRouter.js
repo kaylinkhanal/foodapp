@@ -8,7 +8,7 @@ router.post("/register", async (req, res) => {
     try{
         console.log(req.body)
         const appUser = await User.create(req.body)
-       resizeBy.send({
+       res.send({
         message: 'User Registered'
        })
     }catch(error){
