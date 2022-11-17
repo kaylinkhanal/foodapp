@@ -30,7 +30,7 @@ const SignupSchema = Yup.object().shape({
     .required('Enter Your Password'),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('ReEnter Your Password.')
+    .required('ReEnter Your Password')
 });
 
 const Register = () => {

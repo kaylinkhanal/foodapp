@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const usersSchema = new mongoose.Schema(
     {
-      name: { type: String },
-      phoneNumber: { type: Number},
+      full_name: { type: String },
+      phone: { type: Number },
       address: { type: String },
       email: { type: String },
-      password: { type: String},
-      role: { type: String},
+      role: { type: String },
+      password: { type: String },
     },
     {
       collection: "Users",
