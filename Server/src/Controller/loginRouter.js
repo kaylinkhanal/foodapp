@@ -1,14 +1,12 @@
 const express = require("express");
-const usersModel = require("../Model/usersSchema");
 const router = express.Router();
 
 // post request for register the user
 router.post("/", async (req, res) => {
     try{
         console.log(req.body)
-     usersModel.create(req.body)
-     res.json({
-         msg: 'user registered'
+        res.json({
+         msg: 'You are logged in'
      })
     }catch (error){
         console.log('error')
