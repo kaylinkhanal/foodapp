@@ -17,6 +17,8 @@ const Register = ()=> {
      .min(2, 'Too Short!')
      .max(50, 'Too Long!')
     ,
+    role: Yup.string()
+     .required('Required'),
    email: Yup.string()
      .min(2, 'Too Short!')
      .max(50, 'Too Long!')
@@ -25,7 +27,7 @@ const Register = ()=> {
     .oneOf([Yup.ref('password'),null],'password must match')
     .required('password is required'),
     confirmPassword: Yup.string()
-    .oneOf([Yup.ref('confirmPassword'),null],'password must match')
+    .oneOf([Yup.ref('password'),null],'password must match')
     .required('confirm password is required'),
 //    password: Yup.string()
 //      .min(2, 'Too Short!')
@@ -41,6 +43,7 @@ const Register = ()=> {
          name: '',
          phoneNumber: '',
          address: '',
+         role:'',
          email: '',
          password: '',
          }}
@@ -72,6 +75,13 @@ const Register = ()=> {
            {errors.address && touched.address ? (
              <div>{errors.address}</div>
            ) : null}<br/><br/>
+           
+            <Field component="select" name="role">
+            <option value=''>Choose your role</option>
+              <option value="Rider">Rider</option>
+              <option value="Customer">Customer</option></Field>
+              {errors.role && touched.role ? <div>{errors.role}</div> : null}<br/><br/>
+
            <Field name="email" placeholder="Email Address"/>
            {errors.email && touched.email ? (
              <div>{errors.email}</div>
