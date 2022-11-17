@@ -125,8 +125,8 @@ const Register = ()=> {
                     /> */}
 
                     <select>
-                      <option>Rider</option>
-                      <option>Customer</option>
+                      <option value='Rider'>Rider</option>
+                      <option value='Customer'>Customer</option>
                     </select>
                     {errors.role && touched.role ? (
                       <p className="form-error">{errors.role}</p>
