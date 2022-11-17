@@ -12,16 +12,36 @@ const initialValues = {
   password: "",
 };
 const Login = ()=> {
+  const triggerLogin = async(values)=>{
+    console.log(values)
+    const requestOptions = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    name: values.name,
+            phoneNumber: values.phoneNumber,
+            address: values.address,
+            email: values.email,
+            role: values.role,
+            password: values.password,
+            confirmPassword: values.confirmPassword
+  })
+  }
+  const response = await fetch('http://localhost:4000/login/', requestOptions);
+
+};
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+  
   useFormik({
     initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      console.log(values);
+      triggerLogin(values)
       action.resetForm();
     },
   });
-console.log(values);
+
+
 
   return <>
        <GlobalStyle />
