@@ -28,8 +28,6 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
   email: Yup.string().email('Invalid email').required('Required'),
 
   role: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
     .required('Required'),
 
   password: Yup
@@ -41,9 +39,7 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
   confirmPassword: Yup
   .string()
   .required('Required')
-  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/,
-  "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-  ),
+  .oneOf([Yup.ref('password'),null],'password must match'),
 });
 
  export const Register = () => (
@@ -76,34 +72,53 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
      >
        {({ errors, touched }) => (
          <Form >
+         
            <Field type='text' name="firstName" placeholder='First Name'/>
            {/* If validation is not passed show errors */}
            {errors.firstName && touched.firstName ? (
              <div>{errors.firstName}</div>
            ) : null}
+           
 
+          
            <Field  type='text' name="lastName" placeholder='Last Name'/>
            {errors.lastName && touched.lastName ? (
              <div>{errors.lastName}</div>
            ) : null}
+         
 
+          
            <Field type="text" name="address"  placeholder='Address'/>
            {errors.address && touched.address ? <div>{errors.address}</div> : null}
+          
 
+         
            <Field type="text" name="phoneNumber"  placeholder='Phone Number'/>
            {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
+          
 
            <Field type="email" name="email"  placeholder='Email'/>
            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+          
 
-           <Field name="role" placeholder="Select Role" value={values.role} onChange={handleChange} onBlur={handleBlur} />
-                            {errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
-                              
+           <div className='inputDiv'>
+            <Field id="role" className="form-control" component="select" name="role">
+              <option value=''>Choose Your Role</option>
+              <option value="Rider">Rider</option>
+              <option value="Customer">Customer</option>
+            </Field>
+            {errors.role && touched.role ? <div>{errors.role}</div> : null}
+           </div>
+
+          
            <Field type="password" name="password"  placeholder='Password'/>
            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+          
 
+         
            <Field type="password" name="confirmPassword"  placeholder='Confirm Password'/>
            {errors.confirmPassword && touched.confirmPassword ? <div>{errors.confirmPassword}</div> : null}
+          
 
            <input type="submit" value="submit"/>
          </Form>

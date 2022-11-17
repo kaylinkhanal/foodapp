@@ -45,6 +45,7 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    border: 1px solid rgb(255, 248, 248);
     
   }
   
@@ -55,7 +56,7 @@ input[type=text], select {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(255, 248, 248);
     border-radius: 4px;
     box-sizing: border-box;
   }
@@ -65,7 +66,7 @@ input[type=text], select {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(255, 248, 248);
     border-radius: 4px;
     box-sizing: border-box;
   }
@@ -76,7 +77,7 @@ input[type=text], select {
     color: white;
     padding: 8px 20px;
     margin: 8px 0;
-    border: none;
+    border: ;
     border-radius: 10px;
     cursor: pointer;
   }
@@ -112,7 +113,7 @@ input[type=text], select {
   }
   .parent {
     background: rgb(125, 126, 128);
-    height: 990px;
+    height: 1020px;
     width: 100%;
     display:flex;
     justify-content: center;
@@ -121,7 +122,7 @@ input[type=text], select {
   /* divForm is childbox of parent box*/
   .divForm{
     margin: 80px;
-    height:700px;
+    height:760px;
     width:400px;
     border-radius: 13px;
     background-color: #bab6bc;
@@ -136,6 +137,18 @@ input[type=text], select {
     border-radius: 13px;
     background-color: #bab6bc;
     padding: 50px;
+
+  }
+
+  .inputDiv{
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(255, 248, 248);
+    border-radius: 4px;
+    box-sizing: border-box;
 
   }
 
