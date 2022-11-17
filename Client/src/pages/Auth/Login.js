@@ -14,7 +14,7 @@ const LoginSchema = Yup.object().shape({
     .required('Please Enter Your Password')
 });
 
-const Login = ()=> {
+const Login = () => {
   return (
     <>
       <div>
@@ -25,9 +25,7 @@ const Login = ()=> {
               password: ''
             }}
             validationSchema={LoginSchema}
-            validateOnChange={false}
-            validateOnBlur={false}
-            onSubmit={ (values, action ) => {
+            onSubmit={ ( values, action ) => {
               // same shape as initial values
               console.log(values);
               action.resetForm();
