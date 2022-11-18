@@ -61,7 +61,7 @@ const Login = () => {
           console.log(err);
         }
         */
-
+        console.log( values )
       triggerLogin(values);
       action.resetForm();
       },
