@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
         if(req.body.email && req.body.password){
             const registeredUser = await User.findOne(req.body)
             if(registeredUser){
-				res.send({
+				res.json({
                     registeredUser
                 })
 			}else{
