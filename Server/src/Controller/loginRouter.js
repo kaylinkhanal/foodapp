@@ -8,15 +8,15 @@ router.post("/", async (req, res) => {
         if(req.body.email && req.body.password){
             const registeredUser = await User.findOne(req.body)
             if(registeredUser){
-				res.send(registeredUser)
+				res.send({
+                    registeredUser
+                })
 			}else{
-				res.json({message: "No user found"})
+				res.json({status:"300",message: "No user found"})
 			}
         }else{
-			res.json({message: "All fields are required. Complete the form!!"})
-		}
-        
-       
+			res.json({status:"301",message: "All fields are required. Complete the form!!"})
+		}  
     }catch(error){
         console.log(error)
     }
