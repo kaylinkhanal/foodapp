@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../images/foodapp.png'
+import Logo from '../../images/foodapp.png'
 
 const Header = ()=>{
     return(

@@ -2,9 +2,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import ShowHidePassword from '../../component/showHidePassword';
 
 const Register = () => {
@@ -110,6 +110,7 @@ const Register = () => {
 								</Form>
 							)}
 						</Formik>
+						<p style={{ color: '#fff', marginTop: '10px' }}>Already have an account? Please <Link to="/">Login</Link> to continue</p>
 					</div>
 				</div>
 			</div>

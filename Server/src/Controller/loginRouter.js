@@ -10,16 +10,16 @@ router.post("/", async (req, res) => {
             if(registeredUser){
 				res.send({
                     detail: registeredUser,
-                    message: `You're logged in`
+                    msg: `You're logged in`
                 })
 			}else{
 				res.json({
-                    message: "No user found"
+                    msg: "No user found"
                 })
 			}
         }else{
 			res.json({
-                message: "All fields are required. Complete the form!!"
+                msg: "All fields are required. Complete the form!!"
             })
 		}
         

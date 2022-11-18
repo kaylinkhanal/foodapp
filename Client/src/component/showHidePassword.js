@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
-const ShowHidePassword = ({field})=>{
+const ShowHidePassword = (props)=>{
     const [showPassword, setShowPassword] = useState(false)
 
     return(
@@ -11,7 +11,7 @@ const ShowHidePassword = ({field})=>{
             <div className="input_wrap">
                 <i onClick={()=> setShowPassword(!showPassword)}>{showPassword ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon={faEyeSlash}/>}</i>
 
-                <input type={showPassword ? 'text': 'password'} placeholder="Enter Password" {...field}></input>
+                <input type={showPassword ? 'text': 'password'} placeholder="Enter Password" {...props.field}></input>
             </div>
         </> 
     )

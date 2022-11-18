@@ -4,10 +4,15 @@ import * as Yup from 'yup';
 import Image from '../../images/order.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { message } from "antd";
+import 'antd/dist/antd.min.css';
 import ShowHidePassword from "../../component/showHidePassword";
+import { setCredentials } from "../../reducerSlice/userSlice";
+import {useDispatch, useSelector} from 'react-redux'
 
 const Login = () => {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
+	const {name} = useSelector(state=> state.users)
 
 	const logParticipants = async (values) => {
 		const requestOptions = {
@@ -22,8 +27,11 @@ const Login = () => {
 		const data = await response.json();
 
 		if (data) {
-			console.log(data)
-			message.success("You re logged in")
+			// console.log(data)
+			message.success(data.msg) // to display the success msg after submit
+
+			dispatch(setCredentials(data.detail)) // to access the user data
+
 			navigate('/home')
 		} else {
 			message.error("invalid details")
@@ -60,7 +68,7 @@ const Login = () => {
 						>
 							{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
 								<Form onSubmit={handleSubmit}>
-									<Field name="email" placeholder="Enter Phone No." value={values.email} onChange={handleChange} onBlur={handleBlur} />
+									<Field name="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
 									{errors.email && touched.email ? (<div className="error">{errors.email}</div>) : null}
 
 									<Field name="password" placeholder="Enter Password" value={values.password} component={ShowHidePassword} onChange={handleChange} onBlur={handleBlur} />
