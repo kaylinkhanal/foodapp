@@ -1,369 +1,117 @@
-
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { GlobalStyle } from "../../Styles/globalStyles";
-import { useFormik } from "formik";
-import { signUpSchema } from "../../schemas";
- 
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  phoneNumber:"",
-  confirm_password: "",
-  address: "",
-  role:""
-};
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import FormText from '../../component/formText';
+import Image from '../../images/delivery_girl.svg'
+import { useNavigate } from "react-router-dom";
 
 
 const Register = ()=> {
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues,
-      validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        console.log(values);
-        const requestOptions={
-          method:"POST",
-          headers:{
-              'Content-Type':'application/JSON'
-          },
-          body:JSON.stringify(values),
-      }
-        fetch('http://localhost:4000/register',requestOptions).then(res=>res.json())
-        .then(data=> alert(data.msg))
-        // action.resetForm();
-      },
+	const navigate = useNavigate()
+    const saveParticipants = async(values)=>{
+        const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				name: values.name,
+                phoneNumber: values.phoneNumber,
+                address: values.address,
+                email: values.email,
+                role: values.role,
+                password: values.password,
+                confirmPassword: values.confirmPassword
+			})
+		};
+		const response = await fetch('http://localhost:4000/register/', requestOptions);
+		const data = await response.json();
+    if(data){
+        navigate('/')
+    }  
+    }
+
+    const passwordRule = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+
+    const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+          .required('Required'),
+        phoneNumber: Yup.string().required('Required'),
+        
+        email: Yup.string().email('Invalid email').required('Required'),
+        
+        password: Yup.string()
+          .required('Required')
+          .min(6)
+          .matches(passwordRule, {message : 'Please create a stronger password'}),
+
+        confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords doesnt match'),
     });
-  console.log(values);
-  return <>
- <GlobalStyle />
-      <Wrapper>
-        <div className="container">
-          <div className="modal">
-            <div className="modal-container">
-              <div className="modal-left">
-                <h1 className="modal-title">Welcome!</h1>
-                <p className="modal-desc">
-                 SINGUP
-                </p>
-                <form onSubmit={handleSubmit}>
 
-                  <div className="input-block">
-                    <label htmlFor="name" className="input-label">
-                      Name
-                    </label>
-                    <input
-                      type="name"
-                      autoComplete="off"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.name && touched.name ? (
-                      <p className="form-error">{errors.name}</p>
-                    ) : null}
-                  </div>
-
-                  <div className="input-block">
-                    <label htmlFor=" phoneNumber" className="input-label">
-                    phoneNumber
-                    </label>
-                    <input
-                      type="number"
-                      autoComplete="off"
-                      name="phoneNumber"
-                      id="phoneNumber"
-                      placeholder="phoneNumber"
-                      value={values.phoneNumber}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.phoneNumber && touched.phoneNumber ? (
-                      <p className="form-error">{errors.phoneNumber}</p>
-                    ) : null}
-                  </div>
-                  <div className="input-block">
-                    <label htmlFor="address" className="input-label">
-                    address
-                    </label>
-                    <input
-                      type="address"
-                      autoComplete="off"
-                      name="address"
-                      id="address"
-                      placeholder="address"
-                      value={values.address}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.address && touched.address ? (
-                      <p className="form-error">{errors.address}</p>
-                    ) : null}
-                  </div>
-                
-                
-                
-                  <div className="input-block">
-                    <label name='role' htmlFor="role" className="input-label">
-                    role
-                    </label>
-                    {/* <input
-                      type="role"
-                      autoComplete="off"
-                      name="role"
-                      id="role"
-                      placeholder="role"
-                      value={values.role}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    /> */}
-
-                    <select onChange={e=>console.log(e.target.value)}>
-                      <option value='Rider'>Rider</option>
-                      <option value='Customer'>Customer</option>
-                    </select>
-                    {errors.role && touched.role ? (
-                      <p className="form-error">{errors.role}</p>
-                    ) : null}
-                  </div>
-                
-                  <div className="input-block">
-                    <label htmlFor="email" className="input-label">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      autoComplete="off"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
-                    ) : null}
-                  </div>
-                  <div className="input-block">
-                    <label htmlFor="password" className="input-label">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.password && touched.password ? (
-                      <p className="form-error">{errors.password}</p>
-                    ) : null}
-                  </div>
-                  <div className="input-block">
-                    <label htmlFor="confirm_password" className="input-label">
-                      Confirm Password
-                    </label>
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="confirm_password"
-                      id="confirm_password"
-                      placeholder="Confirm Password"
-                      value={values.confirm_password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.confirm_password && touched.confirm_password ? (
-                      <p className="form-error">{errors.confirm_password}</p>
-                    ) : null}
-                  </div>
-                  <div className="modal-buttons">
-                    <a href="#" className="">
-                      Want to register using Gmail?
-                    </a>
-                    <button className="input-button" type="submit">
-                      Registration
-                    </button>
-                  </div>
-                </form>
-                <p className="sign-up">
-                  Already have an account? <Link to ="/">Sign In now</Link>
-                </p>
-              </div>
-              <div className="modal-right">
-                <img 
-                  src={'https://i.ytimg.com/vi/1HYkcef8CEE/maxresdefault.jpg'}
-                  alt=""
-                />
-              </div>
+  return (
+      <div className="section_bg">
+        <div className="form_section" id="register">
+            <div className='info_text'>
+                <FormText image={Image}/>
             </div>
-          </div>
+
+            <div className='form_content'>
+                <h2 className='pg_title'>Create Your Account</h2>
+
+                <div className="register">
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            phoneNumber: '',
+                            address: '',
+                            email: '',
+                            role: '',
+                            password: '',
+                            confirmPassword: ''
+                        }}
+                        validationSchema={SignupSchema}
+                        onSubmit={values => {
+                            saveParticipants(values)
+                            // same shape as initial values
+                            // console.log('clicked');
+                        }}
+                    >
+                    {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
+                        <Form onSubmit={handleSubmit}>
+                            <Field name="name" placeholder="Enter Name" value={values.name} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.name && touched.name ? (<div className="error">{errors.name}</div>) : null}
+
+                            <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
+
+                            <Field name="address" placeholder="Enter Address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.address && touched.address ? <div className="error">{errors.address}</div> : null}
+
+                            <Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
+
+                            {/* <Field name="role" placeholder="Select Role" value={values.role} onChange={handleChange} onBlur={handleBlur} /> */}
+                            
+
+                            <select name="role" value={values.role} onChange={handleChange} onBlur={handleBlur}>
+                                <option value="" label="Select a color">Select a color</option>
+                                <option value="user" label="User">User</option>
+                                <option value="rider" label="Rider">Rider</option>
+                            </select>
+                            {errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
+
+                            <Field name="password" type="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} ></Field>
+                            {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
+
+                            <Field name="confirmPassword"  type="password" placeholder="Confirm Password" value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur} />
+                            {errors.confirmPassword && touched.confirmPassword ? <div className="error">{errors.confirmPassword}</div> : null}
+
+                            <button type="submit">Submit</button>
+                        </Form>
+                    )}
+                    </Formik>
+                </div>
+            </div>
         </div>
-      </Wrapper>
-  </>
+      </div>
+    )
 }
-const Wrapper = styled.section`
-  .container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #efedee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal {
-    width: 100%;
-    /* height: 60px; */
-    background: rgba(51, 51, 51, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.4s;
-  }
-  .modal-container {
-    display: flex;
-    max-width: 60vw;
-    width: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    position: absolute;
-    transition-duration: 0.3s;
-    background: #fff;
-  }
-  .modal-title {
-    margin: 0;
-    font-weight: 400;
-    color: #55311c;
-  }
-  .form-error {
-    font-size: 1.4rem;
-    color: #b22b27;
-  }
-  .modal-desc {
-    margin: 6px 0 30px 0;
-  }
-  .modal-left {
-    padding: 60px 30px 20px;
-    background: #fff;
-    flex: 1.5;
-    transition-duration: 0.5s;
-    opacity: 1;
-  }
-  .modal-right {
-    flex: 2;
-    font-size: 0;
-    transition: 0.3s;
-    overflow: hidden;
-  }
-  .modal-right img {
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
-    -o-object-fit: cover;
-    object-fit: cover;
-    transition-duration: 1.2s;
-  }
-  .modal.is-open .modal-left {
-    transform: translateY(0);
-    opacity: 1;
-    transition-delay: 0.1s;
-  }
-  .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .modal-buttons a {
-    color: rgba(51, 51, 51, 0.6);
-    font-size: 14px;
-  }
-  .sign-up {
-    margin: 60px 0 0;
-    font-size: 14px;
-    text-align: center;
-  }
-  .sign-up a {
-    color: #8c7569;
-  }
-  .input-button {
-    padding: 1.2rem 3.2rem;
-    outline: none;
-    text-transform: uppercase;
-    border: 0;
-    color: #fff;
-    border-radius: 4px;
-    background: #8c7569;
-    transition: 0.3s;
-    cursor: pointer;
-    font-family: "Nunito", sans-serif;
-  }
-  .input-button:hover {
-    background: #55311c;
-  }
-  .input-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.7px;
-    color: #8c7569;
-    transition: 0.3s;
-  }
-  .input-block {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 10px 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    transition: 0.3s;
-  }
-  .input-block input {
-    outline: 0;
-    border: 0;
-    padding: 4px 0 0;
-    font-size: 14px;
-  }
-  .input-block input::-moz-placeholder {
-    color: #ccc;
-    opacity: 1;
-  }
-  .input-block input:-ms-input-placeholder {
-    color: #ccc;
-    opacity: 1;
-  }
-  .input-block input::placeholder {
-    color: #ccc;
-    opacity: 1;
-  }
-  .input-block:focus-within {
-    border-color: #8c7569;
-  }
-  .input-block:focus-within .input-label {
-    color: rgba(140, 117, 105, 0.8);
-  }
-  @media (max-width: 750px) {
-    .modal-container {
-      max-width: 90vw;
-    }
-    .modal-right {
-      display: none;
-    }
-  }
-`;
-
-
-
 export default Register
