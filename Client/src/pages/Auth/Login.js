@@ -34,7 +34,7 @@ const App=()=> {
         
             if(data){
                 console.log(data)
-                alert(data.msg)
+                alert(data.message)
             }else{
                 console.log("invalid details")
             }
