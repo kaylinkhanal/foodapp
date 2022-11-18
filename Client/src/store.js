@@ -5,6 +5,7 @@ import logger from "redux-logger";
 const reducer = combineReducers({
   // register: Register,
   // count: addToCartSlice,
+  
 });
 
 const store = configureStore({
