@@ -9,6 +9,7 @@ connect();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}))
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
 app.use("/register", registerRouter);

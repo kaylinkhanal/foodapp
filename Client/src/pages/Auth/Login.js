@@ -3,61 +3,81 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalStyle } from "../../Styles/globalStyles";
 import { useFormik } from "formik";
-import { signUpSchema } from "../../schemas";
-import image from "../../productImages/signin.jpeg"
-
+import { LoginSchema } from "../../schemas";
+import image from "../../productImages/signin.jpeg";
+import { useNavigate } from "react-router-dom";
+//import axios from 'axios'
 
 const initialValues = {
   email: "",
   password: "",
 };
-const Login = ()=> {
-  const triggerLogin = async(values)=>{
-    console.log(values)
+
+const Login = () => {
+  const navigate = useNavigate()
+
+
+  const triggerLogin = async (values) => {
     const requestOptions = {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    name: values.name,
-            phoneNumber: values.phoneNumber,
-            address: values.address,
-            email: values.email,
-            role: values.role,
-            password: values.password,
-            confirmPassword: values.confirmPassword
-  })
-  }
-  const response = await fetch('http://localhost:4000/login/', requestOptions);
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password,
+      }),
+    };
+    const response =await fetch(
+          "http://localhost:4000/login",
+        requestOptions
+          )
+    const data=await response.json()
+    console.log(data.status);
+    if(data.status==="300"){
+      alert(data.message)
+    }else if(data.status==="301"){
+      alert(data.message)
+    }else{
+      navigate('/home')
+    }
 
-};
+
+    console.log(await response.json());
+  };
+
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-  
-  useFormik({
-    initialValues,
-    validationSchema: signUpSchema,
-    onSubmit: (values, action) => {
-      triggerLogin(values)
+    useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit:async(values, action) => {
+        /*        
+        axios.post("http://localhost:4000/login/",{
+          email:values.email,
+          password:values.password
+        }).then(data=>{
+          alert(data.data.message)
+          console.log(data.data);
+        }).catch(err=>{
+          console.log(err);
+        }
+        */
+
+      triggerLogin(values);
       action.resetForm();
-    },
-  });
+      },
+    });
 
-
-
-  return <>
-       <GlobalStyle />
+  return (
+    <>
+      <GlobalStyle />
       <Wrapper>
         <div className="container">
           <div className="modal">
             <div className="modal-container">
               <div className="modal-left">
                 <h1 className="modal-title">Welcome!</h1>
-                <p className="modal-desc">
-                LOGIN
-                </p>
+                <p className="modal-desc">LOGIN</p>
                 <form onSubmit={handleSubmit}>
-
-                  
-
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Email
@@ -76,7 +96,7 @@ const Login = ()=> {
                       <p className="form-error">{errors.email}</p>
                     ) : null}
                   </div>
-                  
+
                   <div className="input-block">
                     <label htmlFor="password" className="input-label">
                       Password
@@ -95,33 +115,24 @@ const Login = ()=> {
                       <p className="form-error">{errors.password}</p>
                     ) : null}
                   </div>
-
-
-                  <div className="modal-buttons">
-                    <a href="#" className="">
-                      Want to login using 
-                    </a>
                     <button className="input-button" type="submit">
                       LOGIN
                     </button>
-                  </div>
                 </form>
                 <p className="sign-up">
                   Don't have an account?<Link to="/register">SignUp</Link>
                 </p>
               </div>
               <div className="modal-right">
-                <img
-                  src={image}
-                  alt=""
-                />
+                <img src={image} alt="" />
               </div>
             </div>
           </div>
         </div>
       </Wrapper>
-  </>
-}
+    </>
+  );
+};
 const Wrapper = styled.section`
   .container {
     position: fixed;
@@ -275,5 +286,4 @@ const Wrapper = styled.section`
   }
 `;
 
-
-export default Login
+export default Login;

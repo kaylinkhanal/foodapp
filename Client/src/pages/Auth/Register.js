@@ -3,8 +3,6 @@ import * as Yup from 'yup';
 import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
 import { useNavigate } from "react-router-dom";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 const Register = ()=> {
