@@ -33,7 +33,7 @@ const Login = () => {
           )
           const data2 = 10000;
     const data=await response.json()
-    console.log(data.status);
+    // console.log(data.status);
     if(data.status==="300"){
       alert(data.message)
     }else if(data.status==="301"){
