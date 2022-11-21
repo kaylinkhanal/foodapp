@@ -12,8 +12,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}))
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
+const addRestaurant=require("./Controller/addRestaurant")
+
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/addrest",addRestaurant)
 
 app.listen(process.env.PORT, () => {
   console.log(`Chat Server listening on port ${process.env.PORT}`);

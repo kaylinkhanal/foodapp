@@ -2,7 +2,7 @@ import Login from "./pages/Auth/Login";
 import { Routes, Route} from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Homepage from "./pages/HomePage";
-import ResturantForm from "./pages/ResturantForm";
+import RestaurantForm from "./pages/RestaurantForm";
 // importclear Header from "./component/header";
 
 const App = () => {
@@ -13,8 +13,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Homepage/>}/>
-        <Route path="/resturant" element={<ResturantForm/>}/>
-
+        <Route path="/restaurant" element={<RestaurantForm/>}/>
       </Routes>
     </div>
   );
