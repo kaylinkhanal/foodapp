@@ -1,11 +1,18 @@
 import React from 'react'
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetCredentials } from "../reducersSlice/userSlice"
 
 const HomePage = () => {
-  const {name} = useSelector(state=> state.users)
+
+  const dispatch = useDispatch()
+
   return (
-    <div>hi i am homepage</div>
+    <>
+      <div>hi i am homepage</div>
+      <button className="input-button" type="submit" onClick={ () => dispatch( resetCredentials() ) }>LOGOUT</button>
+    </>
   )
+  
 }
 
 export default HomePage

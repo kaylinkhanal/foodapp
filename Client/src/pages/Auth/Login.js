@@ -6,8 +6,8 @@ import { useFormik } from "formik";
 import { LoginSchema } from "../../schemas";
 import image from "../../productImages/signin.jpeg";
 import { useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {setCredentials} from "../../reducersSlice/userSlice"
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../reducersSlice/userSlice"
 //import axios from 'axios'
 
 const initialValues = {
@@ -27,13 +27,11 @@ const Login = () => {
         password: values.password,
       }),
     };
-    const response =await fetch(
+    const response = await fetch(
           "http://localhost:4000/login",
         requestOptions
           )
-          const data2 = 10000;
-    const data=await response.json()
-    console.log(data.status);
+    const data = await response.json()
     if(data.status==="300"){
       alert(data.message)
     }else if(data.status==="301"){
@@ -43,19 +41,8 @@ const Login = () => {
       navigate('/home')
     }
 
-
-    console.log(await response.json());
   };
 
-function async(){
-
-}
-function async2(){
-  
-}
-
-async()
-async2()
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,

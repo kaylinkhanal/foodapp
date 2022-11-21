@@ -6,20 +6,22 @@ export const initialState = {
   token: ''
 };
 
-
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
     setCredentials: (state,actions)=>{
-        state.name = actions.payload.name
+        state.name        = actions.payload.name
         state.phoneNumber = actions.payload.phoneNumber
     },
- 
+    resetCredentials: ( state, actions ) => {
+      state.name = ''
+      state.phoneNumber = ''
+      state.token = ''
+    },
   }
 });
 
-export const { setCredentials } = userSlice.actions;
-
+export const { setCredentials, resetCredentials } = userSlice.actions;
 
 export default userSlice.reducer;

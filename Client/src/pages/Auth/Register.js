@@ -4,7 +4,6 @@ import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
 import { useNavigate } from "react-router-dom";
 
-
 const Register = ()=> {
 	const navigate = useNavigate()
     const saveParticipants = async(values)=>{
@@ -23,9 +22,9 @@ const Register = ()=> {
 		};
 		const response = await fetch('http://localhost:4000/register/', requestOptions);
 		const data = await response.json();
-    if(data){
-        navigate('/')
-    }  
+        if(data){
+            navigate('/')
+        }  
     }
 
     const passwordRule = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/

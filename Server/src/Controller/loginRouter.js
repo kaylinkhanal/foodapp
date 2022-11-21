@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try{
-        console.log(req.body)
+        // console.log(req.body)
         if(req.body.email && req.body.password){
             const registeredUser = await User.findOne(req.body)
             if(registeredUser){
