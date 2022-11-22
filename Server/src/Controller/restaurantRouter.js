@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
         })
     }catch(error){
         res.json({
-            errorMsg: 'This restaurant is not found',
+            errorMsg: 'The restaurant not found',
             errDetail: error
         })
     }
@@ -22,7 +22,14 @@ router.post("/", async (req, res) => {
 
 // view users
 router.get("/", async (req, res) => {
-
+    try{
+        const restaurantList = await Restaurant.find()
+        res.json({
+            restaurantList : restaurantList
+        })
+    }catch(error){
+        console.log(error)
+    }
 });
 
 module.exports = router;
