@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const PORT = 3005;
 require("dotenv").config();
 
 const connect = require("./db/mongoose");
@@ -12,9 +13,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}))
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
+const userRouter = require("./Controller/userRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use('/users', userRouter)
 
-app.listen(process.env.PORT, () => {
-  console.log(`Chat Server listening on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Chat Server listening on port ${PORT}`);
 });
