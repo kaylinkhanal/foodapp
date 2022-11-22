@@ -11,8 +11,12 @@ app.use(cors());
 app.use(bodyParser.json());
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
+const restroRouter = require("./Controller/restroRouter");
+const foodRouter = require("./Controller/foodRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/restaurant", restroRouter);
+app.use("/food", foodRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Chat Server listening on port ${process.env.PORT}`);
