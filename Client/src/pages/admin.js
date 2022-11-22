@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import Userimage from '../images/dummy.svg'
 import {Link} from 'react-router-dom'
 
-const Home = ()=>{
+const Admin = ()=>{
     const { name } = useSelector(state => state.users)
     // const items = [
     //     { label: 'Restaurant', key: 'item-1', children: <AddRestro/> }, // remember to pass the key prop
@@ -17,12 +17,12 @@ const Home = ()=>{
     return(
         <>
             <Header />
-            <div id='home_pg'>
+            <div id='home_pg' className='full_height'>
                 <div className='container'>
                     <div className='main_content'>
                     <div className='user_info'>
                         <img src={Userimage} alt='user'/>
-                        <span> Hi {name} Welcome</span>
+                        <span> Hi {name}</span>
                     </div>
 
                     {/* <Tabs items={items} /> */}
@@ -42,4 +42,4 @@ const Home = ()=>{
         </>
     )
 }
-export default Home
+export default Admin

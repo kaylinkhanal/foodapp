@@ -7,12 +7,11 @@ import { message } from "antd";
 import 'antd/dist/antd.min.css';
 import ShowHidePassword from "../../component/showHidePassword";
 import { setCredentials } from "../../reducerSlice/userSlice";
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 const Login = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const {name} = useSelector(state=> state.users)
 
 	const logParticipants = async (values) => {
 		const requestOptions = {

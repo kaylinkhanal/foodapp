@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
         const selectedFood = Food.create(req.body)
 
         res.json({
-            message: 'Added selected food',
+            message: 'Added food',
             detail: selectedFood
         })
     }catch(error){

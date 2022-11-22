@@ -1,7 +1,6 @@
 import React from "react";
 import './error.css'
 import { Link } from "react-router-dom"
-import donut from '../../images/donut.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
