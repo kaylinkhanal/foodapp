@@ -7,7 +7,7 @@ const foodSchema = new mongoose.Schema(
         isNonVeg: {type: String, required: true},
     },
     {
-        collection: "Food"
+        collection: "Foods"
     }
 )
 const foodModel = mongoose.model("foodModel", foodSchema);

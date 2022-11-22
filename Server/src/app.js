@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
-const restroRouter = require("./Controller/restroRouter");
+const restroRouter = require("./Controller/restaurantRouter");
 const foodRouter = require("./Controller/foodRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);

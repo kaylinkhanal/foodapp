@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '../component/header/header';
+import Header from '../../component/header/header';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
-import Userimage from '../images/dummy.svg'
+import Userimage from '../../images/dummy.svg'
 
-const AddRestro = () => {
+const AddRestaurant = () => {
 	const { name } = useSelector(state => state.users)
 
 	// const navigate = useNavigate()
@@ -20,7 +20,7 @@ const AddRestro = () => {
 				name: values.name,
 				location: values.location,
 				rating: values.rating,
-				category: values.restroCategory,
+				category: values.category,
 			})
 		};
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
@@ -39,7 +39,7 @@ const AddRestro = () => {
 			.required('Required'),
 		location: Yup.string().required('Required'),
 
-		restroCategory: Yup.string()
+		category: Yup.string()
 			.required('Required')
 	});
 
@@ -88,10 +88,10 @@ const AddRestro = () => {
 
 											<select name="category" value={values.category} onChange={handleChange} onBlur={handleBlur}>
 												<option value="" disabled="disabled" label="Select Category"></option>
-												<option value="Category 1" label="Category 1">Category 1</option>
-												<option value="Category 2" label="Category 2">Category 2</option>
-												<option value="Category 3" label="Category 3">Category 3</option>
-												<option value="Category 4" label="Category 4">Category 4</option>
+												<option value="Italian" label="Italian">Italian</option>
+												<option value="Chinese" label="Chinese">Category 2</option>
+												<option value="Multi Cuisine" label="Multi Cuisine">Category 3</option>
+												<option value="Fast Food" label="Fast Food">Thai</option>
 											</select>
 											{errors.category && touched.category ? <div className="error">{errors.category}</div> : null}
 
@@ -107,4 +107,4 @@ const AddRestro = () => {
 		</>
 	)
 }
-export default AddRestro 
+export default AddRestaurant 
