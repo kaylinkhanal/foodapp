@@ -6,8 +6,8 @@ import { useFormik } from "formik";
 import { LoginSchema } from "../../schemas";
 import image from "../../productImages/signin.jpeg";
 import { useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {setCredentials} from "../../reducersSlice/userSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../../reducersSlice/userSlice";
 //import axios from 'axios'
 
 const initialValues = {
@@ -16,43 +16,38 @@ const initialValues = {
 };
 
 const Login = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const triggerLogin = async (values) => {
     const requestOptions = {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: values.email,
         password: values.password,
       }),
     };
-    const response =await fetch(
-          "http://localhost:4000/login",
-        requestOptions
-          )
-          const data2 = 10000;
-    const data=await response.json()
+    const response = await fetch("http://localhost:3000/login", requestOptions);
+    // const data2 = 10000;
+    const data = await response.json();
     console.log(data.status);
-    if(data.status==="300"){
-      alert(data.message)
-    }else if(data.status==="301"){
-      alert(data.message)
-    }else{
-      dispatch(setCredentials(data.registeredUser))
-      navigate('/home')
+    if (data.status === "300") {
+      alert(data.message);
+    } else if (data.status === "301") {
+      alert(data.message);
+    } else {
+      dispatch(setCredentials(data.registeredUser));
+      navigate("/home");
     }
 
-
-    console.log(await response.json());
+    console.log(await response);
   };
-
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: LoginSchema,
-      onSubmit:async(values, action) => {
+      onSubmit: async (values, action) => {
         /*        
         axios.post("http://localhost:4000/login/",{
           email:values.email,
@@ -65,8 +60,8 @@ const Login = () => {
         }
         */
 
-      triggerLogin(values);
-      action.resetForm();
+        triggerLogin(values);
+        action.resetForm();
       },
     });
 
@@ -118,9 +113,9 @@ const Login = () => {
                       <p className="form-error">{errors.password}</p>
                     ) : null}
                   </div>
-                    <button className="input-button" type="submit">
-                      LOGIN
-                    </button>
+                  <button className="input-button" type="submit">
+                    LOGIN
+                  </button>
                 </form>
                 <p className="sign-up">
                   Don't have an account?<Link to="/register">SignUp</Link>

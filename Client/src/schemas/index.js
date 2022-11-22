@@ -5,9 +5,9 @@ export const LoginSchema = Yup.object({
   password: Yup.string().min(6,"Password must be at least 8 characters").required("Please enter your password"),
 });
 
-export const RestaurantFormSchema = Yup.object({
-  name: Yup.string().required("Please enter restaurant name"),
-  location:Yup.string().required("Please enter the location of restaurant"),
+export const ResturantFormSchema = Yup.object({
+  name: Yup.string().required("Please enter resturant name"),
+  location:Yup.string().required("Please enter the location of resturant"),
   rating:Yup.number().min(0).max(5).required("Enter the rating"),
-  restaurantCategory:Yup.string().required("Select the restaurant category")
+  resturantCategory:Yup.string().required("Select the resturant category")
 })
