@@ -87,17 +87,8 @@ const Register = () => {
 									<Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
 									{errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
 
-<<<<<<< HEAD
 									<Field name="address" placeholder="Enter Address" value={values.address} onChange={handleChange} onBlur={handleBlur} />
 									{errors.address && touched.address ? <div className="error">{errors.address}</div> : null}
-=======
-                            <select name="role" value={values.role} onChange={handleChange} onBlur={handleBlur}>
-                                <option value="" label="Select a color">Role</option>
-                                <option value="user" label="User">User</option>
-                                <option value="rider" label="Rider">Rider</option>
-                            </select>
-                            {errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
->>>>>>> 6658e91da6540ddab35693bf4cbcf8a5cbcdafed
 
 									<Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
 									{errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
