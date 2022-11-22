@@ -47,15 +47,7 @@ const Login = () => {
     console.log(await response.json());
   };
 
-function async(){
 
-}
-function async2(){
-  
-}
-
-async()
-async2()
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
