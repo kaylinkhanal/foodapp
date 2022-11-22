@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from "redux-logger";
-// import addToCartSlice from "./components/addToCart/addToCart.slice";
+import userSlice from "./reducersSlice/userSlice";
 const reducer = combineReducers({
-  // register: Register,
-  // count: addToCartSlice,
+  users: userSlice,
+  
 });
 
 const store = configureStore({
