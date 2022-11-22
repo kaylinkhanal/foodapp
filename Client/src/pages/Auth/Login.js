@@ -79,7 +79,7 @@ const Login = () => {
                 <p className="modal-desc">LOGIN</p>
                 <form onSubmit={handleSubmit}>
                   <div className="input-block">
-                    <label htmlFor="email" className="input-label">
+                    <label htmlFor="email" className="input-label" type="email">
                       Email
                     </label>
                     <input
