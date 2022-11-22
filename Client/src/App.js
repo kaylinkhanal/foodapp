@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Homepage from "./pages/HomePage";
 import RestaurantForm from "./pages/RestaurantForm";
+import AddFood from "./pages/AddFood";
 // importclear Header from "./component/header";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Homepage/>}/>
         <Route path="/restaurant" element={<RestaurantForm/>}/>
+        <Route path="/addfood" element={<AddFood/>}/>
       </Routes>
     </div>
   );

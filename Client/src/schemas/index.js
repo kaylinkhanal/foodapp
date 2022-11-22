@@ -11,3 +11,9 @@ export const RestaurantFormSchema = Yup.object({
   rating:Yup.number().min(0).max(5).required("Enter the rating"),
   restaurantCategory:Yup.string().required("Select the restaurant category")
 })
+
+export const AddFoodSchema = Yup.object({
+  foodType: Yup.string().required("Please enter food type"),
+  restaurant:Yup.string().required("Please enter the name of restaurant"),
+  foodCategory:Yup.string().required("Select the food category")
+})
