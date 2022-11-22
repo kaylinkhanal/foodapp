@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 export const FormGroup = styled.div`
@@ -13,13 +14,13 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  padding: 0.5em;
-  color: black;
-  background: papayawhip;
-  border: 2px solid blue;
-  border-radius: 3px;
-  font-size: 20px;
-  width: 100%;
+	padding: 0.5em;
+	color: black;
+	background: papayawhip;
+	border: 2px solid blue;
+	border-radius: 3px;
+    font-size:20px
+	width: 100%;
 `;
 
 export const Message = styled.label`
@@ -45,14 +46,14 @@ export const Option = styled.option`
 
 export const Button = styled.button`
   display: inline-block;
-  background-color: #1e90ff;
-  border: 2px double #bc8f8f;
+  background-color: #1E90FF;
+  border:2px double #BC8F8F;
   border-radius: 18px;
   color: #fff;
   text-align: center;
-  font-weight: bold;
-  font-size: 2rem;
-  padding: 10px 20px;
+  font-weight:bold;
+  font-size:2rem;
+  padding:10px 20px;
   cursor: pointer;
-  margin-top: 35px;
+  margin-top:35px;
 `;
