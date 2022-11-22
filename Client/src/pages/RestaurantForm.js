@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useFormik } from "formik";
-import { ResturantFormSchema } from "../schemas";
+import { RestaurantFormSchema } from "../schemas";
 import {
   FormGroup,
   Label,
@@ -11,20 +11,35 @@ import {
   Button,
   Select,
   Option,
-} from "../Styles/ResturantFormStyle";
+} from "../Styles/RestaurantFormStyle";
 const initialValues = {
   name: "",
   location: "",
   rating: "",
-  resturantCategory: "",
+  restaurantCategory: "",
 };
-const ResturantForm = () => {
+const RestaurantForm = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
-      validationSchema: ResturantFormSchema,
-      onSubmit: (values, action) => {
-        console.log(values);
+      validationSchema: RestaurantFormSchema,
+      onSubmit: async (values, action) => {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: values.name,
+            location: values.location,
+            rating: values.rating.toString(),
+            category: values.restaurantCategory,
+          }),
+        };
+        const response = await fetch(
+          "http://localhost:4000/restaurants/",
+          requestOptions
+        );
+        const data = await response.json();
+        console.log(data);
         action.resetForm();
       },
     });
@@ -35,7 +50,7 @@ const ResturantForm = () => {
           <div className="screen">
             <div className="screen_content">
               <form onSubmit={handleSubmit}>
-                <h4 className="modal-title">Resturant Info!</h4>
+                <h4 className="modal-title">Restaurant Info!</h4>
                 <FormGroup>
                   <Label htmlFor="label">Name</Label>
                   <Input
@@ -101,27 +116,26 @@ const ResturantForm = () => {
                 ) : null}{" "}
               </FormGroup> */}
                 <FormGroup>
-                  <Label>Resturant Category</Label>
+                  <Label>Restaurant Category</Label>
                   <Select
-                    id="resturantCategory"
-                    type="resturantCategory"
+                    id="restaurantCategory"
+                    type="restaurantCategory"
                     autoComplete="off"
-                    name="resturantCategory"
-                    placeholder="resturantCategory"
-                    value={values.resturantCategory}
+                    name="restaurantCategory"
+                    placeholder="restaurantCategory"
+                    value={values.restaurantCategory}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
-                    <Option>Select Resurant</Option>
+                    <Option>Select Restaurant</Option>
                     <Option value="dinner">Dinner</Option>
                     <Option value="family_style">Family Style</Option>
                     <Option value=" Fast Food"> Fast Food</Option>
                   </Select>
                 </FormGroup>
-                <div style={{textAlign:"center"}}>
-                <Button type="submit">Submit</Button>
+                <div style={{ textAlign: "center" }}>
+                  <Button type="submit">Submit</Button>
                 </div>
-                
               </form>
             </div>
           </div>
@@ -170,4 +184,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default ResturantForm;
+export default RestaurantForm;

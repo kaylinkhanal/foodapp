@@ -11,5 +11,11 @@ const connect = async () => {
   } catch (error) {
     console.error(error);
   }
+<<<<<<< HEAD
 };
 module.exports = connect;
+=======
+  
+
+  module.exports= connect
+>>>>>>> 6658e91da6540ddab35693bf4cbcf8a5cbcdafed
