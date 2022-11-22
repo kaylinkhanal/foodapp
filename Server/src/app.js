@@ -16,7 +16,7 @@ const loginRouter = require("./Controller/loginRouter");
 const restaurantRouter = require("./Controller/restaurantRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-app.use("/registerRestaurant",restaurantRouter);
+app.use("/restaurants",restaurantRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Chat Server listening on port ${process.env.PORT}`);
