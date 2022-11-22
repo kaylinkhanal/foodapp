@@ -18,7 +18,14 @@ router.post("/", async (req, res) => {
 
 // view restaurants
 router.get("/", async (req, res) => {
-
+    try{
+    const resturantsList = await Restaurant.find()
+       res.send({
+        resturantsList: resturantsList
+       })
+    }catch(error){
+        console.log(error)
+    }
 });
 
 module.exports = router;
