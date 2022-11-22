@@ -46,7 +46,7 @@ const AddRestaurant = () => {
 	return (
 		<>
 			<Header />
-			<div id="restro_section">
+			<div id='additem_section' className='full_height'>
 				<div className='container'>
 					<div className='main_content'>
 						<div className='form_section'>
@@ -56,7 +56,7 @@ const AddRestaurant = () => {
 									<span> Hi, {name}</span>
 								</div>
 								
-								<h1>Create <br /> Restaurant</h1>
+								<h1>Register <br /> Restaurant</h1>
 								<p>Healthy Sashimi Tuna Bites with Sashami grade Tuna, 110 Calories and 13g protein</p>
 							</div>
 
