@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resetCredentials } from "../reducersSlice/userSlice"
 
 const HomePage = () => {
@@ -12,7 +12,7 @@ const HomePage = () => {
       <button className="input-button" type="submit" onClick={ () => dispatch( resetCredentials() ) }>LOGOUT</button>
     </>
   )
-  
+
 }
 
 export default HomePage
