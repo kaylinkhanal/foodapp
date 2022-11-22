@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from '../../images/meal.png'
 import './header.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightToBracket, faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Header = ()=>{
     return(
@@ -15,7 +17,9 @@ const Header = ()=>{
 
                         <div className="right_nav">
                             <ul className="nav_list">
-                                <li>logout</li>
+                                <li><i><FontAwesomeIcon icon={faRightToBracket}/></i></li>
+                                <li><i><FontAwesomeIcon icon={faUserPlus}/></i></li>
+                                <li><i><FontAwesomeIcon icon={faRightFromBracket}/></i></li>
                             </ul>
                         </div>
                     </div>
