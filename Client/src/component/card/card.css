@@ -1,0 +1,20 @@
+.restaurantCard{
+    display: flex;
+    border: 1px solid red;
+    height: 300px;
+    width: 200px;
+    margin: 5px;
+}
+
+.cardContent{
+    display: flex;
+}
+
+.restaurantImage{
+    height: 100px;
+    width: 180px;
+}
+
+.boxContent{
+    display: flex;
+}

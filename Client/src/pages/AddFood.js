@@ -33,7 +33,7 @@ const AddFood = () => {
           }),
         };
         const response = await fetch(
-          "http://localhost:4000/addfood/",
+          "http://localhost:4000/foods/",
           requestOptions
         );
         const data = await response.json();
@@ -60,7 +60,6 @@ const AddFood = () => {
                     value={values.foodType}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    
                   >
                     <Option>Select Food Type</Option>
                     <Option value="Dinner">Dinner</Option>
