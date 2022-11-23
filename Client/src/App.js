@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Homepage from "./pages/HomePage";
 import RestaurantForm from "./pages/RestaurantForm";
+import Cards from "./component/card";
 // importclear Header from "./component/header";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Homepage/>}/>
         <Route path="/restaurant" element={<RestaurantForm/>}/>
+        <Route path="/card" element={<Cards/>}/>
       </Routes>
     </div>
   );
