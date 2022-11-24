@@ -32,6 +32,7 @@ const Login = () => {
         requestOptions
           )
     const data = await response.json()
+    console.log( data )
     if(data.status==="300"){
       alert(data.message)
     }else if(data.status==="301"){

@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     try{
         console.log(req.body)
         const registeredRestaurant = await Restaurant.create(req.body)
-       res.send({
+       res.json({
         message: 'Restaurant Registered'
        })
     }catch(error){
@@ -19,9 +19,9 @@ router.post("/", async (req, res) => {
 // view restaurants
 router.get("/", async (req, res) => {
     try{
-    const resturantsList = await Restaurant.find()
-       res.send({
-        resturantsList: resturantsList
+    const restaurantsList = await Restaurant.find()
+       res.json({
+        restaurantsList: restaurantsList
        })
     }catch(error){
         console.log(error)

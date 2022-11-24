@@ -7,9 +7,9 @@ router.post("/", async (req, res) => {
     try{
         console.log(req.body)
         const appUser = await User.create(req.body)
-       res.send({
-        message: 'User Registered'
-       })
+        res.send({
+            message: 'User Registered'
+        })
     }catch(error){
         console.log(error)
     }
