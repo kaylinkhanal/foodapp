@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import "./page.css"
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../schemas";
 import {

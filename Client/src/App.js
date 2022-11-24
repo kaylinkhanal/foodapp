@@ -1,21 +1,26 @@
 import Login from "./pages/Auth/Login";
 import { Routes, Route} from "react-router-dom";
 import Register from "./pages/Auth/Register";
-import Homepage from "./pages/HomePage";
-import RestaurantForm from "./pages/RestaurantForm";
+import Header from "./component/header/header";
+import Admin from "./pages/admin";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import AddFood from "./pages/AddFood";
-// importclear Header from "./component/header";
+import Restaurant from "./pages/restaurant/restaurant";
 
 const App = () => {
   return (
     <div className="App">
-      {/* <Header/> */}
+      <Header/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Homepage/>}/>
-        <Route path="/restaurant" element={<RestaurantForm/>}/>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/restaurant" element={<AddRestaurant />} />
+        <Route path="/restaurant-list" element={<Restaurant />} />
         <Route path="/foods" element={<AddFood/>}/>
+        <Route path="/admin/food" element={<AddFood />} />
+        <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
     </div>
   );
