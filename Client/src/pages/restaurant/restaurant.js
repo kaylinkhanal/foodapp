@@ -11,7 +11,7 @@ const Restaurant = ()=>{
 	console.log(restaurants)
 
 	const fetchList = async() => {
-		const response = await fetch('http://localhost:4000/restaurant')
+		const response = await fetch('http://localhost:4000/restaurants')
 		const data = await response.json();
 		
 		if(data){

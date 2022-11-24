@@ -7,13 +7,23 @@ import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-soli
 const RestaurantList = (props)=>{
     return(
         <div className='card_list'>
-            {props.restaurants.length > 0 ? props.restaurants.map((item, id)=>{
+            {props.restaurants.length > 0 ? props.restaurants.map((item)=>{
                 return(
-                    <>
-                    <li key={id}>{item.name}</li>
-                    <li key={id}>{item.location}</li>
-                    </>
-                    )
+                    <div className='card' key={item.name}>
+                        <div className='card_img'>
+                            <img src={CardImage} alt=""/>
+                            <h3 className='card_name'>{item.name}</h3>
+                        </div>
+                        <div className='card_info'>
+                            <p className='card_location'><i><FontAwesomeIcon icon={faLocationDot}/></i>{item.location}</p>
+                            <p className='card_category'><i><FontAwesomeIcon icon={faBowlRice}/></i>{item.category}</p>
+                            <p className='rating'>
+                                <i><FontAwesomeIcon icon={faFontAwesome}/></i>
+                                {/* <Rating name="size-small read-only" value={item.rating} defaultValue={2} precision={0.5} readOnly /> */}
+                                </p>
+                        </div>
+                    </div>
+                )
             }): 'loading'}
         </div>
     )

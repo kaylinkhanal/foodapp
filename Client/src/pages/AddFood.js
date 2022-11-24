@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import "./page.css"
+
 import { useFormik } from "formik";
-import { AddFoodSchema } from "../schemas";
+import { AddFoodSchema } from "../schemas/index";
 import {
   FormGroup,
   Label,
@@ -48,7 +48,7 @@ const AddFood = () => {
           <div className="screen">
             <div className="screen_content">
               <form onSubmit={handleSubmit}>
-                <h4 className="modal-title">Add Food</h4>
+                <h2 className="modal-title">Add Food</h2>
                 <FormGroup>
                   <Label className="label-modal">Food Type</Label>
                   <Select
@@ -63,7 +63,7 @@ const AddFood = () => {
                   >
                     <Option>Select Food Type</Option>
                     <Option value="Dinner">Dinner</Option>
-                    <Option value="family_style">Family Style</Option>
+                    <Option value="breakfast">Breakfast</Option>
                     <Option value="fastfood">Fast Food</Option>
                   </Select>
                 </FormGroup>
@@ -74,7 +74,7 @@ const AddFood = () => {
                     type="restaurant"
                     autoComplete="off"
                     name="restaurant"
-                    placeholder="restaurant"
+                    placeholder="Restaurant Name"
                     value={values.restaurant}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -145,7 +145,8 @@ const Wrapper = styled.section`
     clip-path: inset(0 0 0 0);
   }
 
-  h4 {
+  h2 {
+    color: white;
     margin: 145px;
     outline: 0;
     border: 0;
