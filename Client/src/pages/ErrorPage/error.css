@@ -10,11 +10,10 @@
   }
   
   .error_content h1 {
-    font-size: 300px;
-    color: #CF450E;
-    line-height: 220px;
+    font-size: 230px;
+    color: rgb(6 43 80 / 80%);
+    line-height: 140px;
     margin-bottom: 0;
-    font-weight: 700 !important;
   }
   
   .error_content h3 {

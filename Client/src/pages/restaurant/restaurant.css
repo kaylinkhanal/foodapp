@@ -1,19 +1,24 @@
+.restro_section{
+    padding-top: 50px;
+}
+
 #additem_section{
-    position: relative;
-  }
-  
-  #additem_section::before {
-    background: url(../../images/food.png) no-repeat;
-    background-size: 472px;
-    top: 0;
-    right: 7%;
-    left: auto;
-    height: 100%;
-    filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
-    position: absolute;
-    content: '';
-    width: 404px;
-  }
+position: relative;
+padding-top: 72px
+}
+
+#additem_section::before {
+background: url(../../images/food.png) no-repeat;
+background-size: 472px;
+top: 0;
+right: 7%;
+left: auto;
+height: 100%;
+filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+position: absolute;
+content: '';
+width: 404px;
+}
 
 .card_list {
     display: flex;

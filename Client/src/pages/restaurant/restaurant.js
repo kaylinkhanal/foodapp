@@ -25,7 +25,7 @@ const Restaurant = ()=>{
 	return(
 
 		<>
-			<Header/>
+			{/* <Header/> */}
 			<div className='top_section'>
 			<div className='form_section'>
 					<div className='text_block'>

@@ -45,7 +45,7 @@ const AddRestaurant = () => {
 
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<div id='additem_section' className='full_height'>
 				<div className='container'>
 					<div className='main_content'>

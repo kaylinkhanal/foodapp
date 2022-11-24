@@ -26,6 +26,7 @@ header{
     display: inline-block;
     padding: 0px 6px;
     margin: 0 5px;
+    cursor: pointer;
 }
 
   .right_nav{
