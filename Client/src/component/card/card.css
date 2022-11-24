@@ -1,20 +1,25 @@
-.restaurantCard{
+.parent{
     display: flex;
-    border: 1px solid red;
-    height: 300px;
-    width: 200px;
+}
+
+.restaurantCard{
+    border: 1px solid lightgrey;
+    height: 280px;
+    width: 277px;
     margin: 5px;
+    font-weight: bold;
+    color: 	#5A5A5A;
 }
 
 .cardContent{
     display: flex;
 }
 
-.restaurantImage{
-    height: 100px;
-    width: 180px;
+.boxContent{
+    display: flex;
+    margin: 5px;
 }
 
-.boxContent{
+.cardIcon{
     display: flex;
 }

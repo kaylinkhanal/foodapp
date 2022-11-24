@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import Card from '../component/card/card';
+import '../component/card/card.css';
 
 const HomePage = () => {
   const [resturantList, setResturantList] = useState([])
@@ -14,7 +15,7 @@ const HomePage = () => {
     fetchData();
   },[])
   return (
-    <div>
+    <div className='parent'>
       {resturantList.length>0 ? (
       resturantList.map((item,id)=>{
         return ((<div>
