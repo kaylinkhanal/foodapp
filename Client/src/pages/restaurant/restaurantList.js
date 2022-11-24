@@ -1,21 +1,53 @@
-import React from 'react'
-import CardImage from '../../images/card_img.jpg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-solid-svg-icons'
-import Rating from '@mui/material/Rating';
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from "react-redux";
+import { resetCredentials } from "../../reducersSlice/userSlice"
+import { useNavigate } from "react-router-dom"
+import { Rating } from 'react-simple-star-rating'
 
-const RestaurantList = (props)=>{
-    return(
-        <div className='card_list'>
-            {props.restaurants.length > 0 ? props.restaurants.map((item, id)=>{
-                return(
-                    <>
-                    <li key={id}>{item.name}</li>
-                    <li key={id}>{item.location}</li>
-                    </>
-                    )
-            }): 'loading'}
-        </div>
+const RestaurantList = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+  
+    const [ restaurantList, setResturantList ] = useState( [] )
+    const fetchData = async() => {
+      const response  = await fetch( 'http://localhost:4000/restaurant/' )
+      const data      = await response.json()
+      setResturantList( data.restaurantsList )
+    }
+  
+    useEffect( () => {
+      fetchData();
+    }, [] )
+  
+    const triggerLogout = () => {
+      dispatch( resetCredentials() )
+      navigate('/')
+    }
+  
+    return (
+      <>
+        { restaurantList.length > 0 ? (
+          <div className='foodapp-res-card-coll'>
+           { restaurantList.map( ( item, id ) => {
+            return (
+              <>
+                <div className='foodapp-res-card-item'>
+                  <div className=''><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxDnWRNODj8srZmAnpGvF-rpzur_DD8UyixQwiy1wqxXfgUZrFp3MF5Xe7tX0UfX44WA&usqp=CAU" /></div>
+                  <Rating initialValue={ item.rating } allowFraction={ true } readonly />
+                  <div>{ item.name }</div>
+                  <div>{ item.category }</div>
+                  <div>{ item.location }</div>
+                </div>
+              </>
+              )
+          }) }
+          </div>
+        ) : 'loading...' }
+        <button className="input-button" type="submit" onClick={ triggerLogout }>LOGOUT</button>
+      </>
     )
-}
-export default RestaurantList
+  
+  }
+  
+  export default RestaurantList

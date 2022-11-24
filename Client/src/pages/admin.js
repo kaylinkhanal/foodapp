@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import Userimage from '../images/dummy.svg'
 import {Link} from 'react-router-dom'
 
-const Admin = ()=>{
+const Admin = () => {
     const { name } = useSelector(state => state.users)
     // const items = [
     //     { label: 'Restaurant', key: 'item-1', children: <AddRestro/> }, // remember to pass the key prop
@@ -29,7 +29,7 @@ const Admin = ()=>{
                     <div className='btn_grp'>
                         <ul className="home_items">
                             <li>
-                                <Link to="/admin/restro">Add Restaurant</Link>
+                                <Link to="/admin/restaurant">Add Restaurant</Link>
                             </li>
                             <li>
                                 <Link to="/admin/food">Add Food</Link>

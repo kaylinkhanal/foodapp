@@ -8,15 +8,18 @@ router.post("/", async (req, res) => {
 
             const registeredUser = await User.findOne({email: req.body.email})
             const hashedPassword = registeredUser.password
+            console.log( registeredUser )
+            console.log( hashedPassword )
+            console.log( req.body.password )
             bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
               console.log("resulst", result)
               if(result=== true){
-            	res.send({
+            	res.json({
                             detail: registeredUser,
                             msg: `You're logged in`
                  })
               }else{
-                res.send({
+                res.json({
                     msg: `invalid creds`
                 })
               }

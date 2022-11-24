@@ -12,7 +12,7 @@ const AddRestaurant = () => {
 	const { name } = useSelector(state => state.users)
 
 	// const navigate = useNavigate()
-	const saveRestro = async (values) => {
+	const saveRestro = async (values, action) => {
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -25,10 +25,9 @@ const AddRestaurant = () => {
 		};
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
 		const data = await response.json();
-
 		if (data) {
-			console.log(data)
 			message.success(data.message)
+			action.resetForm()
 		}else{
 			message.success(data.errDetail)
 		}
@@ -69,10 +68,8 @@ const AddRestaurant = () => {
 										category: '',
 									}}
 									validationSchema={SignupSchema}
-									onSubmit={values => {
-										saveRestro(values)
-										// same shape as initial values
-										// console.log('clicked');
+									onSubmit={ ( values, action ) => {
+										saveRestro( values, action )
 									}}
 								>
 									{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (

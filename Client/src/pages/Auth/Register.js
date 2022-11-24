@@ -2,9 +2,12 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { message } from 'antd';
+import 'antd/dist/antd.min.css';
+import ShowHidePassword from '../../component/showHidePassword';
 
-const Register = ()=> {
+const Register = () => {
 	const navigate = useNavigate()
 	const saveParticipants = async (values) => {
 		const requestOptions = {
@@ -20,12 +23,15 @@ const Register = ()=> {
 				confirmPassword: values.confirmPassword
 			})
 		};
-		const response = await fetch('http://localhost:4000/register/', requestOptions);
+		const response = await fetch('http://localhost:4000/register', requestOptions);
 		const data = await response.json();
-        if(data){
-            navigate('/')
-        }  
-    }
+
+		if (data) {
+			console.log(data)
+			navigate('/')
+			message.success("User has been registered")
+		}
+	}
 
 	const passwordRule = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
 
