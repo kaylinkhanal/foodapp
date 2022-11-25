@@ -18,10 +18,15 @@ const Cards = () => {
   };
   console.log(details);
 
+  return <Card details={details} name={"sjadkfha"} />;
+};
+
+const Card = ({ details, name }) => {
+  console.log(name);
   return (
     <>
       <div className="container">
-        {details.map((value) =>{
+        {details.map((value) => {
           return (
             <div className="card">
               <div className="image">
@@ -36,9 +41,8 @@ const Cards = () => {
             </div>
           );
         })}
-      </div>
+      </div> 
     </>
   );
 };
-
 export default Cards;
