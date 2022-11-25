@@ -1,29 +1,32 @@
 const express = require("express");
 const User = require('../Model/usersSchema')
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 router.post("/", async (req, res) => {
     try{
-        console.log(req.body)
-        if(req.body.email && req.body.password){
-            const registeredUser = await User.findOne(req.body)
-            if(registeredUser){
-				res.send({
+        // to compare the hashed password from DB first find the user
+        const registeredUser = await User.findOne({email: req.body.email})
+        
+        hashedPassword = registeredUser.password
+
+        // Load hash from your password DB.
+        bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
+            console.log("result", result)
+
+            if(result){
+                res.send({
                     detail: registeredUser,
                     msg: `You're logged in`
                 })
-			}else{
-				res.json({
-                    msg: "No user found"
+            }else{
+                res.json({
+                    msg: "Invalid email or password"
                 })
-			}
-        }else{
-			res.json({
-                msg: "All fields are required. Complete the form!!"
-            })
-		}
+            }
+        });
         
-       
     }catch(error){
         console.log(error)
     }
