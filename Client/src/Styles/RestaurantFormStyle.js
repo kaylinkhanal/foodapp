@@ -14,9 +14,9 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 0.5em;
+  margin: 25px auto;
   color: black;
-  background: papayawhip;
-  border: 2px solid blue;
+  border: 2px solid lightgrey;
   border-radius: 3px;
   font-size: 20px;
   width: 100%;
@@ -32,8 +32,7 @@ export const Select = styled.select`
 	margin: 25px auto;
 	padding: 0.5em;
 	color: black;
-	background: papayawhip;
-	border: 2px solid blue;
+	border: 2px solid lightgrey;
 	border-radius: 3px;
     font-size:20px
 	width: 100%;
@@ -45,7 +44,7 @@ export const Option = styled.option`
 
 export const Button = styled.button`
   display: inline-block;
-  background-color: #1e90ff;
+  background-color: darkred;
   border: 2px double #bc8f8f;
   border-radius: 18px;
   color: #fff;
