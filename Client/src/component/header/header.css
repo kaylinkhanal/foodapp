@@ -1,0 +1,36 @@
+header{
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    z-index: 999;
+  }
+
+  .header_wrap{
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img{
+    max-width: 52px;
+  }
+
+  li{
+    list-style: none;
+  }
+
+  .logo{
+    flex-grow: 1 ;  
+  }
+
+  ul.nav_list li {
+    display: inline-block;
+    padding: 0px 6px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+  .right_nav{
+    text-align: right;
+    font-size: 16px;
+    font-weight: 700;
+  }

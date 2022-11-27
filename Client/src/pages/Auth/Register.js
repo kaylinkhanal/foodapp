@@ -100,7 +100,7 @@ const Register = () => {
 									</select>
 									{errors.role && touched.role ? <div className="error">{errors.role}</div> : null}
 
-									<Field name="password" type="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} ></Field>
+									<Field name="password" type="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} component={ShowHidePassword}></Field>
 									{errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
 
 									<Field name="confirmPassword" type="password" placeholder="Confirm Password" value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur} />
@@ -110,7 +110,7 @@ const Register = () => {
 								</Form>
 							)}
 						</Formik>
-						<p style={{ color: '#fff', marginTop: '10px' }}>Already have an account? Please <Link to="/">Login</Link> to continue</p>
+                        <p style={{ color: '#fff', marginTop: '10px' }}>Already have an account? Please <Link to="/">Login</Link> to continue</p>
 					</div>
 				</div>
 			</div>

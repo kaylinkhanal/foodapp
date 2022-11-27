@@ -1,0 +1,108 @@
+.restro_section{
+    padding-top: 50px;
+}
+
+#additem_section{
+position: relative;
+padding-top: 72px
+}
+
+#additem_section::before {
+background: url(../../images/food.png) no-repeat;
+background-size: 472px;
+top: 0;
+right: 7%;
+left: auto;
+height: 100%;
+filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+position: absolute;
+content: '';
+width: 404px;
+}
+
+.card_list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    display: flex;
+    flex-flow: column;
+    width: calc((100% - 60px) / 3);
+    margin-right: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* .card::before {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    content: '';
+    z-index: 1;
+    border-radius: 50%;
+    background: #fff url(../../images/meal.png);
+    background-size: contain;
+    left: 10px;
+    top: 10px;
+} */
+
+.card:nth-child(3n) {
+    margin-right: 0;
+}
+
+.card_img{
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card_img img {
+    width: 100%;
+    transition: all .3s ease-in-out;
+}
+
+.card:hover img {
+    transform: scale(1.2);
+}
+
+.card_name {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.8) 100%);
+    width: 100%;
+    margin-bottom: 0 !important;
+    padding: 10px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.card_info{
+    padding: 10px;
+    font-size: 16px;
+    transition: all .3s ease-in-out;
+    background: #f1f1f1;
+}
+
+.card_info p{
+    margin-bottom: 5px;
+}
+
+.card:hover .card_info{
+    background: #000;
+    color: #fff;
+}
+
+.card i{
+    color: #FF8465;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.rating .css-ryrseu-MuiRating-root{
+    font-size: 1.2rem;
+}

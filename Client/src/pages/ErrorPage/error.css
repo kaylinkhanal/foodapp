@@ -1,0 +1,37 @@
+/* error page */
+#error_section{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    flex-flow: column;
+    align-items: center;
+    background: #FF8465
+  }
+  
+  .error_content h1 {
+    font-size: 230px;
+    color: rgb(6 43 80 / 80%);
+    line-height: 140px;
+    margin-bottom: 0;
+  }
+  
+  .error_content h3 {
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .back{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .back i{
+    animation: beat .25s infinite alternate
+  }
+
+  @keyframes beat{
+    to { transform: scale(1.4); }
+  }
+  
+  
