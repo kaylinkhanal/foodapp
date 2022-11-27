@@ -11,8 +11,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state,actions)=>{
-        state.email        = actions.payload.email
-        state.phoneNumber = actions.payload.phoneNumber
+        state.email         = actions.payload.email
+        state.phoneNumber   = actions.payload.phoneNumber
     },
     resetCredentials: ( state, actions ) => {
       state.email = ''
