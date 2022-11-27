@@ -16,6 +16,7 @@ const RestaurantList = () => {
       const response  = await fetch( 'http://localhost:4000/restaurant/' )
       const data      = await response.json()
       setResturantList( data.restaurantsList )
+      console.log( users )
     }
   
     useEffect( () => {

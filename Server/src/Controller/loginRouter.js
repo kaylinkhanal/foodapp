@@ -1,22 +1,21 @@
 const express = require("express");
 const User = require('../Model/usersSchema')
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 const bcrypt = require('bcrypt');
 router.post("/", async (req, res) => {
     try{
         if( req.body.email && req.body.password ) {
-
+            const token = jwt.sign({ email: req.body.email }, 'ifsjdfosadjofo');
             const registeredUser = await User.findOne({email: req.body.email})
             const hashedPassword = registeredUser.password
-            console.log( registeredUser )
-            console.log( hashedPassword )
-            console.log( req.body.password )
             bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
-              console.log("resulst", result)
               if(result=== true){
             	res.json({
                             detail: registeredUser,
-                            msg: `You're logged in`
+                            msg: `You're logged in`,
+                            token: token
                  })
               }else{
                 res.json({
