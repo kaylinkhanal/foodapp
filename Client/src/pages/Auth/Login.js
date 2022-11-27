@@ -87,7 +87,6 @@ const Login = () => {
                     </label>
                     <input
                       type="email"
-                      autoComplete="off"
                       name="email"
                       id="email"
                       placeholder="Email"
