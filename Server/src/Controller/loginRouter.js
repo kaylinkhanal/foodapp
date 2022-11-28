@@ -1,22 +1,38 @@
 const express = require("express");
 const User = require('../Model/usersSchema')
 const router = express.Router();
-
+const bcrypt = require('bcrypt');
 router.post("/", async (req, res) => {
     try{
-        console.log(req.body)
         if(req.body.email && req.body.password){
-            const registeredUser = await User.findOne(req.body)
-            if(registeredUser){
-				res.json({
-                    registeredUser
+            const registeredUser = await User.findOne({email: req.body.email})
+            const hashedPassword = registeredUser.password
+
+
+
+
+
+
+            bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
+              console.log("resulst", result)
+              if(result=== true){
+            	res.send({
+                            detail: registeredUser,
+                            msg: `You're logged in`
+                 })
+              }else{
+                res.send({
+                    msg: `invalid creds`
                 })
-			}else{
-				res.json({status:"300",message: "No user found"})
-			}
+              }
+            });
         }else{
-			res.json({status:"301",message: "All fields are required. Complete the form!!"})
-		}  
+			res.json({
+                msg: "All fields are required. Complete the form!!"
+            })
+		}
+        
+       
     }catch(error){
         console.log(error)
     }
@@ -26,7 +42,5 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
 
 });
-
-module.exports = router;
 
 module.exports = router;
