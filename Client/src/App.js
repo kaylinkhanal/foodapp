@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     navigationControl();
-  }, [authorizeRole]);
+  }, [role, token]);
 
   //use -> token
   return (

@@ -122,9 +122,10 @@ option{
 } */
 
 button {
-  background: #CF450E;
+  background: #ac1c1cd0;
   padding: 10px 30px;
   border: 1px solid transparent;
+  border-radius: 5px;
   text-transform: uppercase !important;
   color: #fff !important;
   font-size: 16px !important;

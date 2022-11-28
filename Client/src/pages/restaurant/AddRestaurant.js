@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
-import { message } from 'antd';
-import 'antd/dist/antd.min.css';
+// import { message } from 'antd';
+// import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
 
 const AddRestaurant = () => {
@@ -26,10 +26,10 @@ const AddRestaurant = () => {
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
 		const data = await response.json();
 		if (data) {
-			message.success(data.message)
+			// message.success(data.message)
 			action.resetForm()
 		}else{
-			message.success(data.errDetail)
+			// message.success(data.errDetail)
 		}
 	}
 

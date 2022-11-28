@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.delivery-main {
+    position: relative;
+    /* background-image: linear-gradient(45deg, #c3bfcc, #44383b26); */
+
+    /* Set the background size and repeat properties. */
+    background-size: 100%;
+    background-repeat: repeat;
+    /* color: aliceblue; */
+
+    /* Use the text as a mask for the background. */
+    /* This will show the gradient as a text color rather than element bg. */
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent;  */
+    /* -moz-background-clip: text; */
+    /* -moz-text-fill-color: transparent; */
+}
+
+.nav {
+    /* margin: 1rem; */
+    /* position: fixed; */
+    /* scroll-behavior: smooth; */
+    /* top: 0; */
+    /* left: 50%; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    color: black;                                                     
+
+}
+
+.nav-left h2 {
+    font-size: 2rem; 
+    background-color: red;
+
+    /* Create the gradient. */
+    background-image: linear-gradient(45deg, #c06666, #5f5f5e, #15813b);
+
+    /* Set the background size and repeat properties. */
+    background-size: 100%;
+    background-repeat: repeat;
+
+    /* Use the text as a mask for the background. */
+    /* This will show the gradient as a text color rather than element bg. */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.nav-right ul {
+    display: flex;
+}
+
+.nav-right ul li {
+    margin: 1rem 1.5rem;
+}
+
+.nav-right button {
+    margin: 0 0.6rem;
+    border-radius: 5px;
+    width: 140px;
+}
+
+.header {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0.8rem;
+    color: black;
+    /* font */
+}
+
+.header-left h3 {
+    font-size: 1.5rem;
+    /* color: black; */
+}
+
+.header-left button {
+    margin-top: 1.1rem;
+    width: 200px;
+}
+.header-left img{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #eae6f4; */
+    /* position: relative; */
+    /* flex: 0 auto; */
+    height: 25vh;
+    width: 40%;
+    margin: 1.7rem;
+}
+
+.img img {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #eae6f4; */
+    /* position: relative; */
+    /* flex: 0 auto; */
+    height: 80vh;
+    width: 40%;
+    margin: 1.7rem;
+    /* flex-grow: 1 0 1; */
+    /* padding: 1rem; */
+    /* border: 1px solid rgb(173, 169, 169); */
+    /* border-radius: 5px; */
+}
+
+
+.view-all{
+    display: flex;
+    margin: 1rem auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background-color: #669fc0;
+}

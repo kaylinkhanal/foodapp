@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
-import { message } from 'antd';
-import 'antd/dist/antd.min.css';
+// import { message } from 'antd';
+// import 'antd/dist/antd.min.css';
 import Userimage from '../images/dummy.svg'
 
 const AddRestro = () => {
@@ -25,12 +25,12 @@ const AddRestro = () => {
 		const response = await fetch('http://localhost:4000/food', requestOptions);
 		const data = await response.json();
 
-		if (data) {
-			console.log(data)
-			message.success(data.message)
-		}else{
-			message.success(data.errorMsg)
-		}
+		// if (data) {
+		// 	console.log(data)
+		// 	message.success(data.message)
+		// }else{
+		// 	message.success(data.errorMsg)
+		// }
 	}
 
 	const SignupSchema = Yup.object().shape({
