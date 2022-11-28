@@ -31,7 +31,13 @@ const Login = () => {
 
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/')
+			if(data.detail.role === 'user' || data.detail.role === 'rider'){
+				navigate('/')
+			}else{
+				navigate('/admin')
+			}
+
+			// console.log(data.detail.role)
 		} else {
 			message.error("invalid details")
 		}

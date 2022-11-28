@@ -1,28 +1,34 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightToBracket, faRightFromBracket, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import { setCredentials } from "../../reducerSlice/userSlice";
 
 const Navigation = () => {
-	const { token } = useSelector(state => state.users)
+	const { role, token } = useSelector(state => state.users)
 	const dispatch = useDispatch()
 
 	const userLogout = () => {
 		dispatch(setCredentials(''))
 	}
-	console.log(token)
 
 	return (
 		<div className="navbar">
-			{token ?
+			{token ? (
 				<>
 					<div className="navbar_left">
-						<ul className="nav_list">
-							<li><Link to="/">Restaurant</Link></li>
-							<li><Link to="/food">Food/Cuisine</Link></li>
-						</ul>
+						{role === 'user' ? (
+							<ul className="nav_list">
+								<li><Link to="/">Restaurant</Link></li>
+								<li><Link to="/food">Food/Cuisine</Link></li>
+							</ul>
+							
+						) : role === 'rider' ? (
+							<ul className="nav_list">
+								<li><Link to="/">Delivery Requests</Link></li>
+							</ul>
+						) : null}
 					</div>
 
 					<div className="navbar_right">
@@ -31,18 +37,8 @@ const Navigation = () => {
 							<li onClick={() => userLogout()}><i><FontAwesomeIcon icon={faRightFromBracket} /></i></li>
 						</ul>
 					</div>
-				</> : null
-				// <div className="navbar_right">
-				// 	<ul className="nav_list">
-				// 		<li>
-				// 			<Link to="/register"><FontAwesomeIcon icon={faUserPlus} /></Link>
-				// 		</li>
-				// 		{/* <li>
-				// 			<Link to="/"><FontAwesomeIcon icon={faRightToBracket} /></Link>
-				// 		</li> */}
-				// 	</ul>
-				// </div>
-			}
+				</>
+			): null}
 		</div>
 	)
 }
