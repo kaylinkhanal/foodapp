@@ -6,7 +6,7 @@ import Profile from "../pages/userProfile";
 import Food from "../pages/Food/food";
 import Admin from "../pages/admin";
 import { Routes, Route} from "react-router-dom";
-import DeliveryRequest from '../pages/deliveryRequest'
+import DeliveryRequest from "../pages/Rider/deliveryRequest";
 
 const AuthorizedUsers = (props) => {
     if(props.authorizeRole === 'user'){

@@ -24,9 +24,10 @@ const Navigation = () => {
 								<li><Link to="/food">Food/Cuisine</Link></li>
 							</ul>
 							
-						) : role === 'rider' ? (
+						) : token && role === '' ? (
 							<ul className="nav_list">
-								<li><Link to="/">Delivery Requests</Link></li>
+								<li><Link to="/admin/restaurant">Add Restaurant</Link></li>
+								<li><Link to="/admin/food">Add Food</Link></li>
 							</ul>
 						) : null}
 					</div>
