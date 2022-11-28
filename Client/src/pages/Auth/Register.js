@@ -5,7 +5,7 @@ import Image from '../../images/delivery_girl.svg'
 import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
-//import ShowHidePassword from '../../component/showHidePassword';
+import ShowHidePassword from '../../component/showHidePassword';
 
 const Register = () => {
 	const navigate = useNavigate()
