@@ -9,7 +9,7 @@ import AddFood from "./pages/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 
 const App = () => {
-  
+  //use -> token
   return (
     <div className="App">
       <Header/>
