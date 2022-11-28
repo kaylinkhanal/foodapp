@@ -8,11 +8,12 @@ router.post("/", async (req, res) => {
 
             const registeredUser = await User.findOne({email: req.body.email})
             const hashedPassword = registeredUser.password
-            console.log( registeredUser )
-            console.log( hashedPassword )
-            console.log( req.body.password )
+            // console.log( registeredUser )
+            // console.log( hashedPassword )
+            // console.log( req.body.password )
+            
             bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
-              console.log("resulst", result)
+              console.log("result", result)
               if(result=== true){
             	res.json({
                             detail: registeredUser,

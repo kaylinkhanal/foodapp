@@ -9,15 +9,18 @@ import AddFood from "./pages/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 
 const App = () => {
+  
   return (
     <div className="App">
       <Header/>
+      
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/restaurant" element={<AddRestaurant />} />
         <Route path="/restaurant-list" element={<Restaurant />} />
+        <Route path="/foods" element={<AddFood/>}/>
         <Route path="/admin/food" element={<AddFood />} />
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
