@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import Header from '../../component/header/header'
 import './restaurant.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'

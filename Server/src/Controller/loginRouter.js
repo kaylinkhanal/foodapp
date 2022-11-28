@@ -3,6 +3,7 @@ const User = require('../Model/usersSchema')
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
 
 router.post("/", async (req, res) => {
     try{
@@ -16,9 +17,20 @@ router.post("/", async (req, res) => {
             console.log("result", result)
 
             if(result){
-                res.send({
-                    detail: registeredUser,
-                    msg: `You're logged in`
+                const userEmail = {email: req.body.email}
+                const userToken = jwt.sign(userEmail, process.env.SECRET_TOKEN);
+                console.log(userToken)
+                User.findOneAndUpdate(userEmail, {
+                    $set: {
+                        token: userToken
+                    }
+                }).then((data)=>{
+                    console.log(data)
+                    res.json({
+                        accessToken: data.token,
+                        detail: registeredUser,
+                        msg: `You're logged in`
+                    })
                 })
             }else{
                 res.json({
