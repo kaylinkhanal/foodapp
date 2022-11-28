@@ -1,10 +1,22 @@
-import React from "react";
+import React from "react"
 import Logo from '../../images/meal.png'
 import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket, faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { resetCredentials } from "../../reducersSlice/userSlice"
 
-const Header = ()=>{
+const Header = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const triggerLogout = () => {
+        dispatch( resetCredentials() )
+        navigate('/')
+    }
+
     return(
         <>
             <header>
@@ -19,7 +31,7 @@ const Header = ()=>{
                             <ul className="nav_list">
                                 <li><i><FontAwesomeIcon icon={faRightToBracket}/></i></li>
                                 <li><i><FontAwesomeIcon icon={faUserPlus}/></i></li>
-                                <li><i><FontAwesomeIcon icon={faRightFromBracket}/></i></li>
+                                <li onClick={ triggerLogout }><i><FontAwesomeIcon icon={faRightFromBracket}/></i></li>
                             </ul>
                         </div>
                     </div>

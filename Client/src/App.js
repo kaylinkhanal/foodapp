@@ -31,14 +31,12 @@ const App = () => {
   },[role, token])
   return (
     <div className="App">
-     
+      <Header/>
       {!authorizeRole ? (
         <>
-         <Header/>
          <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<ErrorPage/>}></Route>
         </Routes>
        </>
       ) : (
@@ -63,7 +61,8 @@ const AuthorizedUsers = (props) => {
 const UserRoute = () => {
   return (
     <Routes>
-      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }
@@ -71,7 +70,8 @@ const UserRoute = () => {
 const RiderRoute = () => {
   return(
   <Routes>
-    <Route path="/request-delivery" element={<DeliveryRequest />} />
+    <Route path="/" element={<DeliveryRequest />} />
+    <Route path="*" element={<ErrorPage/>}></Route>
   </Routes>
   )
 }
@@ -79,9 +79,10 @@ const RiderRoute = () => {
 const AdminRoute = () => {
   return(
     <Routes>
-    <Route path="/admin" element={<Admin />} />
-    <Route path="/admin/restaurant" element={<AddRestaurant />} />
-    <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/" element={<Admin />} />
+      <Route path="/admin/restaurant" element={<AddRestaurant />} />
+      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }

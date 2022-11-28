@@ -4,7 +4,9 @@ const DeliveryRequest = () => {
 
   return (
     <>
-      i am delivery boy, rider
+      <div>
+        i am delivery boy, rider
+      </div>
     </>
   )
 

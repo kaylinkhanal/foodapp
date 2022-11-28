@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import { resetCredentials } from "../../reducersSlice/userSlice"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
 import { Rating } from 'react-simple-star-rating'
 
 const RestaurantList = () => {
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const { users } = useSelector( state => state );
   
@@ -16,17 +11,11 @@ const RestaurantList = () => {
       const response  = await fetch( 'http://localhost:4000/restaurant/' )
       const data      = await response.json()
       setResturantList( data.restaurantsList )
-      console.log( users )
     }
   
     useEffect( () => {
       fetchData();
     }, [] )
-  
-    const triggerLogout = () => {
-      dispatch( resetCredentials() )
-      navigate('/')
-    }
   
     return (
       <>
@@ -48,7 +37,6 @@ const RestaurantList = () => {
           }) }
           </div>
         ) : 'loading...' }
-        <button className="input-button" type="submit" onClick={ triggerLogout }>LOGOUT</button>
       </>
     )
   
