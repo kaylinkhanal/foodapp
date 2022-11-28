@@ -24,11 +24,13 @@ const App = () => {
       setAuthorizeRole('rider')
     }else if(token){
       setAuthorizeRole('admin')
+    }else{
+      setAuthorizeRole(null)
     }
   }
   useEffect(()=>{
     navigationControlFor()
-  },[])
+  },[role, token])
   return (
     <div className="App">
      
