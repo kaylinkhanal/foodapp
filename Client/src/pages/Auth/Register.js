@@ -171,13 +171,11 @@ const Register = () => {
                 </p>
                 </> )}
                 </Formik>
+                    </div>
+                  </div>
                 </div>
               </div>
-              </div>
-              </div>
               </>
-            
-          
   
 )
 }
