@@ -28,7 +28,22 @@ router.post("/", async (req, res) => {
 
 // view users
 router.get("/", async (req, res) => {
+    try{
 
+        const users = User.find();
+        console.log(users)
+        res.send({
+            userList: users,
+            msg: 'users list fetched',
+            
+
+        })
+    } catch(error){
+        res.send({
+            message: 'Invalid request/ something wrong',
+            error: error,
+        })
+    }
 });
 
 module.exports = router;
