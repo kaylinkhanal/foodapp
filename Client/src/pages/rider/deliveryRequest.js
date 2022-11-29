@@ -1,16 +1,21 @@
 import React from "react";
 import Image from "../../images/order.svg";
-import Pic from '../../images/deliverypng.png'
-import Nav from '../../component/nav/Nav'
+import Pic from "../../images/deliverypng.png";
+import Nav from "../../component/nav/Nav";
 import "./css/rider.css";
 import DeliveryOrders from "./components/deliveryOrders";
+import { Footer } from "antd/lib/layout/layout";
+import DeliveryFooter from "./components/deliveryFooter";
+
+
+
 function DeliveryRequest() {
   return (
     <div className="delivery-main">
-        <Nav />
+      <Nav />
       <div className="header">
         <div className="header-left">
-          <img src={Pic}/>
+          <img src={Pic} />
           <h3>Others Deliver Parcels, We Deliver Emotions</h3>
           <span>
             Let's take care of order fulfillment, collection, transport,
@@ -28,7 +33,12 @@ function DeliveryRequest() {
         </div> */}
       </div>
       <DeliveryOrders />
-      <button style={{color: ''}} className="view-all">View All </button>
+      <button style={{ color: "" }} className="view-all">
+        View All
+      </button>
+      <DeliveryFooter />
+
+      <Footer/>
     </div>
   );
 }

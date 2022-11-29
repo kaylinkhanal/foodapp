@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../css/deliveryOrder.css'
 // import { message } from 'antd';
 // import 'antd/dist/antd.min.css';
+import { useNavigate } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function DeliveryOrders() {
+  const navigate = useNavigate();
+  const riderLocation = useSelector(state => state.users.address)
   const [orders, setOrders] = useState([
     {
       name: "Matt",
@@ -33,27 +40,61 @@ function DeliveryOrders() {
       },
     },
   ]);
+
+  const filteredOrders = orders.filter(order => {
+    return (order.address === riderLocation && order.role === 'user');
+  })
+
+  const fetchUsers = () => {
+    axios.get('http://localhost:4000/users')
+    .then(response => setOrders(response.data))
+    .then(setOrders(filteredOrders))
+  }
+
+
+  useEffect(() => {
+    fetchUsers();
+  }, [riderLocation])
+  // console.log(orders);
+
+  const popUp = () => {
+    confirmAlert({
+    title: 'Confirm to submit',
+    message: 'Are you sure you want to confirm?',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => navigate('/delivery-request/orderDetails')
+      },
+      {
+        label: 'No',
+        onClick: () => null
+      }
+    ]
+  });
+}
   return (
-    <div>
+    <div id="orders">
       <div className="order-header">
-        <h2>Orders currently available to pick</h2>
+        
+        <h2>your location is: {riderLocation}</h2>
+        <h2>Orders currently available to pick around {riderLocation}</h2>
       </div>
       <div className="orders">
-        {orders.map((order, index) => (
+        {filteredOrders.map((order, index) => (
           <div className="order-card" key={index}>
             <div>
-
             <h3>{order.name}</h3>
-            <h4>ORDER {order.order_id}</h4>
+            {/* <h4>ORDER {order.order_id}</h4> */}
             <>Order Details:</>
-            <h5>Foods: {order.details.foodName}</h5>
-            <h5>Size: {order.details.foodSize}</h5>
+            <h5>Location: {order.address}</h5>
+            {/* <h5>Size: {order.details.foodSize}</h5> */}
             </div>
             <div className="order-confirmation">
               <p>Do you want to confirm the Order?</p>
-            {/* <CheckOutlined /> */}
-            <button style={{backgroundColor: '#47cc7a'}}>Confirm</button>
+            <button style={{backgroundColor: '#47cc7a'}} onClick={popUp}>Confirm</button>
             <button>Reject</button>
+            
             </div>
           </div>
         ))}

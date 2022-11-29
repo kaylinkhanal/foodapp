@@ -4,7 +4,8 @@ export const initialState = {
   email: '',
   phoneNumber: '',
   token: '',
-  role: 'user'
+  role: 'user',
+  address : ''
 };
 
 const userSlice = createSlice({
@@ -16,6 +17,7 @@ const userSlice = createSlice({
         state.phoneNumber = actions.payload.phoneNumber
         state.token = actions.payload.token
         state.role = actions.payload.role
+        state.address = actions.payload.address
     },
     resetCredentials: ( state, actions ) => {
       state.email = ''

@@ -20,9 +20,10 @@ function Nav() {
             </div>
             <div className="nav-right">
                 <ul>
-                    <li>Home</li>
-                    <li>Orders</li>
-                    <li>Contact Us</li>
+                    <a href='#orders'>Home</a>
+                    <a href='#orders'>Orders</a>
+                    <a href='#orders'>Contact Us</a>
+                    
                 </ul>
                 {/* <button style={{backgroundColor: '#6482de', height: '80%'}}>sign out</button> */}
                 <button style={{height: '80%'}} onClick={triggerLogOut}>sign out</button>

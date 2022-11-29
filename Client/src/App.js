@@ -10,6 +10,7 @@ import Restaurant from "./pages/restaurant/restaurant";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import DeliveryRequest from "./pages/rider/deliveryRequest";
+import OrderDetails from "./pages/rider/OrderDetails";
 
 const App = () => {
   const { token, role } = useSelector((state) => state.users);
@@ -73,6 +74,7 @@ const RiderRoutes = () => {
   return (
     <Routes>
       <Route path="/delivery-request" element={<DeliveryRequest />} />
+      <Route path="/delivery-request/orderDetails" element={<OrderDetails />} />
     </Routes>
   );
 };
