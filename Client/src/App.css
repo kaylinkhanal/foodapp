@@ -77,7 +77,7 @@ input[type=text], select {
     color: white;
     padding: 8px 20px;
     margin: 8px 0;
-    border: ;
+    border: 4px;
     border-radius: 10px;
     cursor: pointer;
   }

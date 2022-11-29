@@ -46,7 +46,7 @@ h2.pg_title {
   max-width: 400px;
 }
 
-input {
+input,select,textarea {
   background: rgba(255,255,255,.2);
   border: 1px solid #fff;
   width: 100%;
@@ -56,11 +56,12 @@ input {
   line-height: -31px;
 }
 
-input:focus {
+input:focus, select:focus,textarea:focus{
   outline: 0;
 }
 
-::placeholder {
+::placeholder,
+option:first-child {
   color: #f3eded;
   font-size: 14px;
   font-style: italic;
@@ -83,7 +84,8 @@ button {
 }
 
 .form_section>div{
-  width: 50%
+  width: 50%;
+  z-index: 1
 }
 
 .text_block{

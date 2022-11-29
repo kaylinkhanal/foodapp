@@ -9,11 +9,7 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
 
  //use the yup module to create a schema for validation
  const usersSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  lastName: Yup.string()
+  name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
@@ -48,8 +44,7 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
      <Formik
        initialValues={{
-         firstName: '',
-         lastName: '',
+         name:'',
          address:'',
          phoneNumber:'',
          email: '',
@@ -73,21 +68,13 @@ import { faRegistered } from '@fortawesome/free-solid-svg-icons';
        {({ errors, touched }) => (
          <Form >
          
-           <Field type='text' name="firstName" placeholder='First Name'/>
+           <Field type='text' name="Name" placeholder='Name'/>
            {/* If validation is not passed show errors */}
-           {errors.firstName && touched.firstName ? (
-             <div>{errors.firstName}</div>
+           {errors.name && touched.name ? (
+             <div>{errors.name}</div>
            ) : null}
            
-
-          
-           <Field  type='text' name="lastName" placeholder='Last Name'/>
-           {errors.lastName && touched.lastName ? (
-             <div>{errors.lastName}</div>
-           ) : null}
-         
-
-          
+      
            <Field type="text" name="address"  placeholder='Address'/>
            {errors.address && touched.address ? <div>{errors.address}</div> : null}
           

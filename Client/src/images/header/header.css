@@ -1,0 +1,26 @@
+header{
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .header_wrap{
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img{
+    filter: drop-shadow(2px 1px 0px white);
+    max-width: 52px;
+  }
+
+  li{
+    list-style: none;
+  }
+
+  .logo{
+    flex-grow: 1 ;  
+  }
+
+  .right_nav{
+    text-align: right;
+  }

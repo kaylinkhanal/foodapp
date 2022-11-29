@@ -1,10 +1,34 @@
 const express = require("express");
-const usersModel = require("../Model/usersSchema");
+const User = require('../Model/usersSchema')
 const router = express.Router();
-// post request for register the user and all the router should be in /
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+
+// post request for register the user
 router.post("/", async (req, res) => {
-    usersModel.create(req.body)
-    console.log(req.body)
+    try{
+        bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
+            // console.log(hash)
+            req.body.password = hash
+            
+        }).then((data)=>{
+            const appUser = User.create(req.body)
+            console.log(req.body)
+        
+            res.json({
+                message: 'User Registered',
+                userDetail: appUser
+            })  
+        })
+        
+    }catch(error){
+        console.log(error)
+        res.send({
+            errorMsg: "Unable to post user data!",
+            errorDetail: error
+        })
+    }
 });
 
 // view users
