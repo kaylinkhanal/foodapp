@@ -2,5 +2,4 @@
 /.env
 /Server/node_modules
 /Client/node_modules
-/myClient
 /Personal-Client
