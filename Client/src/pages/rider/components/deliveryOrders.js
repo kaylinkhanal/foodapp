@@ -73,6 +73,13 @@ function DeliveryOrders() {
     ]
   });
 }
+
+const handleReject = (id) => {
+  const filteredList = filteredOrders.filter(item => {
+    return item._id !== id;
+  })
+  setOrders(filteredList);
+}
   return (
     <div id="orders">
       <div className="order-header">
@@ -93,7 +100,7 @@ function DeliveryOrders() {
             <div className="order-confirmation">
               <p>Do you want to confirm the Order?</p>
             <button style={{backgroundColor: '#47cc7a'}} onClick={popUp}>Confirm</button>
-            <button>Reject</button>
+            <button onClick={() => {handleReject(order._id)}}>Reject</button>
             
             </div>
           </div>
