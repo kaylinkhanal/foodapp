@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -9,6 +10,7 @@ connect();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}))
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
 const restroRouter = require("./Controller/restaurantRouter");

@@ -45,7 +45,7 @@ const AddRestro = () => {
 	return (
 		<>
 			<Header />
-			<div id="restro_section">
+			<div id="additem_section" className='full_height'>
 				<div className='container'>
 					<div className='main_content'>
 						<div className='form_section'>
@@ -55,7 +55,7 @@ const AddRestro = () => {
 									<span> Hi, {name}</span>
 								</div>
 								
-								<h1>Select your<br /> Menu</h1>
+								<h1>Add<br /> Cuisine</h1>
 								<p>Healthy Sashimi Tuna Bites with Sashami grade Tuna, 110 Calories and 13g protein</p>
 							</div>
 
@@ -99,7 +99,7 @@ const AddRestro = () => {
 									)}
 								</Formik>
 							</div>
-                            </div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,58 +1,88 @@
-
-import React from 'react';
+import FormText from "../../component/formText";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { faRegistered } from '@fortawesome/free-solid-svg-icons';
-// We don't have to create the state for formik
-//Yup is use for validating the frontend filed data
-import '../../App.css'
+import Image from '../../images/order.svg'
+import { Link, useNavigate } from 'react-router-dom'
+import { message } from "antd";
+import 'antd/dist/antd.min.css';
+import ShowHidePassword from "../../component/showHidePassword";
+import { setCredentials } from "../../reducersSlice/userSlice";
+import {useDispatch} from 'react-redux'
 
-const usersSchema = Yup.object().shape({
-  
-  email: Yup.string().email('Invalid email').required('Required'),
+const Login = () => {
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
-  password: Yup
-  .string()
-  .required('Required')
-  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/,
-  "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character")
-});
-export const Login = () => (
-  <div className='loginForm'>
-    <h1>Login</h1>
-    <Formik
-      initialValues={{
-        email: '',
-        password:'',
-      }}
-      validationSchema={usersSchema}
-      onSubmit={values => {
-        // same shape as initial values
-        console.log(values);
-        const requestOptions={
-           method:'POST',
-           body:JSON.stringify(values),
-           headers:{'Content-Type':'application/json'},
-         }
-         fetch('http://localhost:4000/Users', requestOptions)
-      }}
-    >
-      {({ errors, touched }) => (
-        <Form>
-       
+	const logParticipants = async (values) => {
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				email: values.email,
+				password: values.password
+			})
+		};
+		const response = await fetch('http://localhost:4000/login', requestOptions);
+		const data = await response.json();
 
-          <Field type="email" name="email"  placeholder='Email'/>
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
+		if (data) {
+			// console.log(data)
+			message.success(data.msg) // to display the success msg after submit
+      data.detail.token = data.token
+			dispatch(setCredentials(data.detail)) // to access the user data
 
-          <Field type="password" name="password"  placeholder='Password'/>
-          {errors.password && touched.password ? <div>{errors.password}</div> : null}
+			navigate('/restaurant-list')
+		} else {
+			message.error("invalid details")
+		}
+	}
 
+	const LoginSchema = Yup.object().shape({
+		password: Yup.string().required('Required'),
+		email: Yup.string().email('Invalid email').required('Required'),
+	});
 
-          <input type="submit" value="login"/>
-        </Form>
-      )}
-    </Formik>
-  </div>
-);
+	return (
+		<div className="section_bg">
+			<div className="form_section login">
+				<div className='info_text'>
+					<FormText image={Image} />
+				</div>
+
+				<div className='form_content'>
+					<h2 className='pg_title'>Login</h2>
+
+					<div className="register">
+						<Formik
+							initialValues={{
+								email: '',
+								password: '',
+							}}
+							validationSchema={LoginSchema}
+							onSubmit={values => {
+								logParticipants(values)
+								// same shape as initial values
+								// console.log(values);
+							}}
+						>
+							{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
+								<Form onSubmit={handleSubmit}>
+									<Field name="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+									{errors.email && touched.email ? (<div className="error">{errors.email}</div>) : null}
+
+									<Field name="password" placeholder="Enter Password" value={values.password} component={ShowHidePassword} onChange={handleChange} onBlur={handleBlur} />
+									{errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
+
+									<button type="submit">Login</button>
+								</Form>
+							)}
+						</Formik>
+						<p style={{ color: '#fff', marginTop: '10px' }}>Dont have an account? <Link to="/register">Signup</Link> here</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
 
 export default Login;

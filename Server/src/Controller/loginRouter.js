@@ -34,44 +34,34 @@
 const express = require("express");
 const User = require('../Model/usersSchema')
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
+const bcrypt = require('bcrypt');
 router.post("/", async (req, res) => {
     try{
-        // to compare the hashed password from DB first find the user
-        const registeredUser = await User.findOne({email: req.body.email})
-        
-        hashedPassword = registeredUser.password
-
-        // Load hash from your password DB.
-        bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
-            console.log("result", result)
-
-            if(result){
-                const userEmail = {email: req.body.email}
-                const userToken = jwt.sign(userEmail, process.env.SECRET_TOKEN);
-                console.log(userToken)
-                User.findOneAndUpdate(userEmail, {
-                    $set: {
-                        token: userToken
-                    }
-                }).then((data)=>{
-                    console.log(data)
-                    res.json({
-                        accessToken: data.token,
-                        detail: registeredUser,
-                        msg: `You're logged in`
-                    })
-                })
-            }else{
+        if( req.body.email && req.body.password ) {
+            const token = jwt.sign({ email: req.body.email }, 'ifsjdfosadjofo');
+            const registeredUser = await User.findOne({email: req.body.email})
+            const hashedPassword = registeredUser.password
+            bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
+              if(result=== true){
+            	res.json({
+                            detail: registeredUser,
+                            msg: `You're logged in`,
+                            token: token
+                 })
+              }else{
                 res.json({
-                    msg: "Invalid email or password"
+                    msg: `invalid creds`
                 })
-            }
-        });
-        
+              }
+            });
+        } else {
+			res.json({
+                msg: "All fields are required. Complete the form!!"
+            })
+		}
+       
     }catch(error){
         console.log(error)
     }
@@ -81,5 +71,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
 
 });
+
+module.exports = router;
 
 module.exports = router;

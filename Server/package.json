@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "src/app.js",
-    "scripts": "nodemon src/app.js"
+    "start": " nodemon src/app.js",
+    "scripts": "nodemon src/app.js",
+    "nodemon": "nodemon src/app.js"
   },
   "author": "Kiran Pant",
   "license": "ISC",

@@ -5,6 +5,16 @@ import logger from "redux-logger";
 import restaurantSlice from "./reducersSlice/restaurantSlice";
 import userSlice from "./reducersSlice/userSlice";
 import foodSlice from "./reducersSlice/foodSlice";
+import userSlice from "./reducersSlice/userSlice";
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+
 const reducer = combineReducers({
   users: userSlice,
   restaurants: restaurantSlice,
@@ -13,9 +23,11 @@ const reducer = combineReducers({
   
 });
 
-const store = configureStore({
-  reducer,
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+export const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
-export default store;
+export const persistor = persistStore(store)
