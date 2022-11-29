@@ -1,6 +1,6 @@
 import Login from "./pages/Auth/Login";
 import React, {useEffect, useState} from 'react'
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Header from "./component/header/header";
 import Admin from "./pages/admin";
@@ -33,14 +33,12 @@ const App = () => {
   },[role, token])
   return (
     <div className="App">
-     
+     <Header/>
       {!authorizeRole ? (
         <>
-         <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/register" element={<Register />} />
-         <Route path="*" element={<ErrorPage/>}></Route>
        </Routes>
        </>
       ) : (
@@ -66,7 +64,8 @@ const AuthorizedUsers = (props) => {
 const UserRoute= () => {
   return (
     <Routes>
-    <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }
@@ -75,6 +74,7 @@ const RiderRoute= () => {
   return(
   <Routes>
     <Route path="/request-delivery" element={<DeliveryRequest />} />
+    <Route path="*" element={<ErrorPage/>}></Route>
   </Routes>
   )
 }
@@ -83,9 +83,10 @@ const RiderRoute= () => {
 const AdminRoute = () => {
   return(
     <Routes>
-    <Route path="/admin" element={<Admin />} />
-    <Route path="/admin/restaurant" element={<AddRestaurant />} />
-    <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/restaurant" element={<AddRestaurant />} />
+      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }

@@ -52,6 +52,7 @@ const Register = () => {
 	});
 
 	return (
+    <>
 		<div className="section_bg">
 			<div className="form_section" id="register">
 				<div className='info_text'>
@@ -80,6 +81,7 @@ const Register = () => {
 							}}
 						>
 							{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
+                <>
 								<Form onSubmit={handleSubmit}>
 									<Field name="name" placeholder="Enter Name" value={values.name} onChange={handleChange} onBlur={handleBlur} />
 									{errors.name && touched.name ? (<div className="error">{errors.name}</div>) : null}
@@ -93,15 +95,14 @@ const Register = () => {
 									<Field name="email" type="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
 									{errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
 
-                    <select>
-                      <option>Rider</option>
-                      <option>Customer</option>
-                    </select>
-                    {errors.role && touched.role ? (
-                      <p className="form-error">{errors.role}</p>
-                    ) : null}
-                  </div>
-                
+                  <select>
+                    <option>Rider</option>
+                    <option>Customer</option>
+                  </select>
+                  {errors.role && touched.role ? (
+                    <p className="form-error">{errors.role}</p>
+                  ) : null}
+               
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Email
@@ -164,21 +165,21 @@ const Register = () => {
                       Registration
                     </button>
                   </div>
-                </form>
+                </Form>
                 <p className="sign-up">
                   Already have an account? <Link to ="/">Sign In now</Link>
                 </p>
+                </> )}
+                </Formik>
+                </div>
               </div>
-              <div className="modal-right">
-                <img
-                  src={image}
-                  alt=""
-                />
               </div>
-            </div>
-          </div>
-        </div>
-      </Wrapper>
-  </>
+              </div>
+              </>
+            
+          
+  
+)
 }
+
 export default Register
