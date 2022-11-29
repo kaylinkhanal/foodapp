@@ -1,28 +1,31 @@
 const express = require("express");
-const Restaurant = require('../Model/restaurantsSchema')
+const Restaurant = require('../Model/restaurantSchema')
 const router = express.Router();
 
-// post request for register the restaurant
+// post request for register the user
 router.post("/", async (req, res) => {
     try{
+        const selectedRestro = Restaurant.create(req.body)
         console.log(req.body)
-        const registeredRestaurant = await Restaurant.create(req.body)
-       res.send({
-        message: 'Restaurant Registered'
-       })
+        res.json({
+            message: 'Added your selected restaurant',
+            restroDetail: selectedRestro
+        })
     }catch(error){
-        console.log(error)
+        res.json({
+            errorMsg: 'The restaurant not found',
+            errDetail: error
+        })
     }
 });
 
-
-// view restaurants
+// view users
 router.get("/", async (req, res) => {
     try{
-    const resturantsList = await Restaurant.find()
-       res.send({
-        resturantsList: resturantsList
-       })
+        const restaurantsList = await Restaurant.find()
+        res.json({
+            restaurantsList : restaurantsList
+        })
     }catch(error){
         console.log(error)
     }
