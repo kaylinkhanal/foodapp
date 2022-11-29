@@ -95,6 +95,7 @@ const Register = () => {
 
 									<select name="role" value={values.role} onChange={handleChange} onBlur={handleBlur}>
 										<option value="" disabled="disabled" label="Select a Role"></option>
+										<option value="admin" label="Admin">Admin</option>
 										<option value="user" label="User">User</option>
 										<option value="rider" label="Rider">Rider</option>
 									</select>
