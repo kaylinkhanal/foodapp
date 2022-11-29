@@ -31,7 +31,14 @@ const Login = () => {
       data.detail.token = data.token
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/restaurant-list')
+			if(data.detail.role==="user"){
+				navigate('/restaurant-list')
+			}else if(data.detail.role==="rider"){
+				navigate('/request-delivery')
+			}else {
+				navigate("/admin")
+			}
+			 
 		} else {
 			message.error("invalid details")
 		}
