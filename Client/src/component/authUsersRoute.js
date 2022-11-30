@@ -7,6 +7,8 @@ import Food from "../pages/Food/food";
 import Admin from "../pages/admin";
 import { Routes, Route} from "react-router-dom";
 import DeliveryRequest from "../pages/Rider/deliveryRequest";
+import MyOrders from "../pages/Rider/myOrders";
+import RestaurantDetail from "../pages/restaurant/restaurantDetail";
 
 const AuthorizedUsers = (props) => {
     if(props.authorizeRole === 'user'){
@@ -22,6 +24,7 @@ const AuthorizedUsers = (props) => {
     return (
       <Routes>
         <Route path="/" element={<Restaurant />} />
+        <Route path="/restaurant/:_id" element={<RestaurantDetail/>}></Route>
         <Route path="/food" element={<Food />} />
         <Route path="/user-profile" element={<Profile />} />
       </Routes>
@@ -32,6 +35,7 @@ const AuthorizedUsers = (props) => {
     return (
       <Routes>
         <Route path="/" element={<DeliveryRequest />} />
+        <Route path="/orders" element={<MyOrders />} />
       </Routes>
     );
   };

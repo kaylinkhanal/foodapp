@@ -1,33 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
-body{font-family: 'Open Sans', sans-serif !important;
+body {
+  font-family: "Open Sans", sans-serif !important;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400 !important;
   color: #062b50 !important;
 }
 
-h1,h2,h3,h4{
-  font-family: 'Poppins', sans-serif !important;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif !important;
   font-weight: 500 !important;
   margin-bottom: 15px !important;
-  color: #062b50
+  color: #062b50;
 }
 
-.container{
+.container {
   max-width: 100%;
   width: 80%;
   margin: 0 auto;
 }
 
-.full_height{
+.full_height {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -46,12 +50,12 @@ h1,h2,h3,h4{
 }
 
 .section_bg {
-  background: #FF8465;
+  background: #ff8465;
   height: 100vh;
   display: flex;
   flex-flow: column;
   justify-content: center;
-  padding-top: 72px
+  padding-top: 72px;
 }
 
 h2.pg_title {
@@ -60,16 +64,19 @@ h2.pg_title {
   /* text-transform: uppercase; */
 }
 
-.section_bg h2.pg_title{
+.section_bg h2.pg_title {
   color: #fff;
 }
 
-.register, .form_content {
+.register,
+.form_content {
   max-width: 400px;
 }
 
-input,select,textarea {
-  background: rgba(255,255,255,.2);
+input,
+select,
+textarea {
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid #fff;
   width: 100%;
   height: 40px;
@@ -78,12 +85,16 @@ input,select,textarea {
   color: #fff !important;
 }
 
-input:focus, select:focus,textarea:focus{
+input:focus,
+select:focus,
+textarea:focus {
   outline: 0;
 }
 
-.section_bg input,.section_bg select,.section_bg textarea{
-  background: rgba(255,255,255,.2);
+.section_bg input,
+.section_bg select,
+.section_bg textarea {
+  background: rgba(255, 255, 255, 0.2);
   border-color: #fff;
 }
 
@@ -94,16 +105,15 @@ input:focus, select:focus,textarea:focus{
   font-weight: 300 !important;
 }
 
-select{
+select {
   color: #fff !important;
   font-style: italic;
 }
 
-option{
+option {
   font-size: 14px;
   color: #000;
 }
-
 
 .input_wrap i {
   position: absolute;
@@ -124,7 +134,7 @@ option{
 } */
 
 button {
-  background: #CF450E;
+  background: #cf450e;
   padding: 10px 30px;
   border: 1px solid transparent;
   text-transform: uppercase !important;
@@ -133,11 +143,11 @@ button {
   cursor: pointer;
 }
 
-.login a{
-  color: #CF450E
+.login a {
+  color: #cf450e;
 }
 
-.form_section{
+.form_section {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -147,27 +157,27 @@ button {
   margin: 0 auto;
 }
 
-.form_section>div{
+.form_section > div {
   width: 50%;
-  z-index: 1
+  z-index: 1;
 }
 
-.text_block{
+.text_block {
   display: flex;
   flex-flow: column;
   padding-right: 50px;
 }
 
 #login .text_block,
-#register .text_block{
+#register .text_block {
   align-items: flex-end;
 }
 
-.text_block img{
+.text_block img {
   max-width: 250px;
 }
 
-#register .text_block img{
+#register .text_block img {
   max-width: 400px;
   animation: buzz-out-on-hover 5s ease infinite;
 }
@@ -180,7 +190,7 @@ button {
   line-height: 55px;
 }
 
-.section_bg .text_block h1{
+.section_bg .text_block h1 {
   color: #fff;
 }
 
@@ -190,7 +200,7 @@ button {
   line-height: 25px;
 }
 
-.login img{
+.login img {
   animation: none;
   max-width: 230px;
 }
@@ -287,17 +297,17 @@ button {
   }
 }
 
-#register .text_block{
+#register .text_block {
   position: relative;
 }
 
-#register .text_block::before{
+#register .text_block::before {
   background: url(./images/map-path.png) no-repeat;
   background-size: contain;
   position: absolute;
   right: -80%;
   width: 100%;
-  content: '';
+  content: "";
   height: 100%;
   z-index: 0;
   bottom: 20%;
@@ -313,7 +323,7 @@ button {
   letter-spacing: 2px;
 }
 
-.user_info img{
+.user_info img {
   background: #f1f1f1;
   height: 30px;
   width: 30px;
@@ -327,46 +337,42 @@ button {
 .transparent_bg::after {
   background: url(./images/dessert.png) no-repeat;
   background-size: 400px;
-    top: auto;
-    right: auto;
-    left: -191px;
-    height: 209px;
-    filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
-    position: absolute;
-    content: '';
-    width: 374px;
-    bottom: -142px;
-    z-index: -1;
+  top: auto;
+  right: auto;
+  left: -191px;
+  height: 209px;
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+  position: absolute;
+  content: "";
+  width: 374px;
+  bottom: -142px;
+  z-index: -1;
 }
-
 
 /* home page */
-#home_pg{
-  background: url(./images/food4.png) right top;
+
+.home_items li {
+  display: inline-block;
+  padding: 32px;
+  background: rgb(0 0 0 / 1) url(./images/meal.png) right top;
   background-size: auto;
-  text-align: center;
-  background-repeat: no-repeat;
+  margin: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: poppins;
+  font-weight: 300;
+  border-radius: 5px;
+  filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.6));
+  transition: all 0.3s ease;
 }
 
-.home_items li{
-    display: inline-block;
-    padding: 10px 20px;
-    background: rgb(0 0 0 / 1) url(./images/meal.png) right top;
-    background-size: auto;
-    margin: 5px;
-    color: #fff;
-    /* text-transform: uppercase; */
-    font-size: 21px;
-    font-family: poppins;
-    font-weight: 300;
-    max-height: 100px;
-    height: 100px;
-    line-height: 80px;
-    border-radius: 10px;
+.home_items li:hover {
+  background-color: #cf450e;
 }
 
-.home_items li a{
-  color: #fff
+.home_items li a {
+  color: #fff;
 }
 
 .search {
@@ -379,12 +385,12 @@ button {
 }
 
 input[type="search"] {
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   height: 45px;
-  padding-right: 30px
+  padding-right: 30px;
 }
 
-.search button{
+.search button {
   position: absolute;
   right: 30px;
   padding: 0;
@@ -392,7 +398,7 @@ input[type="search"] {
   background: none;
 }
 
-.top_section{
+.top_section {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -401,9 +407,9 @@ input[type="search"] {
   padding-bottom: 100px;
 }
 
-.top_section::before{
+.top_section::before {
   position: absolute;
-  content: '';
+  content: "";
   background: url(./images/food4.png) no-repeat right top;
   background-size: auto;
   left: 0;
@@ -412,3 +418,145 @@ input[type="search"] {
   top: 0;
   filter: drop-shadow(2px 4px 6px black);
 }
+
+/*admin*/
+#admin {
+  text-align: center;
+  background: #ff8465 url(images/add_info.svg) no-repeat center 20%;
+  background-size: 377px;
+}
+
+#admin .user_info {
+  color: #fff;
+}
+
+#rider {
+  /* background: url(images/checked.svg) no-repeat 10% center;
+  background-size: 335px; */
+  padding-bottom: 0;
+  height: 100vh;
+  padding: 100px 0 0;
+  height: 100vh;
+  justify-content: flex-start;
+}
+
+#rider.top_section::before {
+  background: url(images/map-path.png) no-repeat 40% center;
+  background-size: 345px;
+  z-index: -1;
+}
+
+.order {
+  background: url(images/checked.svg) no-repeat -10% center;
+  background-size: 335px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.order_block {
+  max-width: 50%;
+  width: 100%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.order_card {
+  background: rgb(207 69 14 / 40%);
+  padding: 15px;
+  /* color: #fff; */
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 7px;
+}
+
+.order_card p {
+  margin-bottom: 5px;
+}
+
+.order_card button {
+  padding: 2px 20px;
+  font-size: 14px !important;
+}
+
+.badge {
+  position: absolute;
+  right: 15px;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  background: limegreen;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 7px rgb(0 0 0 / 30%);
+}
+
+.success{
+  background: green;
+}
+
+.process {
+  background: orange;
+}
+
+.cancel {
+  background: red;
+}
+
+#rider .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fff;
+  text-shadow: 0 0 0.25px currentcolor;
+  padding: 5px 10px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+/* table*/
+table {
+  width: 100%;
+}
+
+th,td {
+  padding: 10px;
+  text-align: left;
+}
+
+thead {
+  background: #dfdfdf;
+}
+
+tbody{
+  background: rgb(207 69 14 / 60%);
+  color: #fff;
+}
+
+table button {
+  padding: 3px 5px;
+  font-size: 12px !important;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+table
+{
+    border-collapse: separate;
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content: counter(Serial); /* Display the counter */
+}
+
