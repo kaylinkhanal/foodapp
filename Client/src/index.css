@@ -304,6 +304,23 @@ button {
   opacity: 0.3;
 }
 
+.foodapp-res-card-item {
+  border: 1px solid #eeeeee;
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  float: left;
+}
+
+.foodapp-res-card-coll {
+  overflow: auto;
+}
+
+.foodapp-res-card-item img {
+  max-width: 100%;
+  height: auto;
+}
+
 .user_info {
   color: #dc3545;
   align-self: baseline;

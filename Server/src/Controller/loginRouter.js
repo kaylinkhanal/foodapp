@@ -6,21 +6,6 @@ const saltRounds = 10;
 
 router.post("/", async (req, res) => {
     try{
-<<<<<<< HEAD
-        console.log(req.body)
-        if(req.body.email && req.body.password){
-            const registeredUser = await User.findOne(req.body)
-            if(registeredUser){
-				res.json({
-                    registeredUser
-                })
-			}else{
-				res.json({status:"300",message: "No user found"})
-			}
-        }else{
-			res.json({status:"301",message: "All fields are required. Complete the form!!"})
-		}  
-=======
         // to compare the hashed password from DB first find the user
         const registeredUser = await User.findOne({email: req.body.email})
         
@@ -42,7 +27,6 @@ router.post("/", async (req, res) => {
             }
         });
         
->>>>>>> 58f38a43656896efa1726a6f237b28049c88c054
     }catch(error){
         console.log(error)
     }
@@ -55,4 +39,3 @@ router.get("/", async (req, res) => {
 
 module.exports = router;
 
-module.exports = router;

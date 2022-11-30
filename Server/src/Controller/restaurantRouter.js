@@ -2,7 +2,6 @@ const express = require("express");
 const Restaurant = require('../Model/restaurantSchema')
 const router = express.Router();
 
-
 // post request for register the user
 router.post("/", async (req, res) => {
     try{
@@ -23,9 +22,9 @@ router.post("/", async (req, res) => {
 // view users
 router.get("/", async (req, res) => {
     try{
-        const restaurantList = await Restaurant.find()
+        const restaurantsList = await Restaurant.find()
         res.json({
-            restaurantList : restaurantList
+            restaurantsList : restaurantsList
         })
     }catch(error){
         console.log(error)

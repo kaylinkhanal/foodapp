@@ -1,0 +1,12 @@
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+  }
+.container {
+    display: flex;
+}
+.card {
+    margin: 5px;
+}

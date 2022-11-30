@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { message } from "antd";
 import 'antd/dist/antd.min.css';
 import ShowHidePassword from "../../component/showHidePassword";
-import { setCredentials } from "../../reducerSlice/userSlice";
+import { setCredentials } from "../../reducersSlice/userSlice";
 import {useDispatch} from 'react-redux'
 
 const Login = () => {
@@ -28,10 +28,10 @@ const Login = () => {
 		if (data) {
 			// console.log(data)
 			message.success(data.msg) // to display the success msg after submit
-
+      data.detail.token = data.token
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/home')
+			navigate('/restaurant-list')
 		} else {
 			message.error("invalid details")
 		}
