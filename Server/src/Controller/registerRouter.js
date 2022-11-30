@@ -33,7 +33,15 @@ router.post("/", async (req, res) => {
 
 // view users
 router.get("/", async (req, res) => {
-
+    try{
+        const usersList = await User.find()
+        res.json({
+            usersList: usersList
+        })
+        console.log(usersList)
+    }catch(error){
+        console.log(error)
+    }
 });
 
 module.exports = router;

@@ -5,6 +5,7 @@ export const initialState = {
     phoneNumber: '',
     token: '',
     role: '',
+    address: ''
 }
 
 const userSlice = createSlice({
@@ -16,6 +17,7 @@ const userSlice = createSlice({
             state.phoneNumber = actions.payload.phoneNumber
             state.token = actions.payload.token
             state.role = actions.payload.role
+            state.address = actions.payload.address
         }
     }
 })

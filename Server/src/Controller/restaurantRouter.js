@@ -32,4 +32,23 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/:_id", async(req, res)=>{
+    try{
+        console.log(req.params._id)
+        const key = req.params._id
+
+        const restaurant = await Restaurant.find({_id: key})
+        if(restaurant){
+            res.json({
+                details: restaurant
+            })
+        }else{
+            res.send('Restaurant not found')
+        }
+        
+    }catch(err){
+        console.log('error', err)
+    }
+})
+
 module.exports = router;

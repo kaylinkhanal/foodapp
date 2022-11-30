@@ -5,6 +5,7 @@ const foodSchema = new mongoose.Schema(
         foodType: {type: String, required: true},
         restaurant: {type: String, required: true},
         isNonVeg: {type: String, required: true},
+        foodImage: {type: String}
     },
     {
         collection: "Foods"

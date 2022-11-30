@@ -13,7 +13,7 @@ const ErrorPage = () => {
 						{/* <img src={donut}></img> */}
 						<h1>404</h1>
 						<h3>Oppsss! page not found</h3>
-						<Link to="/home" className="back">Back to <i><FontAwesomeIcon icon={faHome} style={{ color: `#062b50` }} /></i></Link>
+						<Link to="/" className="back">Back to <i><FontAwesomeIcon icon={faHome} style={{ color: `#062b50` }} /></i></Link>
 					</div>
 				</div>
 			</section>

@@ -92,7 +92,7 @@ const AddRestro = () => {
 												<option value="Non Veg" label="Non Veg">Non Veg</option>
 											</select>
 											{errors.isNonVeg && touched.isNonVeg ? <div className="error">{errors.isNonVeg}</div> : null}
-
+											<input type="file"></input>
 											<button type="submit">Submit</button>
 										</Form>
 									)}

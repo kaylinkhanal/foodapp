@@ -86,6 +86,7 @@ width: 404px;
     font-size: 16px;
     transition: all .3s ease-in-out;
     background: #f1f1f1;
+    position: relative;
 }
 
 .card_info p{
@@ -97,6 +98,25 @@ width: 404px;
     color: #fff;
 }
 
+.card_info button {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    box-shadow: 0 0 11px rgb(0 0 0 / 50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+}
+
+.card_info:hover button{
+    opacity: 1;
+    visibility: visible;
+}
+
 .card i{
     color: #FF8465;
     margin-right: 10px;
@@ -105,4 +125,23 @@ width: 404px;
 
 .rating .css-ryrseu-MuiRating-root{
     font-size: 1.2rem;
+}
+#detail{
+    background: #000;
+
+}
+.restro_detail {
+    display: flex;
+    flex-flow: row wrap;
+    
+    margin-top: 100px;
+    color: #fff;
+}
+
+.restro_img {
+    max-width: 300px;
+}
+
+.restro_img img {
+    width: 100%;
 }
