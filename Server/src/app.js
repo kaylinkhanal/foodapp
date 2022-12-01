@@ -8,9 +8,9 @@ require("dotenv").config();
 const connect = require("./db/mongoose");
 connect();
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.urlencoded({extended:true}))
+app.use(cors());//The client and server have a different origin from each other, i.e., accessing resources from a different server. In this case, trying to make a request to a resource on the other server will fail. So, using cors will helps to aceess resources from different server.
+app.use(bodyParser.json());//app.use(bodyParser.json()) basically tells the system that you want json to be used.
+app.use(express.urlencoded({extended:true}))//bodyParser.urlencoded({extended: ...}) basically tells the system whether you want to use a simple algorithm for shallow parsing (i.e. false) or complex algorithm for deep parsing that can deal with nested objects (i.e. true).
 const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
 const restroRouter = require("./Controller/restaurantRouter");

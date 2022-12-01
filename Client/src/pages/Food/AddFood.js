@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '../component/header/header';
+import Header from '../../component/header/header';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
-import Userimage from '../images/dummy.svg'
+import Userimage from '../../images/dummy.svg'
 
-const AddRestro = () => {
+const AddFood = () => {
 	const { name } = useSelector(state => state.users)
 
 	// const navigate = useNavigate()
@@ -106,4 +106,4 @@ const AddRestro = () => {
 		</>
 	)
 }
-export default AddRestro 
+export default AddFood

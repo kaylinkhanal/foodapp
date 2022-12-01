@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// design of database and create table 
 const usersSchema = new mongoose.Schema(
     {
       name: { type: String },
@@ -14,5 +15,5 @@ const usersSchema = new mongoose.Schema(
       collection: "Users",
     }
   );
-  const usersModel = mongoose.model("usersModel", usersSchema);
+  const usersModel = mongoose.model("usersModel", usersSchema);//??
   module.exports= usersModel
