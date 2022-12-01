@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 // post request for register the user
 router.post("/", upload.single('avatar'), async (req, res, next) => {
-    req.body.filename = req.file.filename
+    req.body.foodImage = req.file.filename
     try{
         const selectedFood = Food.create(req.body)
         res.json({
