@@ -21,5 +21,5 @@ app.use("/restaurant", restroRouter);
 app.use("/foods", foodRouter);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Chat Server listening on port ${process.env.PORT}`);
+  console.log(`Foodapp Server listening on port ${process.env.PORT}`);
 });

@@ -1,7 +1,10 @@
+
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from "redux-logger";
+import restaurantSlice from "./reducersSlice/restaurantSlice";
 import userSlice from "./reducersSlice/userSlice";
+import foodSlice from "./reducersSlice/foodSlice";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
@@ -13,6 +16,9 @@ const persistConfig = {
 
 const reducer = combineReducers({
   users: userSlice,
+  restaurants: restaurantSlice,
+  foods: foodSlice,
+
   
 });
 
