@@ -1,0 +1,31 @@
+/* error page */
+#error_section{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    flex-flow: column;
+    align-items: center;
+    background: #FF8465
+  }
+  
+  .error_content h1 {
+    font-size: 300px;
+    color: #CF450E;
+    line-height: 220px;
+    margin-bottom: 0;
+    font-weight: 700 !important;
+  }
+  
+  .error_content h3 {
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .back{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  
+  
