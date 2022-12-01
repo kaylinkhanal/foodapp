@@ -9,7 +9,9 @@ import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import AddFood from "./pages/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Food from "./pages/Food/AddFood";
+import FoodList from "./pages/Food/foodList"
 
 const App = () => {
 
