@@ -112,7 +112,7 @@ const AddFood = () => {
                   </Select>
                 </FormGroup>
                 <div style={{ textAlign: "center" }}>
-                <Link to="food-list"><Button type="submit">Submit</Button></Link>
+            <Button type="submit">Submit</Button>
                   
                 </div>
               </form>

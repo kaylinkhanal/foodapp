@@ -38,8 +38,7 @@ const App = () => {
          <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
-         <Route path="/foods" element={<Food />} />
-         <Route path="/food-list" element={<Food />} />
+         <Route path="/food" element={<Food />} />
          <Route path="/register" element={<Register />} />
          <Route path="*" element={<ErrorPage/>}></Route>
        </Routes>
@@ -68,6 +67,7 @@ const UserRoute= () => {
   return (
     <Routes>
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="/food-list" element={<Food />} />
     </Routes>
   )
 }
