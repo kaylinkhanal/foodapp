@@ -6,11 +6,11 @@ import Header from "./component/header/header";
 import Admin from "./pages/admin";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
-import AddFood from "./pages/AddFood";
+import Food from "./pages/Food/food";
 import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
-import Food from "./pages/Food/AddFood";
+import AddFood from "./pages/Food/AddFood";
 
 const App = () => {
 
@@ -38,7 +38,7 @@ const App = () => {
          <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
-         <Route path="/foods" element={<Food />} />
+         <Route path="/foods" element={<AddFood />} />
          <Route path="/food-list" element={<Food />} />
          <Route path="/register" element={<Register />} />
          <Route path="*" element={<ErrorPage/>}></Route>
