@@ -1,6 +1,6 @@
 import Login from "./pages/Auth/Login";
-import React, {useEffect, useState} from 'react'
-import { Routes, Route} from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Header from "./component/header/header";
 import Admin from "./pages/admin";
@@ -9,15 +9,13 @@ import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import AddFood from "./pages/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
-
-
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const App = () => {
 
   const {token, role} = useSelector(state=> state.users)
   const [authorizeRole, setAuthorizeRole] = useState(null)
-  const navigationControlFor = ()=>{
+  const navigationControlFor = () => {
     if(token && role === 'user'){
       setAuthorizeRole('user')
     }else if(token && role === 'rider'){
@@ -33,18 +31,19 @@ const App = () => {
   },[role, token])
   return (
     <div className="App">
-     
       {!authorizeRole ? (
         <>
-         <Header/>
-         <Routes>
-         <Route path="/" element={<Login />} />
-         <Route path="/register" element={<Register />} />
-         <Route path="*" element={<ErrorPage/>}></Route>
-       </Routes>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<ErrorPage/>}></Route>
+          </Routes>
        </>
       ) : (
-        <AuthorizedUsers authorizeRole={authorizeRole}/>
+        <>
+          <Header/>
+          <AuthorizedUsers authorizeRole={authorizeRole}/>
+        </>
       )
       }
      
@@ -60,32 +59,33 @@ const AuthorizedUsers = (props) => {
   }else{
     return <AdminRoute/>
   }
-
 }
 
-const UserRoute= () => {
+const UserRoute = () => {
   return (
     <Routes>
-    <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }
 
-const RiderRoute= () => {
+const RiderRoute = () => {
   return(
   <Routes>
-    <Route path="/request-delivery" element={<DeliveryRequest />} />
+    <Route path="/" element={<DeliveryRequest />} />
+    <Route path="*" element={<ErrorPage/>}></Route>
   </Routes>
   )
 }
 
-
 const AdminRoute = () => {
   return(
     <Routes>
-    <Route path="/admin" element={<Admin />} />
-    <Route path="/admin/restaurant" element={<AddRestaurant />} />
-    <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/" element={<Admin />} />
+      <Route path="/admin/restaurant" element={<AddRestaurant />} />
+      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
 }
