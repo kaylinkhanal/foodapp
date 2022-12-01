@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -24,26 +24,37 @@ const initialValues = {
 };
 const AddFood = () => {
   const  [foodImg, setFoodImg] = useState('')
+  const  [foodList, setFoodList] = useState([])
+
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
   }
+
+  const fetchFoods= async()=> {
+    const response = await fetch("http://localhost:4000/foods/");
+    const data = await response.json();
+    setFoodList(data.foodList)
+  }
+  useEffect(()=>{
+    fetchFoods()
+  },[])
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
+        const formData = new FormData();
+        formData.append("file", foodImg);
+        formData.append("foodType", values.foodType);
+        formData.append("restaurant", values.restaurant);
+        formData.append("foodCategory", values.foodCategory);
         const requestOptions = {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            foodType: values.foodType,
-            restaurant: values.restaurant,
-            foodCategory: values.foodCategory,
-            foodImg:foodImg
-          }),
+          body: formData
         };
         const response = await fetch(
-          "http://localhost:4000/food/",
+          "http://localhost:4000/foods/",
           requestOptions
         );
         const data = await response.json();
@@ -121,10 +132,13 @@ const AddFood = () => {
                  onChange={(e)=> saveImgToState(e)}
                 />
                 <div style={{ textAlign: "center" }}>
-   <Button type="submit">Submit</Button>
-                  
+                <Button type="submit">Submit</Button>
+                                
                 </div>
               </form>
+              {foodList.map((item,id)=>{
+                return <li>{item.foodImage}</li>
+              })}
             </div>
           </div>
         </div>
