@@ -6,11 +6,12 @@ import Header from "./component/header/header";
 import Admin from "./pages/admin";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
-import AddFood from "./pages/AddFood";
+import AddFood from "./pages/Food/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
 
@@ -68,6 +69,8 @@ const UserRoute= () => {
   return (
     <Routes>
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="/home" element={<HomePage />} />
+    <Route path="/food" element={<AddFood />} />
     </Routes>
   )
 }
