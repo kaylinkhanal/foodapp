@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -23,6 +23,10 @@ const initialValues = {
   foodCategory: "",
 };
 const AddFood = () => {
+  const  [foodImg, setFoodImg] = useState('')
+  const saveImgToState = (e) => {
+    setFoodImg(e.target.files[0])
+  }
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -35,6 +39,7 @@ const AddFood = () => {
             foodType: values.foodType,
             restaurant: values.restaurant,
             foodCategory: values.foodCategory,
+            foodImg:foodImg
           }),
         };
         const response = await fetch(
@@ -111,8 +116,12 @@ const AddFood = () => {
                     <Option value="isNonVeg">isNonVeg</Option>
                   </Select>
                 </FormGroup>
+                <img src={require('../../uploads/ic.png')} alt="32" width={100} height={100}/> 
+                <input type="file"
+                 onChange={(e)=> saveImgToState(e)}
+                />
                 <div style={{ textAlign: "center" }}>
-                <Link to="food-list"><Button type="submit">Submit</Button></Link>
+   <Button type="submit">Submit</Button>
                   
                 </div>
               </form>
