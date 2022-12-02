@@ -10,6 +10,7 @@ import AddFood from "./pages/Food/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
+import AddFood from "./pages/Food/AddFood";
 
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/foods" element={<AddFood />} />
-         <Route path="/food-list" element={<AddFood />} />
+         <Route path="/food-list" element={<Food />} />
          <Route path="/register" element={<Register />} />
          <Route path="*" element={<ErrorPage/>}></Route>
        </Routes>
