@@ -120,7 +120,7 @@ const AddFood = () => {
                     <Option value="isNonVeg">isNonVeg</Option>
                   </Select>
                 </FormGroup>
-                <img src={require('../../uploads/ic.png')} alt="32" width={100} height={100}/> 
+                {/* <img src={require('../../uploads/')} alt="32" width={100} height={100}/>  */}
                 <input type="file"
                  onChange={(e)=> saveImgToState(e)}
                 />
