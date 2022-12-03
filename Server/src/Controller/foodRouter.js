@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage }).single('avatar')
+const upload = multer({ storage: storage }).single('file')
 
 // post request for register the user
 router.post('/',upload, async (req, res) => {
@@ -28,15 +28,22 @@ router.post('/',upload, async (req, res) => {
         })
     }catch(error){
         res.json({
-            errorMsg: 'something went wrong',
-            errDetail: error
+            errorMsg: 'something went wrong', error
         })
     }
 });
 
 // view users
 router.get("/", async (req, res) => {
+    try{
+        const foodList = await Food.find()
 
+        res.json({
+            foodList: foodList
+        })
+    }catch(err){
+        console.log(err)
+    }
 });
 
 module.exports = router;

@@ -1,3 +1,11 @@
+#admin .main_content{
+    background: rgba(255,255,255,.3);
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 2px 3px 8px rgb(0 0 0 / 20%);
+}
+
 .restro_section{
     padding-top: 50px;
 }

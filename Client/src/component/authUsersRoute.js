@@ -4,7 +4,7 @@ import AddFood from "../pages/Food/AddFood";
 import Restaurant from "../pages/restaurant/restaurant";
 import Profile from "../pages/userProfile";
 import Food from "../pages/Food/food";
-import Admin from "../pages/admin";
+import Admin from "../pages/admin/admin";
 import { Routes, Route} from "react-router-dom";
 import DeliveryRequest from "../pages/Rider/deliveryRequest";
 import MyOrders from "../pages/Rider/myOrders";

@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// view users
+// get restaurant list
 router.get("/", async (req, res) => {
     try{
         const restaurantList = await Restaurant.find()
@@ -32,6 +32,7 @@ router.get("/", async (req, res) => {
     }
 });
 
+// prduct detail route
 router.get("/:_id", async(req, res)=>{
     try{
         console.log(req.params._id)

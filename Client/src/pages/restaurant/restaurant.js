@@ -16,6 +16,8 @@ const Restaurant = ()=>{
 		
 		if(data){
 			setRestaurants(data.restaurantList)
+		}else{
+			console.log('Data not available')
 		}
 	}
 	useEffect(()=>{

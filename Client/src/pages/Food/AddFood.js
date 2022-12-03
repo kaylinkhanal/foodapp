@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -9,18 +9,33 @@ import Userimage from '../../images/dummy.svg'
 
 const AddRestro = () => {
 	const { name } = useSelector(state => state.users)
+	const [foodImg, setImage] = useState()
 
-	// const navigate = useNavigate()
+	const saveImage = (e)=>{
+		setImage(e.target.files[0])
+	}
+
 	const saveFood = async (values) => {
+		const formData = new FormData();
+		formData.append('file', foodImg)
+		formData.append('foodName', values.foodType)
+		formData.append('foodCategory', values.foodCategory)
+		formData.append('restaurantName', values.restaurantName)
+		formData.append('foodPrice', values.foodPrice)
+		formData.append('foodType', values.foodType)
+
 		const requestOptions = {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				foodType: values.foodType,
-				restaurant: values.restaurant,
-				isNonVeg: values.isNonVeg,
-			})
+			body: formData,
+			dataType: 'jsonP',
+			// headers: { 'Content-Type': 'application/json' },
+			// body: JSON.stringify({
+			// 	foodType: values.foodType,
+			// 	restaurant: values.restaurant,
+			// 	isNonVeg: values.isNonVeg,
+			// })
 		};
+		
 		const response = await fetch('http://localhost:4000/food', requestOptions);
 		const data = await response.json();
 
@@ -28,17 +43,19 @@ const AddRestro = () => {
 			console.log(data)
 			message.success(data.message)
 		}else{
-			message.success(data.errorMsg)
+			message.error(data)
 		}
 	}
 
 	const SignupSchema = Yup.object().shape({
 		foodType: Yup.string()
-			.required('Required'),
-			restaurant: Yup.string().required('Required'),
-
-			isNonVeg: Yup.string()
-			.required('Required')
+		.required('Required'),
+		restaurant: Yup.string()
+		.required('Required'),
+		price: Yup.number()
+		.required('Required'),
+		isNonVeg: Yup.string()
+		.required('Required')
 	});
 
 	return (
@@ -61,9 +78,11 @@ const AddRestro = () => {
 							<div className='form_content transparent_bg'>
 								<Formik
 									initialValues={{
-										foodType: '',
+										foodCategory: '',
 										restaurant: '',
-										isNonVeg: '',
+										foodType: '',
+										foodPrice:'',
+										foodImage: '',
 									}}
 									validationSchema={SignupSchema}
 									onSubmit={values => {
@@ -74,25 +93,33 @@ const AddRestro = () => {
 								>
 									{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
 										<Form onSubmit={handleSubmit}>
-											<select name="foodType" value={values.foodType} onChange={handleChange} onBlur={handleBlur}>
-												<option value="" disabled="disabled" label="Select Food Type"></option>
+											<Field name="foodName" placeholder="Enter Food Name" value={values.foodName} onChange={handleChange} onBlur={handleBlur} />
+											{errors.foodName && touched.foodName ? (<div className="error">{errors.foodName}</div>) : null}
+
+											<select name="foodCategory" value={values.foodCategory} onChange={handleChange} onBlur={handleBlur}>
+												<option value="" disabled="disabled" label="Select Food Category"></option>
 												<option value="Category 1" label="Category 1">Category 1</option>
 												<option value="Category 2" label="Category 2">Category 2</option>
 												<option value="Category 3" label="Category 3">Category 3</option>
 												<option value="Category 4" label="Category 4">Category 4</option>
 											</select>
-											{errors.restroCategory && touched.restroCategory ? <div className="error">{errors.restroCategory}</div> : null}
+											{errors.foodCategory && touched.foodCategory ? <div className="error">{errors.foodCategory}</div> : null}
 
-											<Field name="restaurant" placeholder="Enter Restro Name" value={values.restaurant} onChange={handleChange} onBlur={handleBlur} />
-											{errors.restaurant && touched.restaurant ? (<div className="error">{errors.restaurant}</div>) : null}
+											<Field name="restaurantName" placeholder="Enter Restro Name" value={values.restaurantName} onChange={handleChange} onBlur={handleBlur} />
+											{errors.restaurantName && touched.restaurantName ? (<div className="error">{errors.restaurantName}</div>) : null}
 
-											<select name="isNonVeg" value={values.isNonVeg} onChange={handleChange} onBlur={handleBlur}>
+											<Field name="foodPrice" placeholder="Enter Food Price" value={values.foodPrice} onChange={handleChange} onBlur={handleBlur} />
+											{errors.foodPrice && touched.foodPrice ? (<div className="error">{errors.foodPrice}</div>) : null}
+
+											<select name="foodType" value={values.foodType} onChange={handleChange} onBlur={handleBlur}>
 												<option value="" disabled="disabled" label="Select Category"></option>
 												<option value="Veg" label="Veg">Veg</option>
 												<option value="Non Veg" label="Non Veg">Non Veg</option>
 											</select>
-											{errors.isNonVeg && touched.isNonVeg ? <div className="error">{errors.isNonVeg}</div> : null}
-											<input type="file"></input>
+											{errors.foodType && touched.foodType ? <div className="error">{errors.foodType}</div> : null}
+											
+											<input type="file" onChange={(e)=> saveImage(e)}></input>
+											
 											<button type="submit">Submit</button>
 										</Form>
 									)}

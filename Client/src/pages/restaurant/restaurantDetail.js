@@ -25,7 +25,7 @@ const RestaurantDetail = () => {
 
     useEffect(() => {
         fetchList()
-    }, [])
+    }, [_id])
 
     return (
         <div id="detail">

@@ -1,0 +1,92 @@
+#food::before{
+    display: none;
+}
+
+.food_block {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.food_block>div {
+    display: flex;
+    flex-flow: column;
+    margin-right: 20px;
+}
+
+.food_items {
+    display: flex;
+    background: #c9c9c980;
+    border-radius: 10px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.food_items .food_img {
+    max-width: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.food_img img {
+    width: 100%;
+}
+
+.food_list {
+    width: 54%;
+}
+
+.food_img {
+    background: #000;
+    height: 100%;
+}
+
+.food_info {
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.food_info p {
+    margin-bottom: 2px;
+}
+
+h3.food_title {
+    margin-bottom: 5px !important;
+}
+
+.food_info button {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    position: absolute;
+    right: -9px;
+    top: 30%;
+}
+
+/* cart */
+div#cart {
+    margin-right: 0;
+    width: 25%;
+}
+.cart_content {
+    flex-grow: 2;
+    background: rgb(208 73 19 / 29%);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 6px rgb(0 0 0 / 30%);
+}
+
+.categories_list {
+    width: 15%;
+}
+
+.categories_list li{
+    text-transform: uppercase;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+
