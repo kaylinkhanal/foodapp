@@ -8,6 +8,7 @@ const usersSchema = new mongoose.Schema(
       email: { type: String },
       password: { type: String},
       role: { type: String},
+      token: { type: String}
     },
     {
       collection: "Users",
