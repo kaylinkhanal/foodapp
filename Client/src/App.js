@@ -6,41 +6,40 @@ import Header from "./component/header/header";
 import Admin from "./pages/admin";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
-import AddFood from "./pages/Food/AddFood";
-import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
 import HomePage from "./pages/HomePage";
+import EditFood from "./pages/Food/EditFood";
 
 const App = () => {
 
-  const {token, role} = useSelector(state=> state.users)
+ const {token, role} = useSelector(state=> state.users)
   const [authorizeRole, setAuthorizeRole] = useState(null)
+
   const navigationControlFor = ()=>{
-    if(token && role === 'user'){
-      setAuthorizeRole('user')
-    }else if(token && role === 'rider'){
-      setAuthorizeRole('rider')
-    }else if(token){
-      setAuthorizeRole('admin')
-    }else{
-      setAuthorizeRole(null)
+     if(token && role === 'user'){
+         setAuthorizeRole('user')
+      }else if(token && role === 'rider'){
+          setAuthorizeRole('rider')
+      }else if(token){
+          setAuthorizeRole('admin')
+      }else{
+          setAuthorizeRole(null)
     }
   }
+
   useEffect(()=>{
     navigationControlFor()
   },[role, token])
+
   return (
     <div className="App">
-     
       {!authorizeRole ? (
         <>
          <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
-         <Route path="/foods" element={<Food />} />
-         <Route path="/food-list" element={<Food />} />
          <Route path="/register" element={<Register />} />
          <Route path="*" element={<ErrorPage/>}></Route>
        </Routes>
@@ -48,8 +47,7 @@ const App = () => {
       ) : (
         <AuthorizedUsers authorizeRole={authorizeRole}/>
       )
-      }
-     
+      }     
     </div>
   );
 };
@@ -62,15 +60,13 @@ const AuthorizedUsers = (props) => {
   }else{
     return <AdminRoute/>
   }
-
 }
 
 const UserRoute= () => {
   return (
     <Routes>
-    <Route path="/restaurant-list" element={<Restaurant />} />
     <Route path="/home" element={<HomePage />} />
-    <Route path="/food" element={<AddFood />} />
+    <Route path="/food" element={<Food />} />
     </Routes>
   )
 }
@@ -89,8 +85,10 @@ const AdminRoute = () => {
     <Routes>
     <Route path="/admin" element={<Admin />} />
     <Route path="/admin/restaurant" element={<AddRestaurant />} />
-    <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="/admin/foods" element={<Food />} />
+    <Route path="/admin/edit-foods" element={<EditFood />} />
     </Routes>
   )
 }
+
 export default App;

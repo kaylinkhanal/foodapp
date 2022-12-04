@@ -14,12 +14,18 @@ import {
   Select,
   Option,
 } from "../../Styles/FormStyle";
+import { useLocation } from "react-router-dom";
 const initialValues = {
   foodType: "",
   restaurant: "",
   foodCategory: "",
 };
-const AddFood = () => {
+const EditFood = () => {
+  const {search} = useLocation();
+  const id= new URLSearchParams(search).get('id');
+  console.log(id);
+
+
   const [foodImg, setFoodImg] = useState("");
 
   const saveImgToState = (e) => {
@@ -65,7 +71,7 @@ const AddFood = () => {
             <div className="screen">
               <div className="screen_content">
                 <form onSubmit={handleSubmit}>
-                  <h2 className="modal-title">Add Food</h2>
+                  <h2 className="modal-title">Edit Food</h2>
                   <FormGroup>
                     <Label className="label-modal">Food Type</Label>
                     <Select
@@ -151,7 +157,8 @@ const AddFood = () => {
                   </div> */}
 
                   <div style={{ textAlign: "center" }}>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Update</Button>
+                    
                   </div>
                 </form>
               </div>
@@ -218,4 +225,4 @@ const Wrapper = styled.section`
   
 `;
 
-export default AddFood;
+export default EditFood;

@@ -19,7 +19,7 @@ const foodRouter = require("./Controller/foodRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/restaurant", restroRouter);
-app.use("/foods", foodRouter);
+app.use("/admin/foods", foodRouter);
 
 app.listen(PORT, () => {
   console.log(`Chat Server listening on port ${PORT}`);

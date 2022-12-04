@@ -6,12 +6,12 @@
     height: 100vh;
     flex-flow: column;
     align-items: center;
-    background: #FF8465
+    background: #eebaac
   }
   
   .error_content h1 {
     font-size: 300px;
-    color: #CF450E;
+    color: #ad3f13;
     line-height: 220px;
     margin-bottom: 0;
     font-weight: 700 !important;

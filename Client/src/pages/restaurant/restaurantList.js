@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { resetCredentials } from "../../reducersSlice/userSlice"
 import { useNavigate } from "react-router-dom"
+import './restaurant.css'
+
 import { Rating } from 'react-simple-star-rating'
 
 const RestaurantList = () => {
@@ -20,12 +22,7 @@ const RestaurantList = () => {
       fetchData();
     }, [] )
   
-    const triggerLogout = () => {
-      dispatch( resetCredentials() )
-      navigate('/')
-    }
-  
-    return (
+   return (
       <>
         { restaurantList.length > 0 ? (
           <div className='foodapp-res-card-coll'>
@@ -43,9 +40,7 @@ const RestaurantList = () => {
               )
           }) }
           </div>
-        ) : 'loading...' }
-        <button className="input-button" type="submit" onClick={ triggerLogout }>LOGOUT</button>
-      </>
+        ) : 'loading...' }      </>
     )
   
   }

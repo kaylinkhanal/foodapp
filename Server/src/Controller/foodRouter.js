@@ -53,5 +53,30 @@ try{
 }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+    try{
+        const {id}=req.params
+        console.log(id);
+        const check = await Food.deleteOne({_id:id})
+        //console.log(check.deletedCount);
+        if(!check.deletedCount){
+            res.json({
+                message: 'Error occurred while deleting',
+                details:"notdeleted"
+            })
+        }else{
+            res.json({
+                message: 'deleted successful',
+                details:"deleted"
+            })
+        }
+        
+    }catch(error) {
+        console.log(error)
+    }
+    });
+
+    
+
 module.exports = router;
 

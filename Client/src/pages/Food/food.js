@@ -4,12 +4,13 @@ import './food.css'
 import FoodList from './foodlist'
 
 const Food = ()=>{
+	
 	const [foods, setFoods] = useState([])
 
 	console.log(foods)
 
 	const fetchList = async() => {
-		const response = await fetch('http://localhost:4000/foods')
+		const response = await fetch('http://localhost:4000/admin/foods')
 		const data = await response.json();
 		
 		if(data){

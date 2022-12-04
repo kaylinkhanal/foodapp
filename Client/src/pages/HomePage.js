@@ -1,87 +1,67 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { resetCredentials } from "../reducersSlice/userSlice";
-import { useNavigate } from "react-router-dom";
-import { Rating } from "react-simple-star-rating";
-import axios from "axios";
-import './styles/home.css'
+import React, {useState, useEffect} from 'react'
+import Header from '../component/header/header'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import RestaurantList from './restaurant/restaurantList'
+import FoodList from './Food/foodlist'
+const HomePage = ()=>{
 
-const HomePage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+	const [restaurants, setRestaurants] = useState([])
+	const [foods, setFoods] = useState([])
 
-  const [restaurantList, setResturantList] = useState([]);
-  const [foodList, setFoodList] = useState([]);
-  const fetchRestaurants = async () => {
-    const response = await fetch("http://localhost:4000/restaurant/");
-    const data = await response.json();
-    setResturantList(data.restaurantsList);
-  };
+	//console.log(restaurants)
 
-  const fetchFoods = () => {
-    axios.get('http://localhost:4000/foods')
-    .then(response => setFoodList(response.data.details))
-  }
+	const fetchList = async() => {
+		const response = await fetch('http://localhost:4000/restaurant')
+		const data = await response.json();
+		if(data){
+			setRestaurants(data.restaurantList)
+		}
+	}
 
-  console.log(foodList);
+	const fetchFood = async() => {
+		const response = await fetch('http://localhost:4000/admin/foods')
+		const data = await response.json();
+		if(data){
+			setFoods(data.details)
+		}
+	}
 
-  useEffect(() => {
-    fetchRestaurants();
-    fetchFoods();
-  }, []);
+	useEffect(()=>{
+		fetchList()
+		fetchFood()
+  	},[])
 
-  const triggerLogout = () => {
-    dispatch(resetCredentials());
-    navigate("/");
-  };
+	return(
+		<>
+			<Header/>
+			<div className='top_section'>
+			<div className='form_section'>
+					<div className='text_block'>
+						<h1>Search <br /> Restaurant or Cuisine</h1>
+						<p>Order food from the widest range of restaurants...</p>
+					</div>
 
-  return (
-    <div>
-      {/* <div>hi i am homepage</div> */}
-      {restaurantList.length > 0 ? (
-        <div className="foodapp-res-card-coll">
-          {restaurantList.map((item, id) => {
-            return (
-              <>
-                <div className="foodapp-res-card-item">
-                  <div className="">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxDnWRNODj8srZmAnpGvF-rpzur_DD8UyixQwiy1wqxXfgUZrFp3MF5Xe7tX0UfX44WA&usqp=CAU" />
-                  </div>
-                  <Rating
-                    initialValue={item.rating}
-                    allowFraction={true}
-                    readonly
-                  />
-                  <div>{item.name}</div>
-                  <div>{item.category}</div>
-                  <div>{item.location}</div>
-                </div>
-              </>
-            );
-          })}
-        </div>
-      ) : (
-        "loading..."
-      )}
-      {
-        foodList.length > 0 ? (
-          <div>
-            {foodList.map((food, index) => <div key={index}>
-              <li>{food.foodType}</li>
-              <li>{food.restaurant}</li>
-              <li>{food.foodCategory}</li>
-              <img src = {require(`../uploads/${food.foodImg}`)} height={100} width={100} />
-            </div>)}
-          </div>
-        ) : (
-          'loading.....'
-        )
-      }
-      <button className="input-button" type="submit" onClick={triggerLogout}>
-        LOGOUT
-      </button>
-    </div>
-  );
-};
+					<div className='search transparent_bg'>
+						<input type="search" placeholder="Enter restaurant name or cuisine"/>
+						<button><i><FontAwesomeIcon icon={faSearch}/></i></button>
+					</div>
+				</div>
+			</div>
+			<div className='restro_section'>
+					<div className='container'>
+						<h2 className='section_title'>All Restaurants</h2>
+						<RestaurantList restaurants={restaurants}/>
+					</div>
+			</div>
+			<div className='restro_section'>
+					<div className='container'>
+						<h2 className='section_title'>All Foods</h2>
+						<FoodList foods={foods}/>
+					</div>
+			</div>
+		</>
+	)
+}
 
-export default HomePage;
+export default HomePage

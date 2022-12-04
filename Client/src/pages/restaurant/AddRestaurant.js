@@ -3,6 +3,8 @@ import Header from '../../component/header/header';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import './restaurant.css'
+
 // import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 // import 'antd/dist/antd.min.css';
