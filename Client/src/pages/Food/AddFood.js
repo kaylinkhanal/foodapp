@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -17,12 +17,22 @@ import {
   Select,
   Option,
 } from "../../Styles/FormStyle";
-const initialValues = {
-  foodType: "",
-  restaurant: "",
-  foodCategory: "",
-};
-const AddFood = () => {
+
+const AddFood = (props) => {
+  const [initialValues, setInitialValues]= useState({
+    foodType: "",
+    restaurant: "",
+    foodCategory: "",
+  })
+
+  useEffect(()=>{
+    if(props.selectedItem){
+      if(props.flag==="edit_food"){
+        setInitialValues(props.selectedItem)
+      }
+    }
+  },[props.selectedItem])
+  console.log(props.selectedItem)
   const  [foodImg, setFoodImg] = useState('')
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
@@ -30,6 +40,7 @@ const AddFood = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
+      enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
         const formData = new FormData();
@@ -42,7 +53,7 @@ const AddFood = () => {
 
 
         const requestOptions = {
-          method: "POST",
+          method: props.edit_food ? "PUT" : "POST",
           // headers: { "Content-Type": "application/json" },
           body: formData
         };
