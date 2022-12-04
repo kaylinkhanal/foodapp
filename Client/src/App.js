@@ -10,7 +10,7 @@ import AddFood from "./pages/Food/AddFood";
 import RestaurantList from "./pages/restaurant/restaurantList";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
-import FoodList from "./pages/Food/foodList"
+import FoodList from "./pages/Food/foodlist"
 
 const App = () => {
 

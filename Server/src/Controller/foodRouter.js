@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/",  async (req, res, next) => {
-    req.body.foodImg = req.file?.filename || ''
+    // req.body.foodImg = req.file?.filename || ''
     try{
         console.log(req.body)
         const selectedFood = Food.findByIdAndUpdate(req.body._id, req.body,
@@ -72,7 +72,7 @@ router.put("/",  async (req, res, next) => {
     }catch(error){
         console.log(error.Message)
         res.json({
-            errorMsg: 'something went wrong',
+            errorMsg: 'something went222 wrong',
             errDetail: error
         })
     }

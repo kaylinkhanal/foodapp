@@ -7,19 +7,15 @@ import AddFood from './AddFood'
 import 'antd/dist/antd.min.css';
 const FoodList = () => {
 
-  const { users } = useSelector( state => state );
-
-  const [ foodList, setFoodList ] = useState( [] )
+  const [ foodsList, setFoodsList ] = useState( [] )
   const [selectedItem,setSelectedItem] = useState({})
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
-
   const showModal = (item) => {
     setSelectedItem(item)
     setOpen(true);
   };
-
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
@@ -28,26 +24,21 @@ const FoodList = () => {
       setConfirmLoading(false);
     }, 2000);
   };
-
   const handleCancel = () => {
     console.log('Clicked cancel button');
     setOpen(false);
   };
-
-  const fetchData = async() => {
-    const response  = await fetch( 'http://localhost:4000/foods/' )
-    const data      = await response.json()
-    setFoodList( data.foodList )
-  }
+    const fetchData = async() => {
+      const response  = await fetch( 'http://localhost:4000/foods/' )
+      const data      = await response.json()
+      setFoodsList( data.foodsList )
+    }
   
-  useEffect( () => {
-    fetchData();
-  }, [] )
-
-  const triggerLogout = () => {
-    dispatch( resetCredentials() )
-    navigate('/')
-  }
+    useEffect( () => {
+      fetchData();
+    }, [] )
+  
+    
 
   
     return (
@@ -60,21 +51,19 @@ const FoodList = () => {
       >
        <AddFood flag="edit_food" selectedItem={selectedItem}/>
       </Modal>
-        { foodList.length > 0 ? (
+        { foodsList.length > 0 ? (
           <div className='foodapp-res-card-coll'>
-           { foodList.map( ( item, id ) => {
+           { foodsList.map( ( item, id ) => {
             return (
-              <>
+              <React.Fragment key={ id }>
                 <div className='food-card'>
-                  <div className=''><img src="https://images.everydayhealth.com/images/diet-nutrition/34da4c4e-82c3-47d7-953d-121945eada1e00-giveitup-unhealthyfood.jpg?sfvrsn=a31d8d32_0" /></div>
+                  <div className=''> <img src={require('../../uploads/' + item.foodImage)} alt="" /></div>
                   <div>{ item.foodType }</div>
                   <div>{ item.restaurant }</div>
                   <div>{ item.foodCategory }</div>
-                  <Button type="primary" onClick={()=>showModal(item)}>
-      Edit
-      </Button>
+                  <Button type="primary" onClick={()=>showModal(item)}>Edit</Button>
                 </div>
-              </>
+                </React.Fragment>
               )
           }) }
           </div>
