@@ -71,6 +71,7 @@ const UserRoute= () => {
     <Route path="/restaurant-list" element={<Restaurant />} />
     <Route path="/home" element={<HomePage />} />
     <Route path="/food" element={<AddFood />} />
+    <Route path="/admin/restaurant" element={<AddRestaurant />} />
     </Routes>
   )
 }
@@ -88,7 +89,7 @@ const AdminRoute = () => {
   return(
     <Routes>
     <Route path="/admin" element={<Admin />} />
-    <Route path="/admin/restaurant" element={<AddRestaurant />} />
+    <Route path="/admin/re- staurant" element={<AddRestaurant />} />
     <Route path="/restaurant-list" element={<Restaurant />} />
     </Routes>
   )

@@ -10,7 +10,7 @@ const FoodList = () => {
   
     const [ foodList, setFoodList ] = useState( [] )
     const fetchData = async() => {
-      const response  = await fetch( 'http://localhost:4000/food/' )
+      const response  = await fetch( 'http://localhost:4000/foods/' )
       const data      = await response.json()
       setFoodList( data.foodsList )
     }
