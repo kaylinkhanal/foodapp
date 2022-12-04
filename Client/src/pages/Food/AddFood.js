@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -17,12 +17,22 @@ import {
   Select,
   Option,
 } from "../../Styles/FormStyle";
-const initialValues = {
-  foodType: "",
-  restaurant: "",
-  foodCategory: "",
-};
-const AddFood = () => {
+
+const AddFood = (props) => {
+  const [initialValues, setInitialValues]= useState({
+    foodType: "",
+    restaurant: "",
+    foodCategory: "",
+  })
+
+  useEffect(()=>{
+    if(props.selectedItem){
+      if(props.flag==="edit_food"){
+        setInitialValues(props.selectedItem)
+      }
+    }
+  },[props.selectedItem])
+  console.log(props.selectedItem)
   const  [foodImg, setFoodImg] = useState('')
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
@@ -31,18 +41,18 @@ const AddFood = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
+      enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
         const formData = new FormData();
-        formData.append("file",foodImg)
-        formData.append("foodType",values.foodType)
-        formData.append("restaurant",values.restaurant)
-        formData.append("foodCategory",values.foodCategory)
+        formData.append('file', foodImg);
+        formData.append('foodType', values.foodType);
+        formData.append('restaurant', values.restaurant);
+        formData.append('foodCategory', values.foodCategory);
 
         const requestOptions = {
-          
-          method: "POST",
-      
+          method: props.edit_food ? "PUT" : "POST",
+          // headers: { "Content-Type": "application/json" },
           body: formData
         };
         const response = await fetch(
@@ -50,12 +60,12 @@ const AddFood = () => {
           requestOptions
         );
         const data = await response.json();
-		if (data) {
-			message.success(data.message)
-			action.resetForm()
-		}else{
-			message.success(data.errDetail)
-		}
+        if (data) {
+          message.success(data.message)
+          action.resetForm()
+        }else{
+          message.success(data.errDetail)
+        }
 	}
       ,
     });
@@ -124,8 +134,7 @@ const AddFood = () => {
                     <img src={URL.createObjectURL(foodImg)} />
                   </div>
                 )}
-                <input type="file"
-                 onChange={(e)=> saveImgToState(e)}
+                <input type="file" onChange={(e)=> saveImgToState(e)}
                 />
                 <div style={{ textAlign: "center" }}>
                   <Button type="submit">Submit</Button>
