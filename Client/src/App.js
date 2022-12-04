@@ -6,11 +6,10 @@ import Header from "./component/header/header";
 import Admin from "./pages/admin";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
-import AddFood from "./pages/AddFood";
-import Restaurant from "./pages/restaurant/restaurant";
+import AddFood from "./pages/Food/AddFood";
+import RestaurantList from "./pages/restaurant/restaurantList";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
-import Food from "./pages/Food/AddFood";
 import FoodList from "./pages/Food/foodList"
 
 const App = () => {
@@ -66,7 +65,7 @@ const AuthorizedUsers = (props) => {
 const UserRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<Restaurant />} />
+      <Route path="/" element={<RestaurantList />} />
       <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )
@@ -85,8 +84,10 @@ const AdminRoute = () => {
   return(
     <Routes>
       <Route path="/" element={<Admin />} />
-      <Route path="/admin/restaurant" element={<AddRestaurant />} />
-      <Route path="/restaurant-list" element={<Restaurant />} />
+      <Route path="/add-restaurant" element={<AddRestaurant />} />
+      <Route path="/restaurant-list" element={<RestaurantList />} />
+      <Route path="/add-food" element={<AddFood />} />
+      <Route path="/food-list" element={<FoodList />} />
       <Route path="*" element={<ErrorPage/>}></Route>
     </Routes>
   )

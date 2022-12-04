@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../component/header/header'
 // import { Tabs } from 'antd';
 // import AddRestro from './AddRestro';
 // import AddFood from './AddFood';
@@ -16,7 +15,6 @@ const Admin = () => {
 
     return(
         <>
-            <Header />
             <div id='home_pg' className='full_height'>
                 <div className='container'>
                     <div className='main_content'>
@@ -29,10 +27,10 @@ const Admin = () => {
                     <div className='btn_grp'>
                         <ul className="home_items">
                             <li>
-                                <Link to="/admin/restaurant">Add Restaurant</Link>
+                                <Link to="/add-restaurant">Add Restaurant</Link>
                             </li>
                             <li>
-                                <Link to="/admin/food">Add Food</Link>
+                                <Link to="/add-food">Add Food</Link>
                             </li>
                         </ul>
                     </div>

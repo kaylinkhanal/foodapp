@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../component/header/header';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -44,7 +43,6 @@ const AddRestaurant = () => {
 
 	return (
 		<>
-			<Header />
 			<div id='additem_section' className='full_height'>
 				<div className='container'>
 					<div className='main_content'>

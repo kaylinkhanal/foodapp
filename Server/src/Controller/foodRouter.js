@@ -35,9 +35,16 @@ router.post("/", upload, async (req, res, next) => {
     }
 });
 
-// view users
+// view foods
 router.get("/", async (req, res) => {
-
+    try{
+        const foodsList = await Food.find()
+        res.json({
+            foodsList : foodsList
+        })
+    }catch(error){
+        console.log(error)
+    }
 });
 
 module.exports = router;
