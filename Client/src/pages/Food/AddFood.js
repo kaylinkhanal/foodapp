@@ -22,14 +22,15 @@ const initialValues = {
   restaurant: "",
   foodCategory: "",
 };
-const AddFood = () => {
+const AddFood = (props) => {
   const  [foodImg, setFoodImg] = useState('')
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
   }
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
-      initialValues,
+      initialValues: props.selectedItem,
+      enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
         const formData = new FormData();

@@ -18,7 +18,7 @@ const upload = multer({ storage: storage })
 // post request for register the user
 router.post("/", upload.single('file'), async (req, res, next) => {
     // console.log(req.file)
-    req.body.foodImg = req.file.filename
+    req.body.foodImage = req.file.filename
     try{
         console.log(req.body)
         const selectedFood = Food.create(req.body)
@@ -45,12 +45,31 @@ try{
     if(foodList){
         res.json({
             message: 'fetch successful',
-            details: foodList
+            foodList: foodList
         })
     }
 }catch(error) {
     console.log(error)
 }
+});
+
+
+router.delete("/:id",  async (req, res, next) => {
+    try{
+      
+      const data= await Food.deleteOne({ _id: req.params.id });
+      if(data){
+        res.json({
+            message: 'Deleted food',
+            detail: data
+        })
+      }
+    }catch(error){
+        res.json({
+            errorMsg: 'something went wrong',
+            errDetail: error
+        })
+    }
 });
 
 module.exports = router;

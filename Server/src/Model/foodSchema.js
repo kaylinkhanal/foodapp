@@ -5,7 +5,7 @@ const foodSchema = new mongoose.Schema(
         foodType: {type: String, },
         restaurant: {type: String,},
         foodCategory: {type: String,},
-        foodImg: {type: String,},
+        foodImage: {type: String,},
     },
     {
         collection: "Foods"
