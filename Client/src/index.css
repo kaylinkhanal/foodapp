@@ -417,6 +417,7 @@ input[type="search"] {
   bottom: 0;
   top: 0;
   filter: drop-shadow(2px 4px 6px black);
+  z-index: -1;
 }
 
 /*admin*/
@@ -542,11 +543,12 @@ table button {
   font-size: 12px !important;
   line-height: 14px;
   cursor: pointer;
+  margin-right: 3px;
 }
 
-body
+/* body
 {
-    counter-reset: Serial;           /* Set the Serial counter to 0 */
+    counter-reset: Serial;           Set the Serial counter to 0 
 }
 
 table
@@ -556,7 +558,56 @@ table
 
 tr td:first-child:before
 {
-  counter-increment: Serial;      /* Increment the Serial counter */
-  content: counter(Serial); /* Display the counter */
+  counter-increment: Serial;      Increment the Serial counter 
+  content: counter(Serial);  Display the counter 
+} */
+
+.data_update_modal .ant-modal-content{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.data_update_modal .ant-modal-header{
+  border-bottom: 0;
+  background: #ff8465;
+}
+
+.data_update_modal .ant-modal-footer{
+  border-top: 0
+}
+
+.datatable>button{
+  font-size: 14px !important;
+  padding: 5px 10px;
+  float: right;
+}
+
+#restro_datalist::before,
+#food_datalist::before{
+  display: none;
+}
+
+#additem_section .form_section{
+  display: block;
+}
+
+#additem_section .form_section > div {
+  width: 100%;
+  z-index: 1;
+}
+
+.ant-modal-title {
+  color: #062b50 !important;
+  font-weight: 700 !important;
+}
+
+.ant-modal-header{
+  border-bottom: 0 !important;
+}
+.ant-modal-content{
+  background-color: #000 !important;
+}
+
+.ant-modal-close-x{
+  color: #062b50;
 }
 

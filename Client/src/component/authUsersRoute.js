@@ -9,6 +9,8 @@ import { Routes, Route} from "react-router-dom";
 import DeliveryRequest from "../pages/Rider/deliveryRequest";
 import MyOrders from "../pages/Rider/myOrders";
 import RestaurantDetail from "../pages/restaurant/restaurantDetail";
+import FoodData from "../pages/admin/foodData";
+import RestaurantData from "../pages/admin/restaurantData";
 
 const AuthorizedUsers = (props) => {
     if(props.authorizeRole === 'user'){
@@ -43,9 +45,11 @@ const AuthorizedUsers = (props) => {
   const AdminRoutes = () => {
     return (
       <Routes>
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/restaurant" element={<AddRestaurant />} />
-        <Route path="/admin/food" element={<AddFood />} />
+        <Route path="/" element={<Admin />} />
+        <Route path="/add-restaurant" element={<AddRestaurant />} />
+        <Route path="/add-food" element={<AddFood />} />
+        <Route path="/food-data" element={<FoodData />} />
+        <Route path="/restaurant-data" element={<RestaurantData />} />
       </Routes>
     );
   };

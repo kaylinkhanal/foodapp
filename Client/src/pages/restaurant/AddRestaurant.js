@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -7,13 +7,28 @@ import { message } from 'antd';
 import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
 
-const AddRestaurant = () => {
+const AddRestaurant = (props) => {
 	const { name } = useSelector(state => state.users)
+	const [initialValues, setInitialValues] = useState({
+		name: '',
+		location: '',
+		rating: '',
+		category: '',
+	})
+	console.log(initialValues)
+
+	useEffect(()=>{
+		if(props.selectedItem){
+			if(props.flag==="edit_restro"){
+			setInitialValues(props.selectedItem)
+			}
+		}
+	},[props.selectedItem])
 
 	// const navigate = useNavigate()
 	const saveRestro = async (values) => {
 		const requestOptions = {
-			method: 'POST',
+			method: props.edit_restro ? "PUT" : "POST",
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				name: values.name,
@@ -45,7 +60,7 @@ const AddRestaurant = () => {
 	return (
 		<>
 			{/* <Header /> */}
-			<div id='additem_section' className='full_height'>
+			<div id='additem_section'>
 				<div className='container'>
 					<div className='main_content'>
 						<div className='form_section'>
@@ -54,19 +69,18 @@ const AddRestaurant = () => {
 									<img src={Userimage} alt='user'/>
 									<span> Hi, {name}</span>
 								</div>
-								
-								<h1>Register <br /> Restaurant</h1>
-								<p>Healthy Sashimi Tuna Bites with Sashami grade Tuna, 110 Calories and 13g protein</p>
 							</div>
 
-							<div className='form_content transparent_bg'>
+							<div className='form_content'>
 								<Formik
-									initialValues={{
-										name: '',
-										location: '',
-										rating: '',
-										category: '',
-									}}
+									// initialValues={{
+									// 	name: '',
+									// 	location: '',
+									// 	rating: '',
+									// 	category: '',
+									// }}
+									initialValues={initialValues}
+      								enableReinitialize
 									validationSchema={SignupSchema}
 									onSubmit={values => {
 										saveRestro(values)

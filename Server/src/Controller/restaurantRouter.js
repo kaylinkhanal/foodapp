@@ -52,4 +52,23 @@ router.get("/:_id", async(req, res)=>{
     }
 })
 
+// delete restaurant
+router.delete('/:id', async(req, res)=>{
+    try{
+        const deleteRestro = await Restaurant.deleteOne({_id: req.params.id})
+        res.send(deleteRestro)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.put('/:id', async(req, res)=>{
+    try{
+        const editData = await Restaurant.updateOne({_id: req.params.id},{$set: req.body})
+        res.send(editData)
+    }catch(err){
+        console.log(err)
+    }
+})
+
 module.exports = router;

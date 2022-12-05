@@ -7,7 +7,8 @@ const foodSchema = new mongoose.Schema(
         restaurantName: {type: String, required: true},
         foodType: {type: String},
         foodPrice: {type: Number, required: true},
-        foodImage: {type: String}
+        foodImage: {type: String},
+        createdDate: {type: Date,}
     },
     {
         collection: "Foods"

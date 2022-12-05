@@ -33,8 +33,10 @@ const Navigation = () => {
 							</ul>
 						: role === 'admin' ? (
 							<ul className="nav_list">
-								<li><Link to="/admin/restaurant">Add Restaurant</Link></li>
-								<li><Link to="/admin/food">Add Food</Link></li>
+								{/* <li><Link to="/add-restaurant">Add Restaurant</Link></li>
+								<li><Link to="/add-food">Add Food</Link></li> */}
+								<li><Link to="/food-data">Food Data</Link></li>
+								<li><Link to="/restaurant-data">Restaurant Data</Link></li>
 							</ul>
 						) : null}
 					</div>

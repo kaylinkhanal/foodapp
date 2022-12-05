@@ -17,7 +17,7 @@ const upload = multer({ storage: storage }).single('file')
 router.post('/',upload, async (req, res) => {
     try{
         console.log(req.file)
-        req.body.foodImage = req.file.filename
+        req.body.foodImage = req.file.filename || ''
 
         // console.log(req.body)
         const addFood = Food.create(req.body)
@@ -45,5 +45,45 @@ router.get("/", async (req, res) => {
         console.log(err)
     }
 });
+
+// delete food data
+router.delete('/:id', async(req, res)=>{
+    try{
+        // res.send(req.params.id)
+        const result = await Food.deleteOne({_id: req.params.id})
+        res.send(result)
+    }catch(err){
+        console.log(err)
+    }
+    
+})
+
+// router.get('/:id', async(req, res)=>{
+//     try{
+//         const result = await Food.findOne({_id:req.params.id})
+
+//         if(result){
+//             res.send(result)
+//         }else{
+//             res.json({
+//                 msg: 'result not found'
+//             })
+//         }
+//     }catch(err){
+//         console.log(err)
+//     }
+// })
+
+router.put('/:id', async(req, res)=>{
+    try{
+        const result = await Food.updateOne(
+            {_id : req.params.id},
+            {$set: req.body}
+        )
+        res.send(result)
+    }catch(err){
+
+    }
+})
 
 module.exports = router;

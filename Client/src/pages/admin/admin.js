@@ -19,10 +19,10 @@ const Admin = ()=>{
                     <div className='btn_grp'>
                         <ul className="home_items">
                             <li>
-                                <Link to="/admin/restaurant">Add Restaurant</Link>
+                                <Link to="/add-restaurant">Add Restaurant</Link>
                             </li>
                             <li>
-                                <Link to="/admin/food">Add Food</Link>
+                                <Link to="/add-food">Add Food</Link>
                             </li>
                         </ul>
                     </div>
