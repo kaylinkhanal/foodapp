@@ -26,12 +26,16 @@ const Login = () => {
 		const data = await response.json();
 
 		if (data) {
-			// console.log(data)
 			message.success(data.msg) // to display the success msg after submit
-      data.detail.token = data.token
+     		data.detail.token = data.token
 			dispatch(setCredentials(data.detail)) // to access the user data
-
-			navigate('/restaurant-list')
+			if(data.detail.role==="user"){
+				navigate('/restaurant-list')
+			}else if(data.detail.role==="rider"){
+				navigate('/request-delivery')
+			}else {
+				navigate("/admin")
+			}
 		} else {
 			message.error("invalid details")
 		}
