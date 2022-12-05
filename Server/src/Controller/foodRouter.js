@@ -52,6 +52,36 @@ try{
     console.log(error)
 }
 });
+router.put("/",  async (req, res, next) => {
+    req.body.foodImg = req.file?.filename || ''
+    try{
+        console.log(req.body)
+        const selectedFood = Food.findByIdAndUpdate(req.body._id, req.body,
+        function (err, docs) {
+        if (err){
+        console.log(err)
+        }
+        else{
+        console.log("Updated User : ", docs);
+        }
+        });
+        
+        if(selectedFood){
+
+            res.json({
+                message: 'Added food',
+                detail: selectedFood
+            })
+        }
+    }catch(error){
+        console.log(error.Message)
+        res.json({
+            errorMsg: 'something went wrong',
+            errDetail: error
+        })
+    }
+});
+
 
 router.delete("/delete/:id", async (req, res) => {
     try{

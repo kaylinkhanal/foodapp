@@ -29,13 +29,13 @@ const Header = ()=>{
                             <img src={Logo} alt="Logo"></img>
                             <span>Fast Delivery</span>
                         </div>
-                        { token ?(<div className="right_nav">
+                        <div className="right_nav">
                                 <ul className="nav_list">
                                     <li><i><FontAwesomeIcon icon={faUserPlus}/></i></li>
                                     <li onClick={logout}><i><FontAwesomeIcon icon={faRightToBracket}/></i></li>
                                 </ul>
-                        </div>): <></>
-                        }
+                        </div>
+                        
                     </div>
                 </div>
             </header>

@@ -8,6 +8,7 @@ import Userimage from "../images/dummy.svg";
 import { Link } from "react-router-dom";
 import FoodList from "./Food/foodlist";
 import RestaurantList from "./restaurant/restaurantList";
+import FoodListItem from "./ADMIDASHBOARD/FoodListItem";
 
 const Admin = () => {
   const { name } = useSelector((state) => state.users);
@@ -44,7 +45,6 @@ const Admin = () => {
 
   return (
     <>
-      <Header />
       <div id="home_pg" className="full_height">
         <div className="container">
           <div className="main_content">

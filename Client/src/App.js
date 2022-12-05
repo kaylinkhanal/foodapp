@@ -3,14 +3,17 @@ import React, {useEffect, useState} from 'react'
 import { Routes, Route} from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Header from "./component/header/header";
-import Admin from "./pages/admin";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
 import HomePage from "./pages/HomePage";
-import EditFood from "./pages/Food/EditFood";
+import Admin from "./pages/admin";
+//import Home from "./pages/ADMIDASHBOARD/DashBoard";
+import AdminNav from "./pages/ADMIDASHBOARD/AdminNav";
+import DashBoard from "./pages/ADMIDASHBOARD/DashBoard";
+import FoodListItem from "./pages/ADMIDASHBOARD/FoodListItem";
 
 const App = () => {
 
@@ -37,7 +40,6 @@ const App = () => {
     <div className="App">
       {!authorizeRole ? (
         <>
-         <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/register" element={<Register />} />
@@ -63,32 +65,41 @@ const AuthorizedUsers = (props) => {
 }
 
 const UserRoute= () => {
-  return (
+  
+  return (<>
+    <Header/>
+
     <Routes>
     <Route path="/home" element={<HomePage />} />
     <Route path="/food" element={<Food />} />
     </Routes>
-  )
+    </> )
 }
 
 const RiderRoute= () => {
   return(
+    <>
+        <Header/>
+
   <Routes>
     <Route path="/request-delivery" element={<DeliveryRequest />} />
   </Routes>
-  )
+  </> )
 }
 
 
 const AdminRoute = () => {
   return(
+    <>
+    <AdminNav/>
     <Routes>
     <Route path="/admin" element={<Admin />} />
+    <Route path="/admin/foodlist" element={<FoodListItem />} />
+    <Route path="/admin/dashboard" element={<DashBoard />} />
     <Route path="/admin/restaurant" element={<AddRestaurant />} />
     <Route path="/admin/foods" element={<Food />} />
-    <Route path="/admin/edit-foods" element={<EditFood />} />
     </Routes>
-  )
+  </>)
 }
 
 export default App;
