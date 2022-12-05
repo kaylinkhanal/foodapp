@@ -8,7 +8,7 @@ import Userimage from '../images/dummy.svg'
 import {Link} from 'react-router-dom'
 
 const Admin = () => {
-    const { name } = useSelector(state => state.users)
+    const { email } = useSelector(state => state.users)
     // const items = [
     //     { label: 'Restaurant', key: 'item-1', children: <AddRestro/> }, // remember to pass the key prop
     //     { label: 'Food', key: 'item-2', children: <AddFood/> },
@@ -21,7 +21,7 @@ const Admin = () => {
                     <div className='main_content'>
                     <div className='user_info'>
                         <img src={Userimage} alt='user'/>
-                        <span> Hi {name}</span>
+                        <span> Hi {email}</span>
                     </div>
 
                     {/* <Tabs items={items} /> */}
