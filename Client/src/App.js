@@ -93,7 +93,8 @@ const AdminRoute = () => {
   return(
     <Routes>
     <Route path="/admin" element={<Admin />} />
-    <Route path="/admin/re- staurant" element={<AddRestaurant />} />
+    <Route path="/admin/food" element={<AddFood />} />
+    <Route path="/admin/restaurant" element={<AddRestaurant />} />
     <Route path="/restaurant-list" element={<Restaurant />} />
     <Route path="*" element={<ErrorPage/>}/>
     </Routes>

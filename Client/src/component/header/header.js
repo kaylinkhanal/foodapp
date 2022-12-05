@@ -31,7 +31,7 @@ const Header = () => {
                             <ul className="nav_list" style={{ display: token ? "block" : "none" }}>
                                 <li><i><FontAwesomeIcon icon={faRightToBracket} /></i></li>
                                 <li><i><FontAwesomeIcon icon={faUserPlus} /></i></li>
-                                <li onClick={ triggerLogout }><i><FontAwesomeIcon icon={faRightFromBracket}/></i></li>
+                                <li onClick={()=>triggerLogout() }><i><FontAwesomeIcon icon={faRightFromBracket}/></i></li>
                             </ul>
                         </div>
                     </div>
