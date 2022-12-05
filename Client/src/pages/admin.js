@@ -13,6 +13,8 @@ import {Link} from 'react-router-dom'
 const Admin = () => {
     const { email } = useSelector(state => state.users)
     const [foods, setFoods] = useState([]);
+    const [selectedItem, setSelectedItem] = useState({});
+
     const [open, setOpen] = useState(false);
     const fetchFood = async () => {
       const response = await fetch("http://localhost:4000/foods");
@@ -70,7 +72,7 @@ const Admin = () => {
         onCancel={handleCancel}
         footer={null}
       >
-       <AddFood/>
+       <AddFood selectedItem={selectedItem}/>
       </Modal>
       <h2>Food Lists</h2>
       <div>
@@ -95,7 +97,10 @@ const Admin = () => {
                       <td>{value.foodCategory}</td>
                       <td>{value.restaurant}</td>
                       {/* <td><img height="50px" width="50px" src={require(`../../uploads/${value.foodImg}`)} /></td> */}
-                      <td><button onClick={()=>setOpen(true)}>Edit</button></td>
+                      <td><button onClick={()=>{
+                          setSelectedItem(value)
+                          setOpen(true)
+                          }}>Edit</button></td>
                       <td><button onClick={()=>triggerDelete(value._id)}>Delete</button></td>
                     </tr>
                   </>
