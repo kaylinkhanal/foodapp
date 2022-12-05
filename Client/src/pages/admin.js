@@ -16,7 +16,6 @@ const Admin = () => {
 
     return(
         <>
-            <Header />
             <div id='home_pg' className='full_height'>
                 <div className='container'>
                     <div className='main_content'>

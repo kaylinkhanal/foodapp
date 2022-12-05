@@ -33,10 +33,8 @@ const App = () => {
   },[role, token])
   return (
     <div className="App">
-     
       {!authorizeRole ? (
         <>
-         <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/foods" element={<Food />} />
@@ -46,7 +44,10 @@ const App = () => {
        </Routes>
        </>
       ) : (
+        <>
+        <Header/>
         <AuthorizedUsers authorizeRole={authorizeRole}/>
+        </>
       )
       }
      
@@ -69,8 +70,10 @@ const UserRoute= () => {
   return (
     <Routes>
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="/" element={<Restaurant />} />
     <Route path="/home" element={<HomePage />} />
     <Route path="/food" element={<AddFood />} />
+    <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   )
 }
@@ -79,6 +82,8 @@ const RiderRoute= () => {
   return(
   <Routes>
     <Route path="/request-delivery" element={<DeliveryRequest />} />
+    <Route path="/" element={<DeliveryRequest />} />
+    <Route path="*" element={<ErrorPage/>}/>
   </Routes>
   )
 }
@@ -90,6 +95,7 @@ const AdminRoute = () => {
     <Route path="/admin" element={<Admin />} />
     <Route path="/admin/restaurant" element={<AddRestaurant />} />
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   )
 }
