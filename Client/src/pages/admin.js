@@ -82,6 +82,8 @@ const Admin = () => {
               <th>Type</th>
               <th>Category</th>
               <th>Restaurant</th>
+              <th>Name</th>
+              <th>Price</th>
               <th>Image</th>
               <th colSpan={2}>Actions</th>
 
@@ -96,6 +98,8 @@ const Admin = () => {
                       <td>{value.foodType}</td>
                       <td>{value.foodCategory}</td>
                       <td>{value.restaurant}</td>
+                      <td>{value.FoodName}</td>
+                      <td>{value.FoodPrice}</td>
                       {/* s */}
                       <td><button onClick={()=>{
                           setSelectedItem(value)

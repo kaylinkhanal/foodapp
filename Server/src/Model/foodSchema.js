@@ -6,6 +6,8 @@ const foodSchema = new mongoose.Schema(
         restaurant: {type: String,},
         foodCategory: {type: String,},
         foodImage: {type: String,},
+        FoodName: {type: String,},
+        FoodPrice: {type: String,},
     },
     {
         collection: "Foods"
