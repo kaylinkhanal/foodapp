@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 // post request for register the user
 router.post("/", upload.single('file'), async (req, res, next) => {
-    // console.log(req.file)
+    //console.log(req.file)
     req.body.foodImage = req.file.filename
     try{
         console.log(req.body)
@@ -31,6 +31,36 @@ router.post("/", upload.single('file'), async (req, res, next) => {
             })
         }
     }catch(error){
+        res.json({
+            errorMsg: 'something went wrong',
+            errDetail: error
+        })
+    }
+});
+
+router.put("/",  async (req, res, next) => {
+    req.body.foodImg = req.file?.filename || ''
+    try{
+        console.log(req.body)
+        const selectedFood = Food.findByIdAndUpdate(req.body._id, req.body,
+        function (err, docs) {
+        if (err){
+        console.log(err)
+        }
+        else{
+        console.log("Updated User : ", docs);
+        }
+        });
+
+        if(selectedFood){
+
+            res.json({
+                message: 'Added food',
+                detail: selectedFood
+            })
+        }
+    }catch(error){
+        console.log(error.Message)
         res.json({
             errorMsg: 'something went wrong',
             errDetail: error

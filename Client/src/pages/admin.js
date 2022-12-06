@@ -72,7 +72,7 @@ const Admin = () => {
         onCancel={handleCancel}
         footer={null}
       >
-       <AddFood selectedItem={selectedItem}/>
+       <AddFood flag="edit_food" selectedItem={selectedItem}/>
       </Modal>
       <h2>Food Lists</h2>
       <div>
@@ -96,7 +96,7 @@ const Admin = () => {
                       <td>{value.foodType}</td>
                       <td>{value.foodCategory}</td>
                       <td>{value.restaurant}</td>
-                      {/* <td><img height="50px" width="50px" src={require(`../../uploads/${value.foodImg}`)} /></td> */}
+                      {/* s */}
                       <td><button onClick={()=>{
                           setSelectedItem(value)
                           setOpen(true)
