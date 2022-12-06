@@ -37,21 +37,9 @@ const AddFood = (props) => {
   },[props.selectedItem])
 
   const  [foodImg, setFoodImg] = useState('')
-  const  [foodList, setFoodList] = useState([])
-
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
   }
-
-  const fetchFoods= async()=> {
-    const response = await fetch("http://localhost:4000/foods/");
-    const data = await response.json();
-    setFoodList(data.foodList)
-  }
-  useEffect(()=>{
-    fetchFoods()
-  },[])
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: props.selectedItem || {
@@ -158,13 +146,10 @@ const AddFood = (props) => {
                  onChange={(e)=> saveImgToState(e)}
                 />
                 <div style={{ textAlign: "center" }}>
-                <Button type="submit">Submit</Button>
-                                
+   <Button type="submit">Submit</Button>
+                  
                 </div>
               </form>
-              {foodList.map((item,id)=>{
-                return <li>{item.foodImage}</li>
-              })}
             </div>
           </div>
         </div>
@@ -183,9 +168,7 @@ const Wrapper = styled.section`
     min-height: 100vh;
     
   }
-
   .screen {
-
     background: #ab0013;
     position: relative;
     height: 750px;
@@ -208,7 +191,6 @@ const Wrapper = styled.section`
     -webkit-clip-path: inset(0 0 0 0);
     clip-path: inset(0 0 0 0);
   }
-
   h2 {
     color: white;
     margin: 145px;
@@ -216,7 +198,6 @@ const Wrapper = styled.section`
     border: 0;
     padding: 10px 10px 10px 60px;
   }
-
   .label-modal{
     color: white;
     font-weight: bold;

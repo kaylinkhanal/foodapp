@@ -3,13 +3,13 @@ import Header from '../../component/header/header'
 import './food.css'
 import FoodList from './foodlist'
 
-const Food = (props)=>{
+const Food = ()=>{
 	const [foods, setFoods] = useState([])
 
 	console.log(foods)
 
 	const fetchList = async() => {
-		const response = await fetch('http://localhost:4000/Foods')
+		const response = await fetch('http://localhost:4000/foods')
 		const data = await response.json();
 		
 		if(data){

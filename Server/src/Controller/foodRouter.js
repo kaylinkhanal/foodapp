@@ -14,22 +14,22 @@ const storage = multer.diskStorage({
     }
   })
 
-  const upload = multer({ storage: storage })
-  // post request for register the user
-  router.post("/", upload.single('file'), async (req, res, next) => {
-      //console.log(req.file)
-      req.body.foodImage = req.file.filename
-      try{
-          console.log(req.body)
-          const selectedFood = Food.create(req.body)
-          // console.log(selectedFood)
-          if(selectedFood){
-  
-              res.json({
-                  message: 'Added food',
-                  detail: selectedFood
-              })
-          }
+const upload = multer({ storage: storage })
+// post request for register the user
+router.post("/", upload.single('file'), async (req, res, next) => {
+    //console.log(req.file)
+    req.body.foodImage = req.file.filename
+    try{
+        console.log(req.body)
+        const selectedFood = Food.create(req.body)
+        // console.log(selectedFood)
+        if(selectedFood){
+
+            res.json({
+                message: 'Added food',
+                detail: selectedFood
+            })
+        }
     }catch(error){
         res.json({
             errorMsg: 'something went wrong',
@@ -51,6 +51,7 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
+
         if(selectedFood){
 
             res.json({
@@ -66,7 +67,6 @@ router.put("/",  async (req, res, next) => {
         })
     }
 });
-
 
 // view users
 router.get("/", async (req, res) => {
@@ -103,4 +103,3 @@ router.delete("/:id",  async (req, res, next) => {
 });
 
 module.exports = router;
-

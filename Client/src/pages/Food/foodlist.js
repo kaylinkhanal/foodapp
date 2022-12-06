@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { resetCredentials } from "../../reducersSlice/userSlice"
 import { useNavigate } from "react-router-dom"
-import { Button, Modal } from 'antd';
-import AddFood from './AddFood'
-import 'antd/dist/antd.min.css';
 
 
 const FoodList = () => {
@@ -13,26 +10,6 @@ const FoodList = () => {
     const navigate = useNavigate()
   
     const [ foodList, setFoodList ] = useState( [] )
-    const [selectedItem,setSelectedItem] = useState({})
-    const [open, setOpen] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
-    const showModal = (item) => {
-      setSelectedItem(item)
-      setOpen(true);
-    };
-    const handleOk = () => {
-      setModalText('The modal will be closed after two seconds');
-      setConfirmLoading(true);
-      setTimeout(() => {
-        setOpen(false);
-        setConfirmLoading(false);
-      }, 2000);
-    };
-    const handleCancel = () => {
-      console.log('Clicked cancel button');
-      setOpen(false);
-    };
     const fetchData = async() => {
       const response  = await fetch( 'http://localhost:4000/foods/' )
       const data      = await response.json()
