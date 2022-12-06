@@ -31,7 +31,7 @@ const Login = () => {
       data.detail.token = data.token
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/restaurant-list')
+			navigate('/home')
 		} else {
 			message.error("invalid details")
 		}
