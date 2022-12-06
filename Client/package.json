@@ -21,6 +21,7 @@
     "bootstrap": "^5.2.1",
     "eslint-config-react-app": "^7.0.1",
     "formik": "^2.2.9",
+    "i": "^0.3.7",
     "install": "^0.13.0",
     "logger": "^0.0.1",
     "npm": "^9.1.2",

@@ -12,7 +12,6 @@ import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
 
-
 const App = () => {
 
   const {token, role} = useSelector(state=> state.users)
@@ -35,11 +34,8 @@ const App = () => {
   },[role, token])
   return (
     <div className="App">
-
-      {/*if user is not authorized*/}
       {!authorizeRole ? (
         <>
-         <Header/>
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/foods" element={<AddFood />} />
@@ -49,8 +45,10 @@ const App = () => {
        </Routes>
        </>
       ) : (
-        //else if user is authorized, it will go to AuthorizedUsers
+        <>
+        <Header/>
         <AuthorizedUsers authorizeRole={authorizeRole}/>
+        </>
       )
       }
      
@@ -74,6 +72,10 @@ const UserRoute= () => {
   return (
     <Routes>
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="/" element={<Restaurant />} />
+    <Route path="/home" element={<HomePage />} />
+    <Route path="/food" element={<AddFood />} />
+    <Route path="/admin/restaurant" element={<AddRestaurant />} />
     </Routes>
   )
 }
@@ -82,6 +84,8 @@ const RiderRoute= () => {
   return(
   <Routes>
     <Route path="/request-delivery" element={<DeliveryRequest />} />
+    <Route path="/" element={<DeliveryRequest />} />
+    <Route path="*" element={<ErrorPage/>}/>
   </Routes>
   )
 }
@@ -91,9 +95,11 @@ const AdminRoute = () => {
   return(
     <Routes>
     <Route path="/admin" element={<Admin />} />
+    <Route path="/admin/food" element={<AddFood />} />
     <Route path="/admin/restaurant" element={<AddRestaurant />} />
     <Route path="/admin/foods" element={<AddFood />} />
     <Route path="/restaurant-list" element={<Restaurant />} />
+    <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   )
 }

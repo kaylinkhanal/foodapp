@@ -2,6 +2,7 @@ const express = require("express");
 const Food = require('../Model/foodSchema')
 const router = express.Router();
 const multer  = require('multer')
+// const PORT = 4000;
 
 
 const storage = multer.diskStorage({
@@ -13,22 +14,22 @@ const storage = multer.diskStorage({
     }
   })
 
-const upload = multer({ storage: storage }).single('file')
-// post request for register the user
-
-
-router.post("/", upload, async (req, res, next) => {
-    req.body.foodImage = req.file.filename
-    try{
-
-console.log(req.body)
-        const selectedFood = await Food.create(req.body)
-        if(selectedFood){
-            res.json({
-                message: 'Added food',
-                detail: selectedFood
-            })
-        }
+  const upload = multer({ storage: storage })
+  // post request for register the user
+  router.post("/", upload.single('file'), async (req, res, next) => {
+      //console.log(req.file)
+      req.body.foodImage = req.file.filename
+      try{
+          console.log(req.body)
+          const selectedFood = Food.create(req.body)
+          // console.log(selectedFood)
+          if(selectedFood){
+  
+              res.json({
+                  message: 'Added food',
+                  detail: selectedFood
+              })
+          }
     }catch(error){
         res.json({
             errorMsg: 'something went wrong',
@@ -36,7 +37,6 @@ console.log(req.body)
         })
     }
 });
-
 
 router.put("/",  async (req, res, next) => {
     req.body.foodImg = req.file?.filename || ''
@@ -51,7 +51,6 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
-        
         if(selectedFood){
 
             res.json({
@@ -71,23 +70,37 @@ router.put("/",  async (req, res, next) => {
 
 // view users
 router.get("/", async (req, res) => {
-    try{
-        let foodList
-        if(req.query.restroId){
-           foodList = await Food.findById(req.query.restroId);
-        }else{
-           foodList = await Food.find();
-        }
-        if(foodList){
-            res.json({
-                message: 'fetch successful',
-                foodList: foodList
-            })
-        }
-    }catch(error) {
-        console.log(error)
+try{
+    const foodList = await Food.find();
+    if(foodList){
+        res.json({
+            message: 'fetch successful',
+            foodList: foodList
+        })
     }
-    });
-    
+}catch(error) {
+    console.log(error)
+}
+});
+
+
+router.delete("/:id",  async (req, res, next) => {
+    try{
+      
+      const data= await Food.deleteOne({ _id: req.params.id });
+      if(data){
+        res.json({
+            message: 'Deleted food',
+            detail: data
+        })
+      }
+    }catch(error){
+        res.json({
+            errorMsg: 'something went wrong',
+            errDetail: error
+        })
+    }
+});
 
 module.exports = router;
+

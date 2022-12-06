@@ -10,6 +10,7 @@ router.post("/", async (req, res) => {
         if( req.body.email && req.body.password ) {
             const token = jwt.sign({ email: req.body.email }, 'ifsjdfosadjofo');
             const registeredUser = await User.findOne({email: req.body.email})
+            console.log(registeredUser)
             const hashedPassword = registeredUser.password
             bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
               if(result=== true){
@@ -40,4 +41,5 @@ router.get("/", async (req, res) => {
 
 });
 
+module.exports = router
 module.exports = router;

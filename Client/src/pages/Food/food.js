@@ -9,7 +9,7 @@ const Food = (props)=>{
 	console.log(foods)
 
 	const fetchList = async() => {
-		const response = await fetch('http://localhost:4000/foods')
+		const response = await fetch('http://localhost:4000/Foods')
 		const data = await response.json();
 		
 		if(data){

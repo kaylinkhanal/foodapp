@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -22,7 +22,20 @@ const initialValues = {
   restaurant: "",
   foodCategory: "",
 };
-const AddFood = () => {
+const AddFood = (props) => {
+  const [initialValues, setInitialValues]= useState({
+    foodType: "",
+    restaurant: "",
+    foodCategory: "",
+  })
+  useEffect(()=>{
+    if(props.selectedItem){
+      if(props.flag==="edit_food"){
+        setInitialValues(props.selectedItem)
+      }
+    }
+  },[props.selectedItem])
+
   const  [foodImg, setFoodImg] = useState('')
   const  [foodList, setFoodList] = useState([])
 
@@ -41,17 +54,30 @@ const AddFood = () => {
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
-      initialValues,
+      initialValues: props.selectedItem || {
+        foodType: '',
+        restaurant:' ',
+        foodCategory: '',
+        file: '',
+
+      },
+      enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
         const formData = new FormData();
-        formData.append("file", foodImg);
-        formData.append("foodType", values.foodType);
-        formData.append("restaurant", values.restaurant);
-        formData.append("foodCategory", values.foodCategory);
+        formData.append('file', foodImg);
+        formData.append('foodType', values.foodType);
+        formData.append('restaurant', values.restaurant);
+        formData.append('foodCategory', values.foodCategory);
+
+
+
+
         const requestOptions = {
-          method: "POST",
-          body: formData
+          
+          method: props.flag==="edit_food"?"PUT": "POST",
+          headers:props.flag==="edit_food"?{ "Content-Type": "application/json" }:null,
+          body: props.flag==="edit_food"?JSON.stringify(values):formData
         };
         const response = await fetch(
           "http://localhost:4000/foods/",
