@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from "react-redux";
 import { resetCredentials } from "../../reducersSlice/userSlice";
-import { useNavigate } from "react-router-dom"
 import React from "react";
 
 
@@ -13,10 +12,8 @@ import React from "react";
 const Header = ()=>{
    const {token} = useSelector(state=> state.users)
    const dispatch = useDispatch();
-   const navigate = useNavigate();
    const logout =()=>{
         dispatch( resetCredentials() )
-        navigate('/')
     }
 
 

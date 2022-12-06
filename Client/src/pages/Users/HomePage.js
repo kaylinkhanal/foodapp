@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import Header from '../component/header/header'
+import Header from '../../component/header/header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import RestaurantList from './restaurant/restaurantList'
-import FoodList from './Food/foodlist'
+import RestaurantList from '../restaurant/restaurantList'
+import FoodList from '../Food/foodlist'
 const HomePage = ()=>{
 
 	const [restaurants, setRestaurants] = useState([])

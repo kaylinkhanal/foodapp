@@ -2,7 +2,7 @@ import FormText from "../../component/formText";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Image from '../../images/order.svg'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { message } from "antd";
 // import 'antd/dist/antd.min.css';
 import ShowHidePassword from "../../component/showHidePassword";
@@ -10,7 +10,6 @@ import { setCredentials } from "../../reducersSlice/userSlice";
 import {useDispatch} from 'react-redux'
 
 const Login = () => {
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	const logParticipants = async (values) => {
@@ -30,14 +29,7 @@ const Login = () => {
 			//message.success(data.msg) // to display the success msg after submit
             data.detail.token = data.token
 			dispatch(setCredentials(data.detail)) // to access the user data
-			if(data.detail.role==="user"){
-				navigate('/home')
-			}else if(data.detail.role==='rider'){
-				navigate('/request-delivery')
-			}
-			else{
-				navigate("/admin")
-			}
+			
 		} else {
 			message.error("invalid details")
 		}

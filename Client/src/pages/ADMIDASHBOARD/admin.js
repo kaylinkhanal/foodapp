@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Header from "../component/header/header";
-// import { Tabs } from 'antd';
-// import AddRestro from './AddRestro';
-//import AddFood from './AddFood';
 import { useSelector } from "react-redux";
-import Userimage from "../images/dummy.svg";
+import Userimage from "../../images/dummy.svg";
 import { Link } from "react-router-dom";
-import FoodList from "./Food/foodlist";
-import RestaurantList from "./restaurant/restaurantList";
-import FoodListItem from "./ADMIDASHBOARD/FoodListItem";
+import FoodList from "../Food/foodlist";
+import RestaurantList from "../restaurant/restaurantList";
 
 const Admin = () => {
   const { name } = useSelector((state) => state.users);
-  // const items = [
-  //     { label: 'Restaurant', key: 'item-1', children: <AddRestro/> }, // remember to pass the key prop
-  //     { label: 'Food', key: 'item-2', children: <AddFood/> },
-  // ];
-
   const [restaurants, setRestaurants] = useState([]);
   const [foods, setFoods] = useState([]);
-
-  //console.log(restaurants)
 
   const fetchList = async () => {
     const response = await fetch("http://localhost:4000/restaurant");

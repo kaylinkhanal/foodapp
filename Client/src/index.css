@@ -131,8 +131,8 @@ option {
 
 /* input[type="text"]:disabled {
   background: #ccc;
-} */
-
+} 
+*/
 button {
   background: #cf450e;
   padding: 10px 30px;
@@ -142,6 +142,7 @@ button {
   font-size: 16px !important;
   cursor: pointer;
 }
+
 
 .login a {
   color: #cf450e;
