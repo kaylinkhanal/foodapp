@@ -6,27 +6,30 @@ const saltRounds = 10;
 
 router.post("/", async (req, res) => {
     try{
-        // to compare the hashed password from DB first find the user
-        const registeredUser = await User.findOne({email: req.body.email})
-        
-        hashedPassword = registeredUser.password
-
-        // Load hash from your password DB.
-        bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
-            console.log("result", result)
-
-            if(result){
-                res.send({
-                    detail: registeredUser,
-                    msg: `You're logged in`
-                })
-            }else{
+        if( req.body.email && req.body.password ) {
+            const token = jwt.sign({ email: req.body.email }, 'ifsjdfosadjofo');
+            const registeredUser = await User.findOne({email: req.body.email})
+            console.log(registeredUser)
+            const hashedPassword = registeredUser.password
+            bcrypt.compare(req.body.password, hashedPassword).then(function(result) {
+              if(result=== true){
+            	res.json({
+                            detail: registeredUser,
+                            msg: `You're logged in`,
+                            token: token
+                 })
+              }else{
                 res.json({
-                    msg: "Invalid email or password"
+                    msg: `invalid creds`
                 })
-            }
-        });
-        
+              }
+            });
+        } else {
+			res.json({
+                msg: "All fields are required. Complete the form!!"
+            })
+		}
+       
     }catch(error){
         console.log(error)
     }

@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const PORT = 4000;
 require("dotenv").config();
 
 const connect = require("./db/mongoose");
@@ -18,8 +19,8 @@ const foodRouter = require("./Controller/foodRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/restaurant", restroRouter);
-app.use("/food", foodRouter);
+app.use("/foods", foodRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Foodapp Server listening on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Chat Server listening on port ${PORT}`);
 });
