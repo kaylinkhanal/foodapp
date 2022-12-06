@@ -17,29 +17,19 @@ import {
   Select,
   Option,
 } from "../../Styles/FormStyle";
-
+const initialValues = {
+  foodType: "",
+  restaurant: "",
+  foodCategory: "",
+};
 const AddFood = (props) => {
-  const [initialValues, setInitialValues]= useState({
-    foodType: "",
-    restaurant: "",
-    foodCategory: "",
-  })
-
-  useEffect(()=>{
-    if(props.selectedItem){
-      if(props.flag==="edit_food"){
-        setInitialValues(props.selectedItem)
-      }
-    }
-  },[props.selectedItem])
-  console.log(props.selectedItem)
   const  [foodImg, setFoodImg] = useState('')
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
   }
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
-      initialValues,
+      initialValues: props.selectedItem,
       enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {

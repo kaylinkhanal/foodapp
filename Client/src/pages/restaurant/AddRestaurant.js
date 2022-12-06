@@ -5,7 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
-// import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
 
 const AddRestaurant = () => {
@@ -44,7 +44,6 @@ const AddRestaurant = () => {
 
 	return (
 		<>
-			<Header />
 			<div id='additem_section' className='full_height'>
 				<div className='container'>
 					<div className='main_content'>
