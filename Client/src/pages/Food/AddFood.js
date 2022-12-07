@@ -59,14 +59,19 @@ const AddFood = (props) => {
         formData.append('foodCategory', values.foodCategory);
 
 
-
-
-        const requestOptions = {
-          
-          method: props.flag==="edit_food"?"PUT": "POST",
-          headers:props.flag==="edit_food"?{ "Content-Type": "application/json" }:null,
-          body: props.flag==="edit_food"?JSON.stringify(values):formData
-        };
+        let requestOptions
+        if(props.flag==="edit_food"){
+           requestOptions = {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values)
+          };
+        }else{
+          requestOptions = {
+            method:  "POST",
+            body:formData
+          };
+        }
         const response = await fetch(
           "http://localhost:4000/foods/",
           requestOptions
