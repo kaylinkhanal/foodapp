@@ -68,8 +68,6 @@ const AddFood = (props) => {
         formData.append('FoodName', values.FoodName);
         formData.append('FoodPrice', values.FoodPrice);
 
-
-
         let requestOptions
         if(props.flag==="edit_food"){
            requestOptions = {
@@ -88,15 +86,14 @@ const AddFood = (props) => {
           requestOptions
         );
         const data = await response.json();
-		if (data) {
-      message.success(data.message)
-      props.fetchFood()
-			action.resetForm()
-		}else{
-			message.success(data.errDetail)
-		}
-	}
-      ,
+        if (data) {
+          message.success(data.message)
+          props.fetchFood()
+          action.resetForm()
+        }else{
+          message.success(data.errDetail)
+        }
+      }
     });
     
   return (
