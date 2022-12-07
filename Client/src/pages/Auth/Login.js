@@ -8,23 +8,15 @@ import { message } from "antd";
 import ShowHidePassword from "../../component/showHidePassword";
 import { setCredentials } from "../../reducersSlice/userSlice";
 import {useDispatch} from 'react-redux'
-
+import postData from './postData'
 const Login = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	const logParticipants = async (values) => {
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				email: values.email,
-				password: values.password
-			})
-		};
-		const response = await fetch('http://localhost:4000/login', requestOptions);
-		const data = await response.json();
-
+		debugger;
+		const data = await postData(values, 'login')
+		debugger;
 		if (data) {
 			message.success(data.msg) // to display the success msg after submit
      		data.detail.token = data.token
