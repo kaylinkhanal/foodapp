@@ -156,7 +156,7 @@ const Wrapper = styled.section`
   .screen {
     background: linear-gradient(90deg, #87cefa, #e0ffff);
     position: relative;
-    height: 750px;
+    height: 950px;
     width: 500px;
     box-shadow: 0px 0px 24px #bc8f8f;
   }

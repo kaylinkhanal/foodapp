@@ -33,7 +33,8 @@ const RestaurantList = () => {
             return (
               <>
                 <div className='foodapp-res-card-item'>
-                  <div className=''><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxDnWRNODj8srZmAnpGvF-rpzur_DD8UyixQwiy1wqxXfgUZrFp3MF5Xe7tX0UfX44WA&usqp=CAU" /></div>
+                 {/* <div className=''><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxDnWRNODj8srZmAnpGvF-rpzur_DD8UyixQwiy1wqxXfgUZrFp3MF5Xe7tX0UfX44WA&usqp=CAU" /></div>*/}
+                 <div><img src={require('../../uploads/'+item.foodImage)}/></div>
                   <Rating initialValue={ item.rating } allowFraction={ true } readonly />
                   <div>{ item.name }</div>
                   <div>{ item.category }</div>
