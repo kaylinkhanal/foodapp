@@ -1,14 +1,17 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
+import * as Yup from 'yup';//Use for password validation
 import FormText from '../../component/formText';
 import Image from '../../images/delivery_girl.svg'
 import { useNavigate } from "react-router-dom";
 
 
 const Register = ()=> {
-	const navigate = useNavigate()
+	const navigate = useNavigate() // this is to navigate the page
+    //function is created which takes values as parameter
     const saveParticipants = async(values)=>{
+        
+        //created object to holds requestionOption
         const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -22,7 +25,7 @@ const Register = ()=> {
                 confirmPassword: values.confirmPassword
 			})
 		};
-		const response = await fetch('http://localhost:4000/register/', requestOptions);
+		const response = await fetch('http://localhost:4000/register/', requestOptions);// this will send the data to server side named register with request option
 		const data = await response.json();
     if(data){
         navigate('/')
@@ -30,7 +33,7 @@ const Register = ()=> {
     }
 
     const passwordRule = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-
+    //creating chema for validation in yup
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
           .required('Required'),
@@ -59,6 +62,7 @@ const Register = ()=> {
 
                 <div className="register">
                     <Formik
+                    //initializing the values in formik
                         initialValues={{
                             name: '',
                             phoneNumber: '',

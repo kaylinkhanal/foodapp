@@ -51,7 +51,7 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
-
+        
         if(selectedFood){
 
             res.json({
@@ -67,11 +67,15 @@ router.put("/",  async (req, res, next) => {
         })
     }
 });
-
 // view users
 router.get("/", async (req, res) => {
 try{
-    const foodList = await Food.find();
+    let foodList
+    if(req.query.restroId){
+       foodList = await Food.findById(req.query.restroId);
+    }else{
+       foodList = await Food.find();
+    }
     if(foodList){
         res.json({
             message: 'fetch successful',

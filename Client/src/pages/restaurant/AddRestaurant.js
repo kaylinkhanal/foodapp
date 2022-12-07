@@ -48,6 +48,7 @@ const AddRestaurant = (props) => {
 
 	  const  [RestroImg, setRestroImg] = useState('')
 	  const saveImgToState = (e) => {
+      console.log(e.target.files[0])
 		  setRestroImg(e.target.files[0])
 	  }
 
@@ -69,18 +70,21 @@ const AddRestaurant = (props) => {
         formData.append('name',values.name);
         formData.append('location', values.location);
         formData.append('rating', values.rating);
-		formData.append('category ', values.category);
+		    formData.append('category ', values.category);
 
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name: values.name,
-				location: values.location,
-				rating: values.rating,
-				category: values.category,
-			})
-		};
+        let requestOptions
+        if(props.flag==="edit_restro"){
+           requestOptions = {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values)
+          };
+        }else{
+          requestOptions = {
+            method:  "POST",
+            body:formData
+          };
+        }
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
 		const data = await response.json();
 		if (data) {
@@ -202,7 +206,7 @@ const Wrapper = styled.section`
   .screen {
     background: #ab0013;
     position: relative;
-    height: 750px;
+    height: 1000px;
     width: 500px;
     color: white;
     box-shadow: 0px 0px 24px #bc8f8f;
