@@ -8,6 +8,8 @@ const Food = ()=>{
 
 	console.log(foods)
 
+	
+
 	const fetchList = async() => {
 		const response = await fetch('http://localhost:4000/Foods')
 		const data = await response.json();

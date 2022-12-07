@@ -32,10 +32,13 @@ const FoodList = () => {
             return (
               <>
                 <div className='food-card'>
+              <div>key={item._id}</div>
                   <div className=''><img src="https://images.everydayhealth.com/images/diet-nutrition/34da4c4e-82c3-47d7-953d-121945eada1e00-giveitup-unhealthyfood.jpg?sfvrsn=a31d8d32_0" /></div>
                   <div>{ item.foodType }</div>
                   <div>{ item.restaurant }</div>
                   <div>{ item.foodCategory }</div>
+                  <div>{ item.FoodName }</div>
+                  <div>{ item.FoodPrice }</div>
                 </div>
               </>
               )
