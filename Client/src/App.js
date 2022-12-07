@@ -11,6 +11,8 @@ import Restaurant from "./pages/restaurant/restaurant";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
+import FoodList from "./pages/Food/foodlist";
+
 import HomePage from "./pages/HomePage";
 
 const App = () => {
@@ -38,7 +40,7 @@ const App = () => {
          <Routes>
          <Route path="/" element={<Login />} />
          <Route path="/foods" element={<Food />} />
-         <Route path="/food-list" element={<Food/>} />
+         <Route path="/food-list" element={<FoodList />} />
          <Route path="/register" element={<Register />} />
          <Route path="*" element={<ErrorPage/>}></Route>
        </Routes>

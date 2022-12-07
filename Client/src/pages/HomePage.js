@@ -4,7 +4,7 @@ import { resetCredentials } from "../reducersSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import axios from "axios";
-import './styles/home.css'
+import "./styles/home.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,10 @@ const HomePage = () => {
   };
 
   const fetchFoods = () => {
-    axios.get('http://localhost:4000/foods')
-    .then(response => setFoodList(response.data.details))
-  }
+    axios
+      .get("http://localhost:4000/foods")
+      .then((response) => setFoodList(response.data.details));
+  };
 
   console.log(foodList);
 
@@ -45,7 +46,7 @@ const HomePage = () => {
               <>
                 <div className="foodapp-res-card-item">
                   <div className="">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxDnWRNODj8srZmAnpGvF-rpzur_DD8UyixQwiy1wqxXfgUZrFp3MF5Xe7tX0UfX44WA&usqp=CAU" />
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
                   </div>
                   <Rating
                     initialValue={item.rating}
@@ -63,20 +64,28 @@ const HomePage = () => {
       ) : (
         "loading..."
       )}
-      {
-        foodList.length > 0 ? (
-          <div>
-            {foodList.map((food, index) => <div key={index}>
-              <li>{food.foodType}</li>
-              <li>{food.restaurant}</li>
-              <li>{food.foodCategory}</li>
-              <img src = {require(`../uploads/${food.foodImg}`)} height={100} width={100} />
-            </div>)}
-          </div>
-        ) : (
-          'loading.....'
-        )
-      }
+      <div>
+        
+        <span>Recommended foods for you:</span>
+      </div>
+      {foodList.length > 0 ? (
+        <div className="foods">
+          {foodList.map((food, index) => (
+            <div key={index} className="food">
+              <img
+                src={require(`../uploads/${food.foodImg}`)}
+                // height={100}
+                // width={100}
+              />
+              <h4>{food.foodType}</h4>
+              <span>Restaurant: {food.restaurant}</span>
+              <span>category: {food.foodCategory}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        "loading....."
+      )}
       <button className="input-button" type="submit" onClick={triggerLogout}>
         LOGOUT
       </button>

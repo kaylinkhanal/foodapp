@@ -3,10 +3,9 @@ import Header from '../../component/header/header'
 import './food.css'
 import FoodList from './foodlist'
 
-const Food = ()=>{
-	const [foods, setFoods] = useState([])
+const Food = (props)=>{
 
-	console.log(foods)
+	const [foods, setFoods] = useState([])
 
 	
 
