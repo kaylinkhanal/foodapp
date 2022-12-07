@@ -78,7 +78,8 @@ const AddFood = (props) => {
         );
         const data = await response.json();
 		if (data) {
-			message.success(data.message)
+      message.success(data.message)
+      props.fetchFood()
 			action.resetForm()
 		}else{
 			message.success(data.errDetail)

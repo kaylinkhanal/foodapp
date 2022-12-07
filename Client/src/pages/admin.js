@@ -72,7 +72,7 @@ const Admin = () => {
         onCancel={handleCancel}
         footer={null}
       >
-       <AddFood flag="edit_food" selectedItem={selectedItem}/>
+       <AddFood fetchFood={fetchFood} flag="edit_food" selectedItem={selectedItem}/>
       </Modal>
       <h2>Food Lists</h2>
       <div>
