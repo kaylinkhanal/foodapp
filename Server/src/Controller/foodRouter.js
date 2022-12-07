@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 // post request for register the user
 router.post("/", upload.single('file'), async (req, res, next) => {
-    // console.log(req.file)
+    //console.log(req.file)
     req.body.foodImage = req.file.filename
     try{
         console.log(req.body)
@@ -51,7 +51,11 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
         if(selectedFood){
 
             res.json({
@@ -67,6 +71,10 @@ router.put("/",  async (req, res, next) => {
         })
     }
 });
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
 // view users
 router.get("/", async (req, res) => {
 try{

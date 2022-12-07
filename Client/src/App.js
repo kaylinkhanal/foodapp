@@ -75,7 +75,7 @@ const UserRoute= () => {
     <Route path="/" element={<Restaurant />} />
     <Route path="/home" element={<HomePage />} />
     <Route path="/food" element={<AddFood />} />
-    <Route path="*" element={<ErrorPage/>}/>
+    <Route path="/admin/restaurant" element={<AddRestaurant />} />
     </Routes>
   )
 }

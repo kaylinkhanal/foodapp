@@ -65,23 +65,25 @@ const Admin = () => {
                         </ul>
                     </div>
                     </div>
-                    <div style={{marginLeft:"300px",marginTop: "40px"}}>
+                    <div style={{marginLeft:"350px",marginTop: "40px", }}>
      <Modal
         title="Title"
         open={open}
         onCancel={handleCancel}
         footer={null}
       >
-       <AddFood selectedItem={selectedItem}/>
+       <AddFood fetchFood={fetchFood} flag="edit_food" selectedItem={selectedItem}/>
       </Modal>
-      <h2>Food Lists</h2>
-      <div>
+      <h2>Food Lists </h2>
+      <div >
         <table border="1">
           <thead>
-            <tr>
+            <tr >
+              <th>Restaurant</th>
+              <th>Name</th>
               <th>Type</th>
               <th>Category</th>
-              <th>Restaurant</th>
+              <th>Price</th>
               <th>Image</th>
               <th colSpan={2}>Actions</th>
 
@@ -93,10 +95,13 @@ const Admin = () => {
                 return (
                   <>
                     <tr key={value._id}>
+                      <td>{value.restaurant}</td>
+                      <td>{value.FoodName}</td>
                       <td>{value.foodType}</td>
                       <td>{value.foodCategory}</td>
-                      <td>{value.restaurant}</td>
-                      {/* <td><img height="50px" width="50px" src={require(`../../uploads/${value.foodImg}`)} /></td> */}
+                      <td>{value.FoodPrice}</td>
+                     {/* <td><img src={require('../uploads/values.uploads')} alt="32" width={100} height={100}/> </td>  */}
+                      
                       <td><button onClick={()=>{
                           setSelectedItem(value)
                           setOpen(true)

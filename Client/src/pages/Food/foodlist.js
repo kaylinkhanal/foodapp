@@ -63,13 +63,19 @@ const FoodList = () => {
             return (
               <>
                 <div className='food-card'>
+              <div>key={item._id}</div>
                   <div className=''><img src="https://images.everydayhealth.com/images/diet-nutrition/34da4c4e-82c3-47d7-953d-121945eada1e00-giveitup-unhealthyfood.jpg?sfvrsn=a31d8d32_0" /></div>
                   <div>{ item.foodType }</div>
                   <div>{ item.restaurant }</div>
                   <div>{ item.foodCategory }</div>
+<<<<<<< HEAD
+                  <div>{ item.FoodName }</div>
+                  <div>{ item.FoodPrice }</div>
+=======
                   <Button type="primary" onClick={()=>showModal(item)}>
       Edit
       </Button>
+>>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
                 </div>
               </>
               )

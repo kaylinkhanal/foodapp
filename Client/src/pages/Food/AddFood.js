@@ -21,8 +21,26 @@ const initialValues = {
   foodType: "",
   restaurant: "",
   foodCategory: "",
+  FoodName: "",
+  FoodPrice: "",
 };
 const AddFood = (props) => {
+  const [initialValues, setInitialValues]= useState({
+    foodType: "",
+    restaurant: "",
+    foodCategory: "",
+    FoodName: "",
+    FoodPrice: "",
+  })
+  useEffect(()=>{
+    if(props.selectedItem){
+      if(props.flag==="edit_food"){
+        setInitialValues(props.selectedItem)
+      }
+    }
+  },[props.selectedItem])
+  // console.log(props.selectedItem)
+
   const  [foodImg, setFoodImg] = useState('')
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
@@ -30,6 +48,15 @@ const AddFood = (props) => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: props.selectedItem,
+      initialValues: props.selectedItem || {
+        foodType: '',
+        restaurant:' ',
+        foodCategory: '',
+        FoodName:' ',
+        FoodPrice: '',
+        file: '',
+
+      },
       enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
@@ -38,29 +65,37 @@ const AddFood = (props) => {
         formData.append('foodType', values.foodType);
         formData.append('restaurant', values.restaurant);
         formData.append('foodCategory', values.foodCategory);
+        formData.append('FoodName', values.FoodName);
+        formData.append('FoodPrice', values.FoodPrice);
 
-
-
-
-        const requestOptions = {
-          method: props.edit_food ? "PUT" : "POST",
-          // headers: { "Content-Type": "application/json" },
-          body: formData
-        };
+        let requestOptions
+        if(props.flag==="edit_food"){
+           requestOptions = {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values)
+          };
+        }else{
+          requestOptions = {
+            method:  "POST",
+            body:formData
+          };
+        }
         const response = await fetch(
           "http://localhost:4000/foods/",
           requestOptions
         );
         const data = await response.json();
-		if (data) {
-			message.success(data.message)
-			action.resetForm()
-		}else{
-			message.success(data.errDetail)
-		}
-	}
-      ,
+        if (data) {
+          message.success(data.message)
+          props.fetchFood()
+          action.resetForm()
+        }else{
+          message.success(data.errDetail)
+        }
+      }
     });
+    
   return (
     <>
     <div className="formWrapper">
@@ -104,6 +139,23 @@ const AddFood = (props) => {
                     <Message>{errors.restaurant}</Message>
                   ) : null}{" "}
                 </FormGroup>
+
+                <FormGroup>
+                  <Label className="label-modal">Food Name</Label>
+                  <Input
+                    id="FoodName"
+                    type="FoodName"
+                    autoComplete="off"
+                    name="FoodName"
+                    placeholder="Food Item Name "
+                    value={values.FoodName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.restaurant && touched.restaurant ? (
+                    <Message>{errors.restaurant}</Message>
+                  ) : null}{" "}
+                </FormGroup>
                 <FormGroup>
                   <Label className="label-modal">Food Category</Label>
                   <Select
@@ -121,7 +173,24 @@ const AddFood = (props) => {
                     <Option value="isNonVeg">isNonVeg</Option>
                   </Select>
                 </FormGroup>
-                {/* <img src={require('../../uploads/')} alt="32" width={100} height={100}/>  */}
+                <FormGroup>
+                  <Label className="label-modal">Food Price</Label>
+                  <Input
+                  
+                    id="FoodPrice"
+                    type="FoodPrice"
+                    autoComplete="off"
+                    name="FoodPrice"
+                    placeholder=" Price "
+                    value={values.FoodPrice}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.FoodPrice && touched.FoodPrice? (
+                    <Message>{errors.FoodPrice}</Message>
+                  ) : null}{" "}
+                </FormGroup>
+                <img src={require('../../uploads/ic.png')} alt="32" width={100} height={100}/> 
                 <input type="file"
                  onChange={(e)=> saveImgToState(e)}
                 />
@@ -147,14 +216,15 @@ const Wrapper = styled.section`
     justify-content: center;
     min-height: 100vh;
     
+    
   }
 
   .screen {
 
     background: #ab0013;
     position: relative;
-    height: 750px;
-    width: 500px;
+    height: 1000px;
+    width:700px;
     color: white;
     box-shadow: 0px 0px 24px #bc8f8f;
   }
@@ -162,6 +232,7 @@ const Wrapper = styled.section`
     z-index: 1;
     position: relative;
     height: 100%;
+    
   }
   .screen__background {
     position: absolute;
@@ -180,6 +251,7 @@ const Wrapper = styled.section`
     outline: 0;
     border: 0;
     padding: 10px 10px 10px 60px;
+    margin-right: 300px;
   }
 
   .label-modal{
