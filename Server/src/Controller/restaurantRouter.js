@@ -1,9 +1,20 @@
 const express = require("express");
 const Restaurant = require('../Model/restaurantSchema')
 const router = express.Router();
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../Client/src/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname )
+    }
+  })
+  const upload = multer({ storage: storage })
 
 // post request for register the user
-router.post("/", async (req, res) => {
+router.post("/", upload.single('file'),async (req, res) => {
     try{
         const selectedRestro = Restaurant.create(req.body)
         console.log(req.body)
