@@ -8,6 +8,7 @@ const foodSchema = new mongoose.Schema(
         foodImage: {type: String,},
         FoodName: {type: String,},
         FoodPrice: {type: String,},
+        
     },
     {
         collection: "Foods"

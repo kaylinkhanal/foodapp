@@ -7,9 +7,9 @@ export const LoginSchema = Yup.object({
 
 export const RestaurantFormSchema = Yup.object({
   name: Yup.string().required("Please enter restaurant name"),
- /* location:Yup.string().required("Please enter the location of restaurant"),
-  rating:Yup.number().min(0).max(5).required("Enter the rating"),
-  restaurantCategory:Yup.string().required("Select the restaurant category")*/
+  // location:Yup.string().required("Please enter the location of restaurant"),
+  // rating:Yup.number().min(0).max(5).required("Enter the rating"),
+  // restaurantCategory:Yup.string().required("Select the restaurant category")
 })
 
 export const AddFoodSchema = Yup.object({

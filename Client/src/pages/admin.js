@@ -100,7 +100,7 @@ const Admin = () => {
                       <td>{value.foodType}</td>
                       <td>{value.foodCategory}</td>
                       <td>{value.FoodPrice}</td>
-                     {/* <td><img src={require('../uploads/values.uploads')} alt="32" width={100} height={100}/> </td>  */}
+                     <td><img src={require('../uploads/'+value.foodImage)} alt="32" width={100} height={100}/> </td>  
                       
                       <td><button onClick={()=>{
                           setSelectedItem(value)

@@ -11,11 +11,11 @@ const storage = multer.diskStorage({
       cb(null, file.originalname )
     }
   })
+  
 
 const upload = multer({ storage: storage })
 // post request for register the user
-router.post("/", async (req, res) => {
-    console.log(req.body)
+router.post("/", upload.single('file'),async (req, res) => {
     try{
         const selectedRestro = Restaurant.create(req.body)
         console.log(req.body)

@@ -48,7 +48,7 @@ const AddRestaurant = (props) => {
 
 	  const  [RestroImg, setRestroImg] = useState('')
 	  const saveImgToState = (e) => {
-      console.log(e.target.files[0])
+      
 		  setRestroImg(e.target.files[0])
 	  }
 
@@ -58,7 +58,7 @@ const AddRestaurant = (props) => {
         name: '',
         location:' ',
         rating: '',
-		    category:"",
+		    category:'',
         file: '',
 
       },
@@ -70,7 +70,7 @@ const AddRestaurant = (props) => {
         formData.append('name',values.name);
         formData.append('location', values.location);
         formData.append('rating', values.rating);
-		    formData.append('category ', values.category);
+		    formData.append('category', values.category);
 
         let requestOptions
         if(props.flag==="edit_restro"){
@@ -80,6 +80,7 @@ const AddRestaurant = (props) => {
             body: JSON.stringify(values)
           };
         }else{
+          console.log(formData)
           requestOptions = {
             method:  "POST",
             body:formData

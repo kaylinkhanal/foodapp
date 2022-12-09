@@ -5,7 +5,7 @@ const restaurantSchema = new mongoose.Schema(
         name: {type: String, },
         location: {type: String, },
         rating: {type: Number},
-        category: {type: String, },
+        category: {type: String,},
     },
     {
         collection: "Restaurants"
