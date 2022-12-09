@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import AddFood from "./pages/Food/AddFood";
 import Restaurant from "./pages/restaurant/restaurant";
+import RestaurantDetails from "./pages/restaurant/RestaurantDetails";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
 import Food from "./pages/Food/AddFood";
@@ -72,7 +73,8 @@ const UserRoute= () => {
   return (
     <Routes>
     <Route path="/restaurant-list" element={<Restaurant />} />
-    <Route path="/" element={<Restaurant />} />
+    <Route path="/restaurant-list/:id" element={<RestaurantDetails />} />
+    {/* <Route path="/" element={<Restaurant />} /> */}
     <Route path="/home" element={<HomePage />} />
     <Route path="/food" element={<AddFood />} />
     <Route path="/admin/restaurant" element={<AddRestaurant />} />

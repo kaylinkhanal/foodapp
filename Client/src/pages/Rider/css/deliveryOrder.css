@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.order-header{
+    text-align: center;
+    padding: 10px;
+}
+.orders{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    text-align: left;
+    border: 1px solid grey;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.order-card{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    border-bottom: 1px solid grey;
+    /* padding: 1rem; */
+}
+
+.order-confirmation{
+    padding: 1rem;
+}
+
+.order-confirmation button{
+    margin: 0.4rem;    
+}
