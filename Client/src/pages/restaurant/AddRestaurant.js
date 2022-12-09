@@ -58,7 +58,7 @@ const AddRestaurant = (props) => {
         name: '',
         location:' ',
         rating: '',
-		category:"",
+		    category:"",
         file: '',
 
       },
@@ -86,6 +86,7 @@ const AddRestaurant = (props) => {
           };
         }
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
+   
 		const data = await response.json();
 		if (data) {
 			message.success(data.message)

@@ -6,6 +6,7 @@ const saltRounds = 0;
 
 // post request for register the user
 router.post("/", async (req, res) => {
+   
     try{
         bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
             req.body.password= hash
