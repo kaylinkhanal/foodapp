@@ -35,7 +35,7 @@ const FoodList = (props)=>{
                             </div>
                         </div>
                     )
-                }):'loading...'}
+                }):'Foods not found'}
             </div>
         </>
     )

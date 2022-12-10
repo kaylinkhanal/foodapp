@@ -6,7 +6,7 @@ const FoodCategories = (props)=>{
         <div className="categories_list">
             <h3>Categories</h3>
             <ul>
-                {props.categoryList.map((category,id)=>{
+                {props.filterCategory.map((category,id)=>{
                     return(
                         <li key={id}>{category.foodCategory}</li>
                     )

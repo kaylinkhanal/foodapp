@@ -65,6 +65,7 @@ width: 404px;
     max-height: 300px;
     overflow: hidden;
     position: relative;
+    background: #cf450e;
 }
 
 .card_img img {

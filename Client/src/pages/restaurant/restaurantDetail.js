@@ -12,6 +12,8 @@ const RestaurantDetail = () => {
     const params = useParams();
     const { id } = params;
 
+    console.log(foods)
+
     // fetch restaurant by id
     const fetchList = async () => {
         const response = await fetch(`http://localhost:4000/restaurant/${id}`)
@@ -27,10 +29,10 @@ const RestaurantDetail = () => {
     // fetch food List
     const fetchRestroFood = async()=>{
         const response = await fetch('http://localhost:4000/food')
-        const data = response.json()
+        const data = await response.json()
         if(data){
-            setFoods(data.foodList)
             console.log(data)
+            setFoods(data.foodList)
         }else{
             console.log('food not found')
         }
@@ -40,6 +42,12 @@ const RestaurantDetail = () => {
         fetchList()
         fetchRestroFood()
     }, [id])
+
+    const filterFood = foods.filter((food, id)=>{
+        return restaurant.name === food.restaurantName
+    })
+
+    console.log(filterFood)
     
     return (
         <div id="detail">
@@ -60,7 +68,7 @@ const RestaurantDetail = () => {
             </div>
 
             <div className="related_food">
-                <Food/>
+                <Food filterFood={filterFood}/>
             </div>
         </div>
     )

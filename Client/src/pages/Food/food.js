@@ -3,7 +3,7 @@ import FoodCart from '../../component/food/foodCart'
 import FoodCategories from '../../component/food/foodCategories'
 import FoodList from '../../component/food/foodList'
 
-const Food = () => {
+const Food = (props) => {
     const [foodList, setFoodList] = useState([])
 
     const fetchFood = async()=>{
@@ -17,12 +17,14 @@ const Food = () => {
 		}
     }
 
-  const categoryList = foodList.filter((item, index)=>{
-    if(foodList.indexOf(item.foodCategory) === foodList[index]){
-        return item.foodCategory
-    }
-  })
-  console.log(categoryList)
+    const uniqCategory = [];
+    const filterCategory = foodList.filter((item)=>{
+        const duplicateItem = uniqCategory.includes(item.foodCategory)
+        if(!duplicateItem){
+            uniqCategory.push(item.foodCategory)
+            return item
+        }
+    })
 
     useEffect(()=>{
         fetchFood()
@@ -32,8 +34,8 @@ const Food = () => {
             <div id ="food">
                 <div className='container'>
                     <div className='food_block'>
-                        <FoodCategories categoryList={categoryList}/>
-                        <FoodList foodList={foodList}/>
+                        <FoodCategories filterCategory={filterCategory}/>
+                        <FoodList foodList={props.filterFood}/>
                         <FoodCart/>
                     </div>
                 </div>
