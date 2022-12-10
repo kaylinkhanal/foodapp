@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import logger from "redux-logger";
 import userSlice from "./reducerSlice/userSlice";
 import restaurantSlice from "./reducerSlice/restaurantSlice";
+import orderSlice from "./reducerSlice/orderSlice"
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -13,7 +14,8 @@ const persistConfig = {
 
 const reducer = combineReducers({
 users: userSlice,
-restaurant: restaurantSlice
+restaurant: restaurantSlice,
+orders: orderSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

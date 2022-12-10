@@ -10,7 +10,6 @@ const RestaurantList = (props) => {
 	return (
 		<div className='card_list'>
 			{props.restaurants.length > 0 ? props.restaurants.map((item, id) => {
-				console.log(item)
 				return (
 					<div className='card' key={id}>
 						<div className='card_img'>

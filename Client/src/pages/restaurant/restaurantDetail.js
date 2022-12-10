@@ -12,7 +12,7 @@ const RestaurantDetail = () => {
     const params = useParams();
     const { id } = params;
 
-    console.log(foods)
+    // console.log(foods)
 
     // fetch restaurant by id
     const fetchList = async () => {
@@ -31,7 +31,6 @@ const RestaurantDetail = () => {
         const response = await fetch('http://localhost:4000/food')
         const data = await response.json()
         if(data){
-            console.log(data)
             setFoods(data.foodList)
         }else{
             console.log('food not found')
@@ -47,7 +46,7 @@ const RestaurantDetail = () => {
         return restaurant.name === food.restaurantName
     })
 
-    console.log(filterFood)
+    // console.log(filterFood)
     
     return (
         <div id="detail">
