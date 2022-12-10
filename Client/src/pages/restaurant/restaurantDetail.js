@@ -4,47 +4,63 @@ import CardImage from '../../images/card_img.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-solid-svg-icons'
 import Rating from '@mui/material/Rating';
+import Food from "../Food/food"
 
 const RestaurantDetail = () => {
     const [restaurant, setRestaurant] = useState([])
+    const [foods, setFoods] = useState([])
     const params = useParams();
-    const { _id } = params;
+    const { id } = params;
 
-    console.log(restaurant.name)
-    console.log(restaurant)
-
+    // fetch restaurant by id
     const fetchList = async () => {
-        const response = await fetch(`http://localhost:4000/restaurant/${_id}`)
+        const response = await fetch(`http://localhost:4000/restaurant/${id}`)
         const data = await response.json()
+        
         if (data) {
-            setRestaurant(data.details)
+            setRestaurant(data)
         } else {
             setRestaurant({ message: 'not found' })
         }
     }
 
+    // fetch food List
+    const fetchRestroFood = async()=>{
+        const response = await fetch('http://localhost:4000/food')
+        const data = response.json()
+        if(data){
+            setFoods(data.foodList)
+            console.log(data)
+        }else{
+            console.log('food not found')
+        }
+    }
+
     useEffect(() => {
         fetchList()
-    }, [_id])
-
+        fetchRestroFood()
+    }, [id])
+    
     return (
         <div id="detail">
-            <div className="container">
-                <div className="restro_detail">
-                    <div className="restro_img">
-                        <img src={CardImage} alt="" />
-                    </div>
-
-                    <div className="restro_info">{_id}
-                        <h1>{restaurant.name}</h1>
-                        <p className='location'><i><FontAwesomeIcon icon={faLocationDot} /></i>{restaurant.location}</p>
-                        <p className='category'><i><FontAwesomeIcon icon={faBowlRice} /></i>{restaurant.category}</p>
-                        <p className='rating'>
-                            <i><FontAwesomeIcon icon={faFontAwesome} /></i>
-                            <Rating name="size-small read-only" value={restaurant.rating} defaultValue={2} precision={0.5} readOnly />
-                        </p>
-                    </div>
+            <div className="restro_detail">
+                <div className="restro_img">
+                    <img src={CardImage} alt="" />
                 </div>
+
+                <div className="restro_info">
+                    <h1>{restaurant.name}</h1>
+                    <p className='location'><i><FontAwesomeIcon icon={faLocationDot} /></i>{restaurant.location}</p>
+                    <p className='category'><i><FontAwesomeIcon icon={faBowlRice} /></i>{restaurant.category}</p>
+                    <p className='rating'>
+                        <i><FontAwesomeIcon icon={faFontAwesome} /></i>
+                        <Rating name="size-small read-only" value={restaurant.rating} defaultValue={2} precision={0.5} readOnly />
+                    </p>
+                </div>
+            </div>
+
+            <div className="related_food">
+                <Food/>
             </div>
         </div>
     )

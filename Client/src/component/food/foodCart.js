@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 
 const FoodCart = ()=>{
     return(
@@ -6,19 +8,20 @@ const FoodCart = ()=>{
             <div id="cart">
                 <h3>Your Order</h3>
                 <div className="cart_content">
-                    <h3>Restaurant Name:</h3>
-                    <div className="cart_items">
-                        <div>sdfk</div>
-                        <div className="qty"></div>
-                        <p>34</p>
+                    <div className="cart_info">
+                        <h4>Restaurant Name: Pizzaa Hut</h4>
+                        <div className="qty">
+                            <span>+</span>
+                            <span>1</span>
+                            <span>-</span>
+                        </div>
+                        <div className="totalAmt">
+                            <p>Subtotal:</p>
+                            <p>Delivery Charge: </p>
+                            <p>Total</p>
+                        </div>
+                        <button>Proceed to Checkout</button>
                     </div>
-
-                    <div className="totalAmt">
-                        <p>Subtotal:</p>
-                        <p>Delivery Charge: </p>
-                        <p>Total</p>
-                    </div>
-                    <button>Proceed to Checkout</button>
                 </div>
             </div>
         </>

@@ -20,7 +20,7 @@ const DeliveryRequest = () => {
   	},[])
 
     const filterUsers = users.filter((user, id)=>{
-        return user.address === address && user.role === 'user'
+        return address === user.address && user.role === 'user'
     })
 
     console.log(filterUsers, address)

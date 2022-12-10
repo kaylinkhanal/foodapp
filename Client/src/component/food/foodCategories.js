@@ -5,11 +5,13 @@ const FoodCategories = (props)=>{
         <>
         <div className="categories_list">
             <h3>Categories</h3>
-            {props.categoryList.map((category)=>{
-                return(
-                    <li key={category.fooName}>{category.foodCategory}</li>
-                )
-            })}
+            <ul>
+                {props.categoryList.map((category,id)=>{
+                    return(
+                        <li key={id}>{category.foodCategory}</li>
+                    )
+                })}
+            </ul>
         </div>
         </>
     )

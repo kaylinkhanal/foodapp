@@ -5,7 +5,7 @@ import FoodList from '../../component/food/foodList'
 
 const Food = () => {
     const [foodList, setFoodList] = useState([])
-    
+
     const fetchFood = async()=>{
         const response = await fetch('http://localhost:4000/food')
         const data = await response.json()
@@ -17,17 +17,19 @@ const Food = () => {
 		}
     }
 
-    const uniq = [];
-    
-  const categoryList = foodList.filter(item => uniq[item.foodCategory] !== (uniq[item.foodCategory] = true))
-
+  const categoryList = foodList.filter((item, index)=>{
+    if(foodList.indexOf(item.foodCategory) === foodList[index]){
+        return item.foodCategory
+    }
+  })
+  console.log(categoryList)
 
     useEffect(()=>{
         fetchFood()
     }, [])
     return (
         <>
-            <div id ="food" className='top_section'>
+            <div id ="food">
                 <div className='container'>
                     <div className='food_block'>
                         <FoodCategories categoryList={categoryList}/>

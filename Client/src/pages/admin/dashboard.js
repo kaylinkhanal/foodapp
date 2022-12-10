@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Userimage from '../../images/dummy.svg'
 import {Link} from 'react-router-dom'
 
-const Admin = ()=>{
+const Dashboard = ()=>{
     const { name } = useSelector(state => state.users)
 
     return(
@@ -16,20 +16,10 @@ const Admin = ()=>{
                         <span> Hi, {name}</span>
                     </div>
 
-                    <div className='btn_grp'>
-                        <ul className="home_items">
-                            <li>
-                                <Link to="/add-restaurant">Add Restaurant</Link>
-                            </li>
-                            <li>
-                                <Link to="/add-food">Add Food</Link>
-                            </li>
-                        </ul>
-                    </div>
                     </div>
                 </div>
             </div>
         </>
     )
 }
-export default Admin
+export default Dashboard
