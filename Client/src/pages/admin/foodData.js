@@ -3,7 +3,7 @@ import { message, Popconfirm,Modal } from 'antd';
 import 'antd/dist/antd.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
-import AddFood from '../Food/AddFood';
+import AddFood from '../admin/AddFood';
 
 const FoodData = () => {
 	const [foodList, setFoodList] = useState([])
@@ -68,11 +68,11 @@ const FoodData = () => {
 	return (
 		<>
 			<Modal title="Update Food Data" open={isEditModalOpen} onCancel={handleCancel} footer={null}>
-				<AddFood flag="edit_food" selectedItem={selectedItem}/>
+				<AddFood flag="edit_food" selectedItem={selectedItem} fetchFood={fetchFood} handleCancel={handleCancel}/>
 			</Modal>
 
 			<Modal title="Add New Food" open={isAddModalOpen} onCancel={handleCancel} footer={null}>
-				<AddFood/>
+				<AddFood  handleCancel={handleCancel}  fetchFood={fetchFood}/>
 			</Modal>
 
 			<div id='food_datalist' className='top_section'>

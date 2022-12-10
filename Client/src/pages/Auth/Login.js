@@ -33,8 +33,6 @@ const Login = () => {
 
 			if(data.detail.role === 'user' || data.detail.role === 'rider'){
 				navigate('/')
-			}else{
-				navigate('/admin')
 			}
 
 			// console.log(data.detail.role)

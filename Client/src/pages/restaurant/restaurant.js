@@ -8,8 +8,6 @@ import RestaurantList from './restaurantList'
 const Restaurant = ()=>{
 	const [restaurants, setRestaurants] = useState([])
 
-	console.log(restaurants)
-
 	const fetchList = async() => {
 		const response = await fetch('http://localhost:4000/restaurant')
 		const data = await response.json();

@@ -3,7 +3,7 @@ import { message, Popconfirm, Modal } from 'antd';
 import 'antd/dist/antd.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
-import AddRestaurant from '../restaurant/AddRestaurant';
+import AddRestaurant from '../admin/AddRestaurant';
 // import AdminSideMenu from './adminSideMenu';
 
 const RestaurantData = ()=>{
@@ -64,11 +64,11 @@ const RestaurantData = ()=>{
     return(
         <>
             <Modal title="Update Restaurant Data" open={isEditModalOpen} onCancel={handleCancel} footer={null}>
-				<AddRestaurant flag="edit_restro" selectedItem={selectedItem}/>
+				<AddRestaurant flag="edit_restro" selectedItem={selectedItem} handleCancel={handleCancel} fetchRestaurant={fetchRestaurant}/>
 			</Modal>
 
 			<Modal title="Add New Restaurant" open={isAddModalOpen} onCancel={handleCancel} footer={null}>
-				<AddRestaurant/>
+				<AddRestaurant handleCancel={handleCancel} fetchRestaurant={fetchRestaurant}/>
 			</Modal>
 
             <div id='restro_datalist' className='top_section'>

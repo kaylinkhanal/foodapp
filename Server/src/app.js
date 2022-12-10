@@ -13,6 +13,7 @@ const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
 const restroRouter = require("./Controller/restaurantRouter");
 const foodRouter = require("./Controller/foodRouter");
+
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/restaurant", restroRouter);

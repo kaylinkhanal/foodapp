@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-// import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
-import Userimage from '../../images/dummy.svg'
+import Userimage from '../../images/dummy.svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { setRestaurantList } from '../../reducerSlice/restaurantSlice';
 
 const AddRestaurant = (props) => {
+	// const foodId = props.selectedItem._id
 	const { name } = useSelector(state => state.users)
+	const [foodImg, setImage] = useState()
+
+	const dispatch = useDispatch()
+
 	const [initialValues, setInitialValues] = useState({
 		name: '',
 		location: '',
 		rating: '',
 		category: '',
+		restroImage:'',
 	})
 	console.log(initialValues)
 
@@ -25,27 +31,53 @@ const AddRestaurant = (props) => {
 		}
 	},[props.selectedItem])
 
+	// save restro Image
+	const saveImage = (e)=>{
+		setImage(e.target.files[0])
+	}
+
 	// const navigate = useNavigate()
 	const saveRestro = async (values) => {
-		const requestOptions = {
-			method: props.edit_restro ? "PUT" : "POST",
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name: values.name,
-				location: values.location,
-				rating: values.rating,
-				category: values.category,
-			})
-		};
+		const formData = new FormData();
+		formData.append = ('file', foodImg)
+		formData.append = ('name', values.name)
+		formData.append = ('location', values.location)
+		formData.append = ('rating', values.rating)
+		formData.append = ('category', values.category)
+		let requestOptions
+		if(props.flag){
+			requestOptions = {
+				method: "PUT",
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					_id: props.selectedItem._id,
+					name: values.name,
+					location: values.location,
+					rating: values.rating,
+					category: values.category,
+				})
+			}
+		}else{
+			requestOptions = {
+				method: 'POST',
+				body: formData,
+				dataType: 'jsonP',
+			}
+		}
+
 		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
 		const data = await response.json();
-
+		console.log(data)
 		if (data) {
-			console.log(data)
 			message.success(data.message)
 		}else{
 			message.success(data.errDetail)
 		}
+		if(!props.flag){
+			dispatch(setRestaurantList(values))
+		}
+		
+		props.fetchRestaurant()
 	}
 
 	const SignupSchema = Yup.object().shape({
@@ -84,6 +116,7 @@ const AddRestaurant = (props) => {
 									validationSchema={SignupSchema}
 									onSubmit={values => {
 										saveRestro(values)
+										props.handleCancel()
 										// same shape as initial values
 										// console.log('clicked');
 									}}
@@ -107,6 +140,8 @@ const AddRestaurant = (props) => {
 												<option value="Fast Food" label="Fast Food">Thai</option>
 											</select>
 											{errors.category && touched.category ? <div className="error">{errors.category}</div> : null}
+
+											<input type="file" onChange={(e)=> saveImage(e)}></input>
 
 											<button type="submit">Submit</button>
 										</Form>

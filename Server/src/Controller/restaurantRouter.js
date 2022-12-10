@@ -1,22 +1,33 @@
 const express = require("express");
 const Restaurant = require('../Model/restaurantSchema')
 const router = express.Router();
+const multer  = require('multer')
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../Client/src/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname )
+    }
+})
+
+const upload = multer({ storage: storage }).single('file')
 
 
 // post request for register the user
-router.post("/", async (req, res) => {
+router.post("/", upload, async (req, res) => {
     try{
-        const selectedRestro = Restaurant.create(req.body)
+        console.log(req.file)
+        req.body.restroImage = req.file.filename
+
         console.log(req.body)
+        const selectedRestro = Restaurant.create(req.body)
         res.json({
             message: 'Added your selected restaurant',
             restroDetail: selectedRestro
         })
     }catch(error){
-        res.json({
-            errorMsg: 'The restaurant not found',
-            errDetail: error
-        })
+        console.log(error)
     }
 });
 
@@ -24,25 +35,28 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     try{
         const restaurantList = await Restaurant.find()
-        res.json({
-            restaurantList : restaurantList
-        })
+        if(restaurantList){
+            res.json({
+                restaurantList : restaurantList
+            })
+        }else{
+            res.status(404).send({message: 'restaurant not found'})
+        }
+        
     }catch(error){
         console.log(error)
     }
 });
 
-// prduct detail route
-router.get("/:_id", async(req, res)=>{
+// restaurant detail route
+router.get("/:id", async(req, res)=>{
     try{
-        console.log(req.params._id)
-        const key = req.params._id
+        console.log(req.params.id)
+        const key = req.params.id
 
-        const restaurant = await Restaurant.find({_id: key})
+        const restaurant = await Restaurant.findById({_id: key})
         if(restaurant){
-            res.json({
-                details: restaurant
-            })
+            res.send(restaurant)
         }else{
             res.send('Restaurant not found')
         }
@@ -52,20 +66,26 @@ router.get("/:_id", async(req, res)=>{
     }
 })
 
-// delete restaurant
-router.delete('/:id', async(req, res)=>{
+// update restaurant data
+router.put('/', async(req, res)=>{
     try{
-        const deleteRestro = await Restaurant.deleteOne({_id: req.params.id})
-        res.send(deleteRestro)
+        req.body.foodImg = req.file?.filename || ''
+        console.log(req.body._id)
+        const updateRestroData = await Restaurant.updateOne({_id: req.body._id},{$set: req.body})
+        res.send({
+            message: 'updated the data',
+            updatedItem: updateRestroData
+        })
     }catch(err){
         console.log(err)
     }
 })
 
-router.put('/:id', async(req, res)=>{
+// delete restaurant
+router.delete('/:id', async(req, res)=>{
     try{
-        const editData = await Restaurant.updateOne({_id: req.params.id},{$set: req.body})
-        res.send(editData)
+        const deleteRestro = await Restaurant.deleteOne({_id: req.params.id})
+        res.send(deleteRestro)
     }catch(err){
         console.log(err)
     }

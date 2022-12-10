@@ -14,7 +14,7 @@ const userSlice = createSlice({
     reducers: {
         setCredentials: (state, actions)=>{
             state.name = actions.payload.name
-            state.phoneNumber = actions.payload.phoneNumber
+            state.phoneNumber = actions.payload.pxhoneNumber
             state.token = actions.payload.token
             state.role = actions.payload.role
             state.address = actions.payload.address

@@ -16,8 +16,8 @@ const upload = multer({ storage: storage }).single('file')
 // post request for register the user
 router.post('/',upload, async (req, res) => {
     try{
-        console.log(req.file)
-        req.body.foodImage = req.file.filename || ''
+        // console.log(req.file)
+        req.body.foodImage = req.file.filename
 
         // console.log(req.body)
         const addFood = Food.create(req.body)
@@ -33,7 +33,7 @@ router.post('/',upload, async (req, res) => {
     }
 });
 
-// view users
+//get food list
 router.get("/", async (req, res) => {
     try{
         const foodList = await Food.find()
@@ -43,6 +43,22 @@ router.get("/", async (req, res) => {
         })
     }catch(err){
         console.log(err)
+    }
+});
+
+// update food data
+router.put("/",  async (req, res) => {
+    req.body.foodImage = req.file?.filename || ''
+    try{
+        console.log(req.body)
+        const updateFoodData = await Food.findByIdAndUpdate({_id: req.body._id}, {$set: req.body})
+
+        res.json({
+            message: 'Updated food data',
+            updatedItem: updateFoodData
+        })
+    }catch(error){
+        console.log(error)
     }
 });
 
@@ -56,34 +72,6 @@ router.delete('/:id', async(req, res)=>{
         console.log(err)
     }
     
-})
-
-// router.get('/:id', async(req, res)=>{
-//     try{
-//         const result = await Food.findOne({_id:req.params.id})
-
-//         if(result){
-//             res.send(result)
-//         }else{
-//             res.json({
-//                 msg: 'result not found'
-//             })
-//         }
-//     }catch(err){
-//         console.log(err)
-//     }
-// })
-
-router.put('/:id', async(req, res)=>{
-    try{
-        const result = await Food.updateOne(
-            {_id : req.params.id},
-            {$set: req.body}
-        )
-        res.send(result)
-    }catch(err){
-
-    }
 })
 
 module.exports = router;

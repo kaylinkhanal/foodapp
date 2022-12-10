@@ -1,19 +1,21 @@
 import React from 'react'
 import CardImage from '../../images/card_img.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBowlRice, faLocationDot, faFontAwesome, faExpand } from '@fortawesome/free-solid-svg-icons'
+import { faBowlRice, faLocationDot, faFontAwesome, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Rating from '@mui/material/Rating';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import defaultImg from '../../images/meal.png'
 
 const RestaurantList = (props) => {
 	return (
 		<div className='card_list'>
-			{props.restaurants.length > 0 ? props.restaurants.map((item) => {
+			{props.restaurants.length > 0 ? props.restaurants.map((item, id) => {
+				console.log(item)
 				return (
-					<Link to={`restaurant/${item._id}`}><div className='card' key={item.name}>
+					<div className='card' key={id}>
 						<div className='card_img'>
-							<img src={CardImage} alt="" />
-							<h3 className='card_name'>{item.name}</h3>
+							<img src={item.restroImage ? require('../../uploads/' + item.restroImage) : defaultImg} alt="food"/> 
+							<h3 className='card_name'><Link to={`restaurant/${item._id}`}>{item.name}</Link></h3>
 						</div>
 						<div className='card_info'>
 							<p className='card_location'><i><FontAwesomeIcon icon={faLocationDot} /></i>{item.location}</p>
@@ -22,10 +24,9 @@ const RestaurantList = (props) => {
 								<i><FontAwesomeIcon icon={faFontAwesome} /></i>
 								<Rating name="size-small read-only" value={item.rating} defaultValue={2} precision={0.5} readOnly />
 							</p>
-							<button><FontAwesomeIcon icon={faExpand} /></button>
+							<button><Link to={`restaurant/${item._id}`}><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link></button>
 						</div>
 					</div>
-					</Link>
 				)
 			}) : 'loading'}
 		</div>
