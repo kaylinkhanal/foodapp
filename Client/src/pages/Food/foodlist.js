@@ -68,14 +68,9 @@ const FoodList = () => {
                   <div>{ item.foodType }</div>
                   <div>{ item.restaurant }</div>
                   <div>{ item.foodCategory }</div>
-<<<<<<< HEAD
-                  <div>{ item.FoodName }</div>
-                  <div>{ item.FoodPrice }</div>
-=======
                   <Button type="primary" onClick={()=>showModal(item)}>
       Edit
       </Button>
->>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
                 </div>
               </>
               )
