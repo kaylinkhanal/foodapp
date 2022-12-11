@@ -6,7 +6,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { setCredentials } from "../../reducerSlice/userSlice";
 
 const Navigation = () => {
-	const { role, token } = useSelector(state => state.users)
+	const { name, role, token } = useSelector(state => state.users)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
@@ -43,7 +43,7 @@ const Navigation = () => {
 
 					<div className="navbar_right">
 						<ul className="nav_list">
-							<li className="user_profile"><Link to="/user-profile"><FontAwesomeIcon icon={faUser} /></Link></li>
+							<li className="user_profile"><Link to="/user-profile"><FontAwesomeIcon icon={faUser} /></Link><span>{name}</span></li>
 							<li onClick={() => userLogout()}><i><FontAwesomeIcon icon={faRightFromBracket} /></i></li>
 						</ul>
 					</div>

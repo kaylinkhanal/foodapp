@@ -147,6 +147,10 @@ button:hover{
   background: #000;
 }
 
+button:disabled {
+  background: #ccc;
+}
+
 .login a {
   color: #cf450e;
 }
@@ -472,7 +476,7 @@ input[type="search"] {
 }
 
 .order_card {
-  background: rgb(207 69 14 / 40%);
+  background: rgb(255 255 255 / 40%);
   padding: 15px;
   /* color: #fff; */
   border-radius: 10px;
@@ -615,3 +619,11 @@ tr td:first-child:before
   color: #062b50;
 }
 
+.totalAmt p {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.totalAmt {
+  margin: 20px 0;
+}

@@ -25,8 +25,22 @@ const orderSlice = createSlice({
 
 			state.orderList = newOrderList
 		},
+
+        // add food quantity
+        increaseQuantity: (state,actions)=>{
+            console.log(actions.payload)
+            const index = state.orderList.findIndex(item => item._id === actions.payload._id)
+            state.orderList[index].quantity += 1
+        },
+
+        decreaseQuantity: (state,actions)=>{
+            const index = state.orderList.findIndex(item => item._id === actions.payload._id)
+            if(state.orderList[index].quantity > 1){
+				state.orderList[index].quantity -= 1
+			}
+        }
     }
 })
 
-export const {setOrderList, deleteItem} = orderSlice.actions;
+export const {setOrderList, deleteItem, increaseQuantity, decreaseQuantity} = orderSlice.actions;
 export default orderSlice.reducer

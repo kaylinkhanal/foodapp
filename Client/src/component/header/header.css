@@ -60,7 +60,7 @@ ul.nav_list li {
   font-weight: 700;
 }
 
-.user_profile {
+.user_profile a{
   height: 25px;
   width: 25px;
   background: #ccc;
@@ -69,4 +69,9 @@ ul.nav_list li {
   display: inline-block;
   border-radius: 50%;
   line-height: 25px;
+}
+
+.user_profile span{
+  font-size: 12px;
+  margin-left: 6px;
 }
