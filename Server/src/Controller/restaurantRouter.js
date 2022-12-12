@@ -16,6 +16,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 // post request for register the user
 router.post("/", upload.single('file'),async (req, res) => {
+     console.log(req.file)
+    req.body.restroImage = req.file.filename
     try{
         const selectedRestro = Restaurant.create(req.body)
         console.log(req.body)
