@@ -7,15 +7,6 @@ import { message } from 'antd';
 import 'antd/dist/antd.min.css';
 
 const FoodList = (props)=>{
-    const [searchItem, setSearchItem] = useState()
-    const searchFood =(key)=>{
-        console.log(key)
-        const filterFood = props.foodList.filter((item)=>{
-            return item
-        })
-        setSearchItem(filterFood)
-    }
-
     const dispatch = useDispatch()
 
     const handleClick = (e, id) => {
@@ -23,6 +14,17 @@ const FoodList = (props)=>{
         props.foodList[id].quantity = 1
         message.success('Added your order to cart')
     };
+
+    const searchFood =async(key)=>{
+        console.log(key)
+        const response = await fetch(`http://localhost:4000/food?search=${key}`)
+        const data = await response.json()
+
+        if(data){
+            console.log(data)
+            props.setFoodList(data.foodList)
+        }
+    }
     
     return(
         <>

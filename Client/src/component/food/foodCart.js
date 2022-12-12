@@ -23,7 +23,7 @@ const FoodCart = ()=>{
     }
 
     const subTotal = orderList.reduce((total, orderedItem)=>{
-        console.log(orderedItem.foodPrice)
+        // console.log(orderedItem.foodPrice)
         return total + orderedItem.foodPrice * orderedItem.quantity
     },0)
 
