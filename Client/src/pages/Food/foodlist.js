@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Button, Modal } from 'antd';
 import AddFood from './AddFood'
 import 'antd/dist/antd.min.css';
+
 const FoodList = () => {
 
   const [ foodsList, setFoodsList ] = useState( [] )
@@ -12,10 +13,12 @@ const FoodList = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+
   const showModal = (item) => {
     setSelectedItem(item)
     setOpen(true);
   };
+
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
@@ -24,22 +27,21 @@ const FoodList = () => {
       setConfirmLoading(false);
     }, 2000);
   };
+
   const handleCancel = () => {
     console.log('Clicked cancel button');
     setOpen(false);
   };
-    const fetchData = async() => {
-      const response  = await fetch( 'http://localhost:4000/foods/' )
-      const data      = await response.json()
-      setFoodsList( data.foodsList )
-    }
+
+  const fetchData = async() => {
+    const response  = await fetch( 'http://localhost:4000/foods/' )
+    const data      = await response.json()
+    setFoodsList( data.foodsList )
+  }
   
     useEffect( () => {
       fetchData();
     }, [] )
-  
-    
-
   
     return (
       <>
@@ -71,6 +73,6 @@ const FoodList = () => {
       </>
     )
   
-  }
+}
   
   export default FoodList

@@ -19,6 +19,7 @@ const upload = multer({ storage: storage }).single('file')
 
 
 router.post("/", upload, async (req, res, next) => {
+    console.log( req )
     req.body.foodImage = req.file.filename
     try{
         const selectedFood = await Food.create(req.body)
@@ -51,7 +52,7 @@ router.get("/", async (req, res) => {
 router.put("/",  async (req, res, next) => {
     // req.body.foodImg = req.file?.filename || ''
     try{
-        console.log(req.body)
+        console.log(req)
         const selectedFood = Food.findByIdAndUpdate(req.body._id, req.body,
         function (err, docs) {
         if (err){

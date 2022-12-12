@@ -19,8 +19,9 @@ import {
 } from "../../Styles/FormStyle";
 
 const AddFood = (props) => {
-  const food_id = props.selectedItem._id
-  const [initialValues, setInitialValues]= useState({
+  const [ foodImg, setFoodImg ] = useState('')
+  const [ food_id, setFoodID ]  = useState( '' )
+  const [ initialValues, setInitialValues ] = useState({
     foodType: "",
     restaurant: "",
     foodCategory: "",
@@ -32,12 +33,14 @@ const AddFood = (props) => {
       if(props.flag==="edit_food"){
         setInitialValues(props.selectedItem)
       }
+      setFoodID( props.selectedItem._id )
+      console.log( props.selectedItem._id )
     }
   },[props.selectedItem])
-  console.log( props.selectedItem )
-  const  [foodImg, setFoodImg] = useState('')
+ 
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
+    console.log( e.target.files[0] )
   } 
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -47,23 +50,21 @@ const AddFood = (props) => {
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
         const formData = new FormData();
-        console.log( formData )
         formData.append('file', foodImg);
         formData.append('foodType', values.foodType);
         formData.append('restaurant', values.restaurant);
         formData.append('foodCategory', values.foodCategory);
 
-        console.log( formData )
-
         const requestOptions = {
           method: props.flag ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+          body: props.flag ? JSON.stringify({
             _id: food_id,
+            foodImage: foodImg.name,
             foodType: values.foodType,
             restaurant: values.restaurant,
             foodCategory: values.foodCategory,
-          })
+          }) : formData
         };
         const response = await fetch(
           "http://localhost:4000/foods/",
