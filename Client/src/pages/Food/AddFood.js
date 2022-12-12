@@ -17,7 +17,13 @@ import {
   Select,
   Option,
 } from "../../Styles/FormStyle";
-
+const initialValues = {
+  foodType: "",
+  restaurant: "",
+  foodCategory: "",
+  FoodName: "",
+  FoodPrice: "",
+};
 const AddFood = (props) => {
   const [ foodImg, setFoodImg ] = useState('')
   const [ food_id, setFoodID ]  = useState( '' )
@@ -26,8 +32,9 @@ const AddFood = (props) => {
     restaurant: "",
     foodCategory: "",
     foodImage: "",
+    FoodName: "",
+    FoodPrice: "",
   })
-
   useEffect(()=>{
     if(props.selectedItem){
       if(props.flag==="edit_food"){
@@ -37,7 +44,8 @@ const AddFood = (props) => {
       console.log( props.selectedItem._id )
     }
   },[props.selectedItem])
- 
+  // console.log(props.selectedItem)
+
   const saveImgToState = (e) => {
     setFoodImg(e.target.files[0])
     console.log( e.target.files[0] )
@@ -45,7 +53,14 @@ const AddFood = (props) => {
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
-      initialValues,
+      initialValues: props.selectedItem || {
+        foodType: '',
+        restaurant:' ',
+        foodCategory: '',
+        FoodName:' ',
+        FoodPrice: '',
+        file: '',
+      },
       enableReinitialize: true,
       validationSchema: AddFoodSchema,
       onSubmit: async (values, action) => {
@@ -54,18 +69,29 @@ const AddFood = (props) => {
         formData.append('foodType', values.foodType);
         formData.append('restaurant', values.restaurant);
         formData.append('foodCategory', values.foodCategory);
+        formData.append('FoodName', values.FoodName);
+        formData.append('FoodPrice', values.FoodPrice);
 
-        const requestOptions = {
-          method: props.flag ? "PUT" : "POST",
-          headers: { "Content-Type": "application/json" },
-          body: props.flag ? JSON.stringify({
-            _id: food_id,
-            foodImage: foodImg.name,
-            foodType: values.foodType,
-            restaurant: values.restaurant,
-            foodCategory: values.foodCategory,
-          }) : formData
-        };
+        let requestOptions
+        if( props.flag === "edit_food" ){
+          requestOptions = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              _id: food_id,
+              foodImage: foodImg.name,
+              foodType: values.foodType,
+              restaurant: values.restaurant,
+              foodCategory: values.foodCategory,
+            })
+          }
+        } else {
+          requestOptions = {
+            method: "POST",
+            body: formData
+          };
+        }
+
         const response = await fetch(
           "http://localhost:4000/foods/",
           requestOptions
@@ -73,90 +99,126 @@ const AddFood = (props) => {
         const data = await response.json();
         if (data) {
           message.success(data.message)
+          props.fetchFood()
           action.resetForm()
-        }else{
+        } else {
           message.success(data.errDetail)
         }
-	}
-      ,
+      }
     });
+    
   return (
     <>
-    <div className="formWrapper">
-    <Wrapper>
-        <div className="container">
-          <div className="screen">
-            <div className="screen_content">
-              <form onSubmit={handleSubmit}>
-                <h2 className="modal-title">Add Food</h2>
-                <FormGroup>
-                  <Label className="label-modal">Food Type</Label>
-                  <Select
-                    id="foodType"
-                    type="foodType"
-                    autoComplete="off"
-                    name="foodType"
-                    placeholder="foodType"
-                    value={values.foodType}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    <Option>Select Food Type</Option>
-                    <Option value="Dinner">Dinner</Option>
-                    <Option value="breakfast">Breakfast</Option>
-                    <Option value="fastfood">Fast Food</Option>
-                  </Select>
-                </FormGroup>
-                <FormGroup>
-                  <Label className="label-modal">Restaurant</Label>
-                  <Input
-                    id="restaurant"
-                    type="restaurant"
-                    autoComplete="off"
-                    name="restaurant"
-                    placeholder="Restaurant Name"
-                    value={values.restaurant}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+      <div className="formWrapper">
+        <Wrapper>
+          <div className="container">
+            <div className="screen">
+              <div className="screen_content">
+                <form onSubmit={handleSubmit}>
+                  <h2 className="modal-title">Add Food</h2>
+                  <FormGroup>
+                    <Label className="label-modal">Food Type</Label>
+                    <Select
+                      id="foodType"
+                      type="foodType"
+                      autoComplete="off"
+                      name="foodType"
+                      placeholder="foodType"
+                      value={values.foodType}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      <Option>Select Food Type</Option>
+                      <Option value="Dinner">Dinner</Option>
+                      <Option value="breakfast">Breakfast</Option>
+                      <Option value="fastfood">Fast Food</Option>
+                    </Select>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label className="label-modal">Restaurant</Label>
+                    <Input
+                      id="restaurant"
+                      type="restaurant"
+                      autoComplete="off"
+                      name="restaurant"
+                      placeholder="Restaurant Name"
+                      value={values.restaurant}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.restaurant && touched.restaurant ? (
+                      <Message>{errors.restaurant}</Message>
+                    ) : null}{" "}
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label className="label-modal">Food Name</Label>
+                    <Input
+                      id="FoodName"
+                      type="FoodName"
+                      autoComplete="off"
+                      name="FoodName"
+                      placeholder="Food Item Name "
+                      value={values.FoodName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.restaurant && touched.restaurant ? (
+                      <Message>{errors.restaurant}</Message>
+                    ) : null}{" "}
+                  </FormGroup>
+                  <FormGroup>
+                    <Label className="label-modal">Food Category</Label>
+                    <Select
+                      id="foodCategory"
+                      type="foodCategory"
+                      autoComplete="off"
+                      name="foodCategory"
+                      placeholder="foodCategory"
+                      value={values.foodCategory}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      <Option>Select Food Category</Option>
+                      <Option value="isVeg">isveg</Option>
+                      <Option value="isNonVeg">isNonVeg</Option>
+                    </Select>
+                  </FormGroup>
+                  {foodImg && (
+                    <div>
+                      <img src={URL.createObjectURL(foodImg)} />
+                    </div>
+                  )}
+                  <input type="file" onChange={(e)=> saveImgToState(e)} />
+                  <FormGroup>
+                    <Label className="label-modal">Food Price</Label>
+                    <Input
+                      id="FoodPrice"
+                      type="FoodPrice"
+                      autoComplete="off"
+                      name="FoodPrice"
+                      placeholder=" Price "
+                      value={values.FoodPrice}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.FoodPrice && touched.FoodPrice? (
+                      <Message>{errors.FoodPrice}</Message>
+                    ) : null}{" "}
+                  </FormGroup>
+                  <img src={require('../../uploads/ic.png')} alt="32" width={100} height={100}/> 
+                  <input type="file"
+                  onChange={(e)=> saveImgToState(e)}
                   />
-                  {errors.restaurant && touched.restaurant ? (
-                    <Message>{errors.restaurant}</Message>
-                  ) : null}{" "}
-                </FormGroup>
-                <FormGroup>
-                  <Label className="label-modal">Food Category</Label>
-                  <Select
-                    id="foodCategory"
-                    type="foodCategory"
-                    autoComplete="off"
-                    name="foodCategory"
-                    placeholder="foodCategory"
-                    value={values.foodCategory}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    <Option>Select Food Category</Option>
-                    <Option value="isVeg">isveg</Option>
-                    <Option value="isNonVeg">isNonVeg</Option>
-                  </Select>
-                </FormGroup>
-                {foodImg && (
-                  <div>
-                    <img src={URL.createObjectURL(foodImg)} />
+                  <div style={{ textAlign: "center" }}>
+                    <Button type="submit">Submit</Button>
                   </div>
-                )}
-                <input type="file" onChange={(e)=> saveImgToState(e)}
-                />
-                <div style={{ textAlign: "center" }}>
-                  <Button type="submit">Submit</Button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </Wrapper>
-    </div>
-      
+        </Wrapper>
+      </div>
     </>
   );
 };
@@ -168,14 +230,15 @@ const Wrapper = styled.section`
     justify-content: center;
     min-height: 100vh;
     
+    
   }
 
   .screen {
 
     background: #ab0013;
     position: relative;
-    height: 750px;
-    width: 500px;
+    height: 1000px;
+    width:700px;
     color: white;
     box-shadow: 0px 0px 24px #bc8f8f;
   }
@@ -183,6 +246,7 @@ const Wrapper = styled.section`
     z-index: 1;
     position: relative;
     height: 100%;
+    
   }
   .screen__background {
     position: absolute;
@@ -201,6 +265,7 @@ const Wrapper = styled.section`
     outline: 0;
     border: 0;
     padding: 10px 10px 10px 60px;
+    margin-right: 300px;
   }
 
   .label-modal{

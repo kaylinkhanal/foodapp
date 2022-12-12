@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
-// import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
 
 const AddRestaurant = () => {

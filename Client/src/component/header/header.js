@@ -24,9 +24,8 @@ const Header = () => {
                     <div className="header_wrap">
                         <div className="logo">
                             <img src={Logo} alt="Logo"></img>
-                            <span style={{fontWeight: 700, fontSize: '20px', color: '#cf450e', letterSpacing: '2px', fontFamily: `'Poppins', sans-serif`}}>Fast Delivery</span>
+                            <span style={{ fontWeight: 700, fontSize: '20px', color: '#cf450e', letterSpacing: '2px', fontFamily: `'Poppins', sans-serif` }}>Fast Delivery</span>
                         </div>
-
                         <div className="right_nav">
                             <ul className="nav_list">
                                 <li><i><FontAwesomeIcon icon={faRightToBracket}/></i></li>

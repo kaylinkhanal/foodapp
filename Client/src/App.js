@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/restaurant/AddRestaurant";
 import AddFood from "./pages/Food/AddFood";
 import RestaurantList from "./pages/restaurant/restaurantList";
+import RestaurantDetails from "./pages/restaurant/RestaurantDetails";
 import DeliveryRequest from "./pages/Rider/deliveryRequest";
 import {useDispatch, useSelector} from "react-redux";
 import FoodList from "./pages/Food/foodlist"
@@ -37,9 +38,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="*" element={<ErrorPage/>}></Route>
+            <Route path="*" element={<ErrorPage />}></Route>
           </Routes>
-       </>
+        </>
       ) : (
         <>
           <Header/>
@@ -67,6 +68,7 @@ const UserRoute = () => {
     <Routes>
       <Route path="/" element={<RestaurantList />} />
       <Route path="*" element={<ErrorPage/>}></Route>
+      <Route path="/restaurant-list/:id" element={<RestaurantDetails />} />
     </Routes>
   )
 }
@@ -74,8 +76,8 @@ const UserRoute = () => {
 const RiderRoute = () => {
   return(
   <Routes>
-    <Route path="/" element={<DeliveryRequest />} />
     <Route path="*" element={<ErrorPage/>}></Route>
+    <Route path="/" element={<DeliveryRequest />} />
   </Routes>
   )
 }
@@ -89,6 +91,10 @@ const AdminRoute = () => {
       <Route path="/add-food" element={<AddFood />} />
       <Route path="/food-list" element={<FoodList />} />
       <Route path="*" element={<ErrorPage/>}></Route>
+      
+      
+      
+    
     </Routes>
   )
 }
