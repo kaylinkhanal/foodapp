@@ -39,11 +39,11 @@ const AddRestaurant = (props) => {
 	// const navigate = useNavigate()
 	const saveRestro = async (values) => {
 		const formData = new FormData();
-		formData.append = ('file', foodImg)
-		formData.append = ('name', values.name)
-		formData.append = ('location', values.location)
-		formData.append = ('rating', values.rating)
-		formData.append = ('category', values.category)
+		formData.append('file', foodImg)
+		formData.append('name', values.name)
+		formData.append('location', values.location)
+		formData.append('rating', values.rating)
+		formData.append('category', values.category)
 		let requestOptions
 		if(props.flag){
 			requestOptions = {
@@ -70,6 +70,7 @@ const AddRestaurant = (props) => {
 		console.log(data)
 		if (data) {
 			message.success(data.message)
+			await props.fetchRestaurant()
 		}else{
 			message.success(data.errDetail)
 		}
@@ -77,7 +78,6 @@ const AddRestaurant = (props) => {
 			dispatch(setRestaurantList(values))
 		}
 		
-		props.fetchRestaurant()
 	}
 
 	const SignupSchema = Yup.object().shape({

@@ -13,6 +13,7 @@ import FoodData from '../pages/admin/foodData'
 import RestaurantData from "../pages/admin/restaurantData";
 
 const AuthorizedUsers = (props) => {
+  debugger;
     if(props.authorizeRole === 'user'){
       return <UserRoutes />
     }else if(props.authorizeRole === 'rider'){
