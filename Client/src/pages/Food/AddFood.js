@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { AddFoodSchema } from "../../schemas/index";
@@ -25,6 +25,7 @@ const initialValues = {
   FoodPrice: "",
 };
 const AddFood = (props) => {
+  const inputRef = useRef(null)
   const [initialValues, setInitialValues]= useState({
     foodType: "",
     restaurant: "",
@@ -36,8 +37,11 @@ const AddFood = (props) => {
     if(props.selectedItem){
       if(props.flag==="edit_food"){
         setInitialValues(props.selectedItem)
+       
       }
     }
+    debugger;
+   inputRef.current.focus()
   },[props.selectedItem])
   // console.log(props.selectedItem)
 
@@ -127,6 +131,7 @@ const AddFood = (props) => {
                   <Label className="label-modal">Restaurant</Label>
                   <Input
                     id="restaurant"
+                    ref={inputRef}
                     type="restaurant"
                     autoComplete="off"
                     name="restaurant"

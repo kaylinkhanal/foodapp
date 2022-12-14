@@ -53,11 +53,6 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
         if(selectedFood){
 
             res.json({
@@ -73,10 +68,6 @@ router.put("/",  async (req, res, next) => {
         })
     }
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> 2374c766af1e67ccbf13839c3e1807ee0a325738
 // view users
 router.get("/", async (req, res) => {
 try{
