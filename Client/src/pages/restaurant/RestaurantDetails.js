@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import io from 'socket.io-client';
+const socket = io("http://localhost:4000");
 
 function RestaurantDetails () {
   const { restaurant } = useSelector((state) => state.restaurant);
   const [foods, setFoods] = useState([]);
   const [count, setCount] = useState(0);
   const { id } = useParams();
+  useEffect(()=>{
+    socket.on('connection')
+  },[])
 
+
+  const triggerMessageSend=()=>{
+    socket.emit('ordersRequest', "hello man")
+  }
   const fetchFoods = async () => {
     const response = await fetch(`http://localhost:4000/foods/${id}`);
     const data = await response.json();
@@ -40,7 +49,9 @@ function RestaurantDetails () {
                 {/* <img src={require(`../../uploads/${food.foodImage}`)}/> */}
                 <h4>foodType: {food.foodType}</h4>
                 <h4>foodCategory: {food.foodCategory}</h4>
-                <h4>Price: 350</h4>
+                <h4>foodName: {food.FoodName}</h4>
+                <h4>Price: {food.FoodPrice}</h4>
+
                 </div>
                 <div className="buttons">
                     <button onClick={() =>setCount(count - 1)}>-</button>
@@ -49,6 +60,8 @@ function RestaurantDetails () {
                 </div>
             </div>
         )}
+        <button onClick={()=> triggerMessageSend()}>
+          Buy</button>
       </div>
 
     </div>
