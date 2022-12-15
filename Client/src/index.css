@@ -316,8 +316,8 @@ button {
 }
 
 .foodapp-res-card-item img {
-  max-width: 100%;
-  height: auto;
+  width: 250px;
+  height: 300px;
 }
 
 .user_info {

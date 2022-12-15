@@ -7,7 +7,7 @@ import userSlice from "./reducersSlice/userSlice";
 import foodSlice from "./reducersSlice/foodSlice";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-import restaurantSlice from "./reducersSlice/restaurantSlice";
+
 
 const persistConfig = {
   key: 'root',
