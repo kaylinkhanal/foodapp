@@ -16,10 +16,12 @@ const registerRouter = require("./Controller/registerRouter");
 const loginRouter = require("./Controller/loginRouter");
 const restroRouter = require("./Controller/restaurantRouter");
 const foodRouter = require("./Controller/foodRouter");
+const userRouter = require("./Controller/userRouter");
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/restaurant", restroRouter);
 app.use("/foods", foodRouter);
+app.use("/users", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Chat Server listening on port ${PORT}`);

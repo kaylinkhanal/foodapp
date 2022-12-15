@@ -16,12 +16,14 @@ const userSlice = createSlice({
         state.phoneNumber = actions.payload.phoneNumber
         state.token = actions.payload.token
         state.role = actions.payload.role
+        state.address = actions.payload.address
     },
     resetCredentials: ( state, actions ) => {
       state.email = ''
       state.phoneNumber = ''
       state.token = ''
       state.role = ''
+      state.address = ''
     },
   }
 });

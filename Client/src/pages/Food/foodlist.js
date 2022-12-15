@@ -68,6 +68,8 @@ const FoodList = () => {
                   <div>{ item.foodType }</div>
                   <div>{ item.restaurant }</div>
                   <div>{ item.foodCategory }</div>
+                  <div>{ item.FoodName }</div>
+                  <div>{ item.FoodPrice }</div>
                   <Button type="primary" onClick={()=>showModal(item)}>
       Edit
       </Button>

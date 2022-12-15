@@ -1,5 +1,7 @@
 const express = require("express");
 const Food = require('../Model/foodSchema')
+const Restaurant = require('../Model/restaurantSchema')
+
 const router = express.Router();
 const multer  = require('multer')
 // const PORT = 4000;
@@ -51,7 +53,6 @@ router.put("/",  async (req, res, next) => {
         console.log("Updated User : ", docs);
         }
         });
-        
         if(selectedFood){
 
             res.json({
@@ -86,6 +87,25 @@ try{
     console.log(error)
 }
 });
+
+router.get('/:id', async (req, res) => {
+    try{
+        console.log(req.params)
+        const restaurantSingle = await Restaurant.findById(req.params.id);
+        if(restaurantSingle){
+            const foodSingle = await Food.find({restaurant: restaurantSingle.name});
+            console.log(foodSingle)
+        //     if(foodSingle){
+                res.json({
+                    foods: foodSingle
+                })
+            }
+        // }
+    }catch(error){
+        console.log(error.message)
+
+    }
+})
 
 
 router.delete("/:id",  async (req, res, next) => {
