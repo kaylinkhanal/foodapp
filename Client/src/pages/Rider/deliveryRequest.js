@@ -34,7 +34,7 @@ const DeliveryRequest = () => {
       View All
     </button>
     {/* <DeliveryFooter /> */}
-
+  
     {/* <Footer/> */}
   </div>
 

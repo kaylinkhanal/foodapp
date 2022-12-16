@@ -7,12 +7,26 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import axios from "axios";
 import { useSelector } from "react-redux";
+import io from 'socket.io-client';
+const socket = io("http://localhost:4000");
 
 function DeliveryOrders() {
   const navigate = useNavigate();
   const riderLocation = useSelector((state) => state.users.address);
   const [orders, setOrders] = useState([]);
+  const [liveOrders, setLiveOrders] = useState({})
   const [isClicked, setIsClicked] = useState(false);
+  useEffect(()=>{
+    socket.on('connection')
+  },[])
+
+
+  useEffect(()=>{
+    socket.on('orders',orders=>{
+      setLiveOrders(orders)
+    })
+  },[socket])
+ 
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:4000/users");
@@ -24,7 +38,7 @@ function DeliveryOrders() {
     // .then(response => console.log(response.data.usersList))
   };
 
-  console.log(orders);
+
   //   console.log(riderLocation);
   const filteredOrders = orders.filter((order) => {
     return order.address === riderLocation && order.role === "user";
@@ -74,6 +88,11 @@ function DeliveryOrders() {
               {/* <h4>ORDER {order.order_id}</h4> */}
               <>Order Details:</>
               <h5>Location: {order.address}</h5>
+              {order.email === liveOrders?.userDetails?.email ? (
+                liveOrders.foods.map((item)=> {
+                  return (<h1>{item.FoodName}</h1>)
+                })
+              ): null}
               {/* <h5>Size: {order.details.foodSize}</h5> */}
             </div>
             <div className="order-confirmation">
@@ -93,6 +112,7 @@ function DeliveryOrders() {
           </div>
         ))}
       </div>
+ 
     </div>
   );
 }

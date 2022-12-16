@@ -6,7 +6,6 @@ const router = express.Router();
 router.post("/", async (req, res) => {
     try{
         const selectedRestro = Restaurant.create(req.body)
-        console.log(req.body)
         res.json({
             message: 'Added your selected restaurant',
             restroDetail: selectedRestro

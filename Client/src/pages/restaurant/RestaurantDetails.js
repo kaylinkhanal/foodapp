@@ -6,6 +6,8 @@ const socket = io("http://localhost:4000");
 
 function RestaurantDetails () {
   const { restaurant } = useSelector((state) => state.restaurant);
+  const userDetails = useSelector((state) => state.users);
+
   const [foods, setFoods] = useState([]);
   const [count, setCount] = useState(0);
   const { id } = useParams();
@@ -15,7 +17,11 @@ function RestaurantDetails () {
 
 
   const triggerMessageSend=()=>{
-    socket.emit('ordersRequest', "hello man")
+    const orderDetails = {
+      foods: foods,
+      userDetails: userDetails
+    }
+    socket.emit('ordersRequest',orderDetails )
   }
   const fetchFoods = async () => {
     const response = await fetch(`http://localhost:4000/foods/${id}`);

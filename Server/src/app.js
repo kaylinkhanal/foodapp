@@ -33,10 +33,9 @@ const io = require('socket.io')(server, {
   });
 
 
-
   io.on('connection', socket => {
     socket.on('ordersRequest', orders => {
-      console.log(orders)      
+      io.emit('orders', orders) 
     });
   });
 

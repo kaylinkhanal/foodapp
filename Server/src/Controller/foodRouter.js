@@ -22,7 +22,6 @@ router.post("/", upload.single('file'), async (req, res, next) => {
     //console.log(req.file)
     req.body.foodImage = req.file.filename
     try{
-        console.log(req.body)
         const selectedFood = Food.create(req.body)
         // console.log(selectedFood)
         if(selectedFood){
@@ -43,7 +42,6 @@ router.post("/", upload.single('file'), async (req, res, next) => {
 router.put("/",  async (req, res, next) => {
     req.body.foodImg = req.file?.filename || ''
     try{
-        console.log(req.body)
         const selectedFood = Food.findByIdAndUpdate(req.body._id, req.body,
         function (err, docs) {
         if (err){
@@ -90,11 +88,9 @@ try{
 
 router.get('/:id', async (req, res) => {
     try{
-        console.log(req.params)
         const restaurantSingle = await Restaurant.findById(req.params.id);
         if(restaurantSingle){
             const foodSingle = await Food.find({restaurant: restaurantSingle.name});
-            console.log(foodSingle)
         //     if(foodSingle){
                 res.json({
                     foods: foodSingle
