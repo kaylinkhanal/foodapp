@@ -23,6 +23,23 @@ app.use("/restaurant", restroRouter);
 app.use("/foods", foodRouter);
 app.use("/users", userRouter);
 
-app.listen(PORT, () => {
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server, {
+    pingTimeout: 30000,
+    cors: {
+      origin: '*',
+    }
+  });
+
+
+
+  io.on('connection', socket => {
+    socket.on('ordersRequest', orders => {
+      console.log(orders)      
+    });
+  });
+
+server.listen(PORT, () => {
   console.log(`Chat Server listening on port ${PORT}`);
 });
